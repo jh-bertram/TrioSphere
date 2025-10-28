@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TrioSphere | Home</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <style>
+  /* css variables */
+  :root{
+    --clr-bg:          #f5f7fa;
+    --clr-surface:     #ffffff;
+    --clr-primary:     #27ae60;      /* main green */
+    --clr-primary-dark:#239b56;      /* darker green (hover) */
+    --clr-accent:      #2d6a4f;      /* darker accent green from about page */
+    --clr-text:        #1b1e23;
+
+    --indigo-600: var(--clr-primary);
+    --indigo-700: var(--clr-primary-dark);
+    --teal-500:   var(--clr-accent);
+
+    --gray-900:   var(--clr-text);
+    --gray-700:   #374151;
+    --gray-500:   #6b7280;
+    --gray-100:   var(--clr-bg);
+
+    --max-w: 1100px;
+    --radius: 8px;
+    --transition: all .25s ease-in-out;
+  }
+
+  /* base */
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    color:var(--gray-900);
+    background:var(--clr-surface);
+    line-height:1.6;
+  }
+  a{text-decoration:none;color:inherit;}
+  img{max-width:100%;display:block;}
+  section{padding:5rem 1.25rem;}
+  .container{max-width:var(--max-w);margin:0 auto;}
+
+  /* navbar */
+  header{
+    background:var(--clr-surface);
+    position:sticky;top:0;z-index:50;
+    box-shadow:0 1px 2px rgba(0,0,0,.06);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:.85rem 1.25rem;
+  }
+  .brand{
+    font-weight:700;font-size:1.25rem;
+    color:var(--indigo-700);
+  }
+  .menu{display:flex;gap:1.5rem;font-weight:500;}
+  .menu a{
+    color:var(--gray-700);
+    position:relative;
+  }
+  .menu a::after{
+    content:"";
+    position:absolute;bottom:-6px;left:0;height:2px;width:0;
+    background:var(--indigo-600);
+    transition:var(--transition);
+  }
+  .menu a:hover::after{width:100%;}
+  .cta-btn{
+    display:inline-block;
+    padding:.65rem 1.2rem;border-radius:var(--radius);
+    background:var(--indigo-600);color:#fff;font-weight:600;
+    transition:var(--transition);
+  }
+  .cta-btn:hover{background:var(--indigo-700);}
+  /* CSS for the new navigation buttons */
+  .nav-buttons {
+    display: flex;
+    gap: 0.75rem; /* pace between the two buttons */
+  }
+
+  .cta-btn-small {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #fff;
+    background: var(--clr-primary);
+    border-radius: var(--radius);
+    transition: var(--transition);
+  }
+
+  .cta-btn-small:hover {
+    background: var(--clr-primary-dark);
+  }
+
+  /* hero section */
+  .hero{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    align-items:center;gap:3rem;
+    padding-top:5rem;padding-bottom:6rem;
+  }
+  .hero h1{
+    font-size:clamp(2.2rem,5vw,3.2rem);
+    font-weight:700;line-height:1.2;margin-bottom:1rem;
+  }
+  .hero h1 .highlight{
+      color: var(--teal-500);
+  }
+  .hero p{
+    font-size:1.1rem;color:var(--gray-700);margin-bottom:2rem;
+    max-width: 60ch;
+  }
+  .hero-cta{
+    display:flex;gap:1rem;flex-wrap:wrap;
+  }
+  .secondary-btn{
+    border:2px solid var(--indigo-600);color:var(--indigo-600);
+    padding:.62rem 1.15rem;border-radius:var(--radius);font-weight:600;
+    transition:var(--transition);
+  }
+  .secondary-btn:hover{background:var(--indigo-600);color:#fff;}
+
+  /* features */
+  .features{
+    background:var(--gray-100);
+  }
+  .section-title {
+      font-size:1.8rem;
+      font-weight:600;
+      margin-bottom:2.5rem;
+      text-align:center;
+  }
+  .features-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:2rem;
+  }
+  .feature{
+    background:#fff;border-radius:var(--radius);
+    padding:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05);
+    transition:var(--transition);
+  }
+  .feature:hover{transform:translateY(-4px);}
+  .feature i{
+    font-size:1.75rem;color:var(--indigo-600);margin-bottom:1rem;
+  }
+  .feature h3{font-size:1.15rem;margin-bottom:.5rem;}
+  .feature p{color:var(--gray-700);font-size:.95rem;}
+
+  /* categories */
+  .categories-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:1.5rem;
+  }
+  .cat-card{
+    position:relative;border-radius:var(--radius);
+    overflow:hidden;cursor:pointer;height:220px;
+    box-shadow:0 2px 4px rgba(0,0,0,.08);
+    transition:var(--transition);
+  }
+  .cat-card:hover{transform:translateY(-4px);}
+  .cat-card img{
+    width:100%;height:100%;object-fit:cover;filter:brightness(60%);
+    transition:var(--transition);
+  }
+  .cat-card:hover img{filter:brightness(50%);transform: scale(1.05);}
+  .cat-card span{
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    color:#fff;font-weight:600;font-size:1.3rem;letter-spacing:.3px;
+    text-align: center;
+  }
+
+  /* footer */
+  footer{
+    background:#1f2937;color:#d1d5db;padding:3rem 1.25rem;
+  }
+  .footer-top{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:2rem;max-width:var(--max-w);margin:0 auto 2rem;
+  }
+  .footer-brand{font-weight:700;font-size:1.3rem;margin-bottom:1rem;}
+  .footer-links a{
+    display:block;color:#d1d5db;margin:.35rem 0;font-size:.95rem;
+    transition:var(--transition);
+  }
+  .footer-links a:hover{color:#fff;padding-left:4px;}
+  .socials{display:flex;gap:1rem;margin-top:1rem;}
+  .socials a{color:#d1d5db;font-size:1.2rem;transition:var(--transition);}
+  .socials a:hover{color:#fff;}
+
+  .copyright{
+    text-align:center;color:#9ca3af;font-size:.9rem;
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important;}
+  }
+  </style>
+  </head>
+<body>
+
+  <header>
+    <nav class="nav container">
+      <a class="brand" href="home.html">TrioSphere</a>
+      <div class="menu">
+        <a href="home.html">Home</a>
+        <a href="index.html">Data</a>
+        <a href="about.html">About</a>
+      </div>
+      <div class="nav-buttons">
+        <a href="https://onehealth.colostate.edu/" target="_blank" rel="noopener noreferrer" class="cta-btn-small">CSU One Health</a>
+        <a href="https://dsri.colostate.edu/" target="_blank" rel="noopener noreferrer" class="cta-btn-small">CSU DSRI</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero container">
+    <div>
+      <div id="hero-content"></div>
+      <div class="hero-cta">
+        <a class="cta-btn" href="index.html">Browse All Data</a>
+        <a class="secondary-btn" href="about.html">Learn About One Health</a>
+      </div>
+    </div>
+    <picture>
+      <img src="images/hero_image.png" alt="A wildlife biologist observing elk in a mountain valley at sunrise" style="border-radius:var(--radius);box-shadow:0 2px 5px rgba(0,0,0,.1); object-fit: cover; height: 100%;">
+    </picture>
+  </section>
+
+  <section class="features">
+    <div class="container">
+      <h2 class="section-title">A Hub Built for Researchers</h2>
+      <div class="features-grid">
+        <div class="feature">
+          <i class="fa-solid fa-database"></i>
+          <h3>Curated Quality</h3>
+          <p>Every dataset is vetted for methodological rigor, citation completeness, and long-term accessibility.</p>
+        </div>
+        <div class="feature">
+          <i class="fa-solid fa-globe"></i>
+          <h3>Cross-Disciplinary</h3>
+          <p>We blend animal, human, and environmental health data so you can analyze true One Health interactions.</p>
+        </div>
+        <div class="feature">
+          <i class="fa-solid fa-download"></i>
+          <h3>Frictionless Access</h3>
+          <p>Grab data with one click. No waiting in email queues or filling out long forms to get what you need.</p>
+        </div>
+        <div class="feature">
+          <i class="fa-solid fa-people-group"></i>
+          <h3>Community-Driven</h3>
+          <p>Suggest datasets, report issues, or contribute metadata. This hub grows with—and because of—you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-top container">
+      <div>
+        <h2 class="footer-brand">TrioSphere</h2>
+        <p>Connecting environmental, animal, and human health through quality data.</p>
+      </div>
+      <div class="footer-links">
+        <a href="home.html">Home</a>
+        <a href="index.html">Data</a>
+        <a href="about.html">About</a>
+      </div>
+      <div class="socials">
+        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+      </div>
+    </div>
+    <p class="copyright">&copy; 2025 TrioSphere. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <script>
+    // bold the current nav link
+    document.querySelectorAll('.menu a').forEach(a => {
+      // use location.href to get the full URL and check if the link's href is part of it
+      if ( a.href === window.location.href ) {
+        a.style.fontWeight = '700';
+        a.style.color = 'var(--indigo-700)';
+      }
+    });
+
+    // NEW: Fetch and render markdown content for the hero section
+    document.addEventListener('DOMContentLoaded', () => {
+        const contentArea = document.getElementById('hero-content');
+        fetch('home_content.md')
+            .then(response => response.ok ? response.text() : Promise.reject('File not found'))
+            .then(markdown => {
+                contentArea.innerHTML = marked.parse(markdown);
+            })
+            .catch(error => {
+                console.error('Error fetching home content:', error);
+                contentArea.innerHTML = '<p>Error loading content.</p>';
+            });
+    });
+  </script>
+</body>
+</html>
