@@ -33,40 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let activeDateTo    = null;
   let selectedPills   = new Set();
 
-  // --- CALCULATE CATEGORY DISTRIBUTION ---
-  function updateCategoryDistribution() {
-    const categoryCounts = { Animals: 0, People: 0, Ecosystems: 0 };
-
-    DATASETS.forEach(ds => {
-      if (ds.categories) {
-        ds.categories.forEach(cat => {
-          if (categoryCounts.hasOwnProperty(cat)) {
-            categoryCounts[cat]++;
-          }
-        });
-      }
-    });
-
-    const maxCount = Math.max(...Object.values(categoryCounts));
-
-    // Update counts and bar widths
-    Object.keys(categoryCounts).forEach(category => {
-      const count = categoryCounts[category];
-      const percentage = maxCount > 0 ? (count / maxCount) * 100 : 0;
-
-      const countEl = document.getElementById(`count${category}`);
-      const barFill = document.querySelector(`.chart-bar-fill[data-category="${category}"]`);
-
-      if (countEl) countEl.textContent = count;
-      if (barFill) {
-        // Delay animation slightly for visual effect
-        setTimeout(() => {
-          barFill.style.width = `${percentage}%`;
-        }, 100);
-      }
-    });
-  }
-
   // --- DYNAMICALLY GENERATE TAG FILTERS ---
   const tagFiltersContainer = document.getElementById("tagFiltersContainer");
   const allTags = new Set();
@@ -335,9 +301,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initial draw
   render();
-
-  // Update category distribution visualization
-  updateCategoryDistribution();
 
   // --- HIGHLIGHT ACTIVE NAVIGATION LINK ---
   document.querySelectorAll('.menu a').forEach(a => {
