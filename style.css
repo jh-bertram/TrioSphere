@@ -49,7 +49,7 @@
   transition: background-color var(--transition), transform var(--transition);
   flex-grow: 1;
   text-align: center;
-  border-radius: var(--radius);  /* Match search box radius */
+  border-radius: 0.45rem;  /* Smaller radius to match search box more closely */
 }
 .pill:hover {
   transform: translateY(-2px);
@@ -65,17 +65,17 @@
 .search-category-container .pill-list {
   display: flex;
   gap: 0.5rem;
-  /* flex-grow: 1;  */
-  /* width: 100%; */
+  flex-wrap: nowrap;  /* Keep pills in one row */
 }
 .search-category-container #categoryPills {
   margin: 0; /* Removes extra margin when in the header */
 }
 .search-category-container .pill {
-  padding: 0.7rem 1.5rem;
-  font-size: 1rem;
-  border-width: 1px;
-  border-radius: 1rem;
+  padding: 0.65rem 1.2rem;  /* Adjusted to better match search box height */
+  font-size: 0.95rem;
+  border-width: 2px;
+  border-radius: 0.45rem;  /* Match base pill radius */
+  white-space: nowrap;  /* Prevent text wrapping */
 }
 
 
@@ -670,12 +670,17 @@ main{
 /* Creates the main row for stats and search controls */
 .header-controls {
   display: flex;
-  /* change below */
-  /* flex-direction: column; */
+  flex-direction: row;  /* Horizontal alignment */
   align-items: center;
-  gap: .75rem;
-  max-width: 650px;
-  /* margin-inline: auto; */
+  gap: 1rem;
+  width: 100%;
+  max-width: 900px;  /* Increased to accommodate both elements */
+}
+
+@media (max-width: 768px) {
+  .header-controls {
+    flex-direction: column;  /* Stack vertically on mobile */
+  }
 }
 
 /* Styles for the stats panel itself */
@@ -752,6 +757,7 @@ main{
   padding: 0.75rem 0;
   margin: -0.75rem 0 0.75rem 0;
   border-radius: var(--radius);
+  flex-shrink: 0;  /* Prevent shrinking */
 }
 
 /* Add shadow when pills are sticky */
