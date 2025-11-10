@@ -11,18 +11,23 @@
 <style>
     /* css variables */
     :root{
-      /* dataset palette tokens */
+      /* CSU Brand Colors */
+      --csu-green:        #1E4d2b;
+      --csu-gold:         #C8C372;
+      --csu-orange:       #D9782D;
+      --csu-grey:         #CCCCCC;
+      --csu-dark-grey:    #59595B;
+
       --clr-bg:          #f5f7fa;
       --clr-surface:     #ffffff;
-      --clr-primary:     #27ae60;      /* main green */
-      --clr-primary-dark:#239b56;      /* darker green for hover */
-      --clr-accent:      #3498db;      /* secondary blue */
+      --clr-primary:     var(--csu-green);
+      --clr-primary-dark:var(--csu-green);
+      --clr-accent:      var(--csu-green);
       --clr-text:        #1b1e23;
 
-      /* aliases for existing names */
-      --indigo-600: var(--clr-primary);
-      --indigo-700: var(--clr-primary-dark);
-      --teal-500:   var(--clr-accent);
+      --indigo-600: var(--csu-green);
+      --indigo-700: var(--csu-green);
+      --teal-500:   var(--csu-green);
 
       --gray-900:   var(--clr-text);
       --gray-700:   #374151;
@@ -48,7 +53,7 @@
 
     /* = navbar =*/
     header {
-      background: var(--clr-surface);
+      background: var(--csu-green);  /* CSU green navbar */
       position: sticky;
       top: 0;
       z-index: 50;
@@ -63,7 +68,7 @@
     .brand {
       font-weight: 700;
       font-size: 1.25rem;
-      color: var(--indigo-700);
+      color: var(--csu-gold);  /* CSU gold brand */
     }
     .menu {
       display: flex;
@@ -71,7 +76,7 @@
       font-weight: 500;
     }
     .menu a {
-      color: var(--gray-700);
+      color: #ffffff;  /* White menu links */
       position: relative;
     }
     .menu a::after {
@@ -81,7 +86,7 @@
       left: 0;
       height: 2px;
       width: 0;
-      background: var(--indigo-600);
+      background: var(--csu-gold);
       transition: var(--transition);
     }
     .menu a:hover::after { width: 100%; }
@@ -96,20 +101,20 @@
       padding: 0.4rem 0.8rem;
       font-size: 0.85rem;
       font-weight: 600;
-      color: #fff;
-      background: var(--clr-primary);
+      color: var(--csu-green);  /* CSU green text */
+      background: var(--csu-gold);  /* CSU gold background */
       border-radius: var(--radius);
       transition: var(--transition);
     }
 
     .cta-btn-small:hover {
-      background: var(--clr-primary-dark);
+      background: #b0ad5f;
     }
 
     /* hero (smaller vibe) */
     .hero {
       padding: 6rem 1.25rem 5rem;
-      background: var(--gray-100);
+      background: var(--csu-grey);  /* CSU grey background */
     }
     .hero h1 {
       font-size: clamp(2rem, 5vw, 3rem);
@@ -136,7 +141,7 @@
         font-weight: 600;
         margin-top: 3rem;
         margin-bottom: 1rem;
-        color: var(--indigo-700);
+        color: var(--csu-green);  /* CSU green headings */
     }
     .about-content h2:first-child {
         margin-top: 0;
@@ -148,8 +153,8 @@
     .about-content blockquote {
         margin: 1.5rem 0;
         padding: 1rem 1.5rem;
-        background: var(--gray-100);
-        border-left: 4px solid var(--indigo-600);
+        background: var(--csu-grey);  /* CSU grey background */
+        border-left: 4px solid var(--csu-green);
         color: var(--gray-700);
         font-style: italic;
     }
@@ -159,7 +164,7 @@
 
     /* footer (duh) */
     footer {
-      background: #1f2937;
+      background: var(--csu-dark-grey);  /* CSU dark grey footer */
       color: #d1d5db;
       padding: 3rem 1.25rem;
     }

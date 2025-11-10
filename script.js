@@ -114,7 +114,7 @@ async function initializeApp() {
 
   // State
   let activeSearch    = "";
-  let activeFilters   = { tags: new Set(), type: new Set(), region: new Set() };
+  let activeFilters   = { tags: new Set(), type: new Set(['Dataset', 'Database']), region: new Set() };  // Initialize with both types checked
   let activeDateFrom  = null;
   let activeDateTo    = null;
   let selectedPills   = new Set();
