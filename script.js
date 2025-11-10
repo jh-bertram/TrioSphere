@@ -392,7 +392,7 @@ async function initializeApp() {
   document.querySelectorAll('.menu a').forEach(a => {
     if (a.pathname.split('/').pop() === window.location.pathname.split('/').pop()) {
       a.style.fontWeight = '700';
-      a.style.color = 'var(--clr-primary-dark)';
+      a.style.color = 'var(--csu-gold)';  // CSU gold for active page
     }
   });
 
