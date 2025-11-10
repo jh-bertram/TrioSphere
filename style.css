@@ -118,6 +118,55 @@ a  { color: var(--clr-accent); text-decoration:none; }
 a:hover{ text-decoration:underline; }
 
 
+/* RESULTS BAR */
+#resultsBar {
+    max-width: 1200px;
+    margin: 0 auto 1rem;
+    padding: 0 1rem;
+}
+
+.results-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--clr-surface);
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.result-count {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--clr-primary-dark);
+}
+
+.export-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--clr-accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--transition), transform var(--transition);
+}
+
+.export-btn:hover {
+    background: var(--clr-accent-light);
+    transform: translateY(-2px);
+}
+
+.export-btn:active {
+    transform: translateY(0);
+}
+
 /* GLOBAL LAYOUT */
 header {
     display: flex;
@@ -147,10 +196,77 @@ main{
     max-width:1200px;
     margin:0 auto 4rem;
     padding-inline:1rem;
+    position: relative;
 }
+
+/* Filter toggle button - hidden by default */
+.filter-toggle-btn {
+    display: none;
+}
+
 @media (max-width:860px){
-    main{ grid-template-columns:1fr; }
-    #filterPanel{ order:2; } /* filters drop below results on small screens */
+    main{
+        grid-template-columns:1fr;
+    }
+
+    /* Show toggle button on mobile */
+    .filter-toggle-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.25rem;
+        background: var(--clr-primary);
+        color: #fff;
+        border: none;
+        border-radius: var(--radius);
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        margin-bottom: 1rem;
+        box-shadow: var(--shadow);
+        transition: background var(--transition);
+        position: sticky;
+        top: 135px;
+        z-index: 998;
+    }
+
+    .filter-toggle-btn:hover {
+        background: var(--clr-primary-dark);
+    }
+
+    /* Filter panel mobile styles */
+    #filterPanel {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 80%;
+        max-width: 320px;
+        height: 100vh;
+        overflow-y: auto;
+        z-index: 1001;
+        transition: left 0.3s ease;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+    }
+
+    #filterPanel.open {
+        left: 0;
+    }
+
+    /* Overlay for mobile filter panel */
+    .filter-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 1000;
+        display: none;
+    }
+
+    .filter-overlay.active {
+        display: block;
+    }
 }
 
 
@@ -206,6 +322,34 @@ main{
     transition: transform var(--transition), box-shadow var(--transition);
     flex-direction: column; /* This is important for the next step */
     border-left: 4px solid #27ae60; /* A distinct purple accent border */
+    position: relative;
+}
+
+/* Recently Added Badge */
+.recently-added-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.3rem 0.7rem;
+    border-radius: 1rem;
+    box-shadow: 0 3px 8px rgba(255, 107, 107, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 10;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
 }
 .card.card-database {
   border-left: 4px solid #8e44ad; /* A distinct purple accent border */
@@ -590,11 +734,19 @@ main{
 /* This rule overrides the original to make it work in the new layout */
 .search-category-container {
   display: flex;
-  /* flex-direction: column; */
-  /* align-items: center; */
-  /* gap: 1rem; */
-  /* width: 100%;
-  max-width: 600px; */
+  position: sticky;
+  top: 57px; /* Offset by navbar height */
+  background: var(--clr-bg);
+  z-index: 999;
+  padding: 0.75rem 0;
+  margin: -0.75rem 0 0.75rem 0;
+  border-radius: var(--radius);
+}
+
+/* Add shadow when pills are sticky */
+.search-category-container.is-sticky {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 0.75rem 1rem;
 }
 /* =================================== */
 /* Dataset Suggestion Box              */

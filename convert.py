@@ -30,12 +30,17 @@ def md_to_html(text):
 df['additionalInfo'] = df['additionalInfo'].map(md_to_html)
 
 # 4. Enforce column order
-# --- ADD 'source' and 'region' TO THE COLUMN LIST ---
+# --- ADD 'source', 'region', and 'dateAdded' TO THE COLUMN LIST ---
 cols = [
-    'id','name','description','url','categories','source','region', # ADD 'source' HERE
+    'id','name','description','url','categories','source','region',
     'type','yearStart','yearEnd','tags','invisibleTags','additionalInfo'
 ]
-df = df[cols]
+
+# Add dateAdded column if it exists in the Excel file
+if 'dateAdded' in df.columns:
+    cols.append('dateAdded')
+
+df = df[[col for col in cols if col in df.columns]]
 
 # 5. Serialize to data.js
 with open('data.js', 'w', encoding='utf-8') as f:

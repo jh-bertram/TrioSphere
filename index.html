@@ -56,7 +56,19 @@
   </div>
 </header>
 
+<div id="resultsBar">
+  <div class="results-container">
+    <span id="resultCounter" class="result-count">Loading...</span>
+    <button id="exportCsvBtn" class="export-btn" title="Export filtered results to CSV">
+      <i class="fas fa-download"></i> Export to CSV
+    </button>
+  </div>
+</div>
+
 <main>
+  <button id="filterToggleBtn" class="filter-toggle-btn" aria-expanded="false">
+    <i class="fas fa-filter"></i> Filters
+  </button>
   <aside id="filterPanel">
       <h2>Search Criteria</h2>
 
@@ -95,6 +107,7 @@
     </aside>
     <section id="datasetGrid" aria-live="polite"></section>
   </main>
+  <div class="filter-overlay" id="filterOverlay"></div>
   <div id="infoModal" class="modal hidden">
     <div class="modal-content">
       <button id="modalClose" class="modal-close">&times;</button>

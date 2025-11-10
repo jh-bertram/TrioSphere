@@ -6,6 +6,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const dateEndEl     = document.getElementById("dateEnd");
   const clearBtn      = document.getElementById("clearFilters");
   const categoryPills = document.getElementById("categoryPills");
+  const resultCounter = document.getElementById("resultCounter");
+  const exportCsvBtn  = document.getElementById("exportCsvBtn");
+  const filterToggleBtn = document.getElementById("filterToggleBtn");
+  const filterPanel = document.getElementById("filterPanel");
+  const filterOverlay = document.getElementById("filterOverlay");
 
   // Info Modal elements
   const modal         = document.getElementById("infoModal");
@@ -95,7 +100,20 @@ document.addEventListener("DOMContentLoaded", () => {
     if (ds.source && ds.source.toLowerCase().includes('database')) {
       el.classList.add("card-database");
     }
+
+    // Check if recently added (within last 30 days)
+    let recentlyAddedBadge = '';
+    if (ds.dateAdded) {
+      const addedDate = new Date(ds.dateAdded);
+      const today = new Date();
+      const daysDiff = Math.floor((today - addedDate) / (1000 * 60 * 60 * 24));
+      if (daysDiff >= 0 && daysDiff <= 30) {
+        recentlyAddedBadge = '<span class="recently-added-badge">Recently Added</span>';
+      }
+    }
+
     el.innerHTML = `
+      ${recentlyAddedBadge}
       <h3>${ds.name}</h3>
       <p>${ds.description}</p>
       <div class="taglist">
@@ -126,12 +144,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function render() {
     const subset = DATASETS.filter(ds => passSearch(ds) && passFilters(ds));
+
+    // Update result counter
+    const count = subset.length;
+    const plural = count === 1 ? 'dataset' : 'datasets';
+    resultCounter.textContent = `${count} ${plural} found`;
+
     grid.innerHTML = "";
     if (!subset.length) {
       grid.innerHTML = "<p>No datasets match your criteria.</p>";
     } else {
       subset.forEach(ds => grid.appendChild(buildCard(ds)));
     }
+
+    // Store current filtered results for CSV export
+    window.currentFilteredResults = subset;
   }
 
   // Wire up event listeners
@@ -225,6 +252,53 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // --- CSV EXPORT FUNCTIONALITY ---
+  function exportToCSV() {
+    const results = window.currentFilteredResults || DATASETS;
+    if (!results.length) {
+      alert("No datasets to export.");
+      return;
+    }
+
+    // Define CSV headers
+    const headers = ['ID', 'Name', 'Description', 'URL', 'Categories', 'Source', 'Region', 'Type', 'Year Start', 'Year End', 'Tags'];
+
+    // Convert data to CSV rows
+    const rows = results.map(ds => {
+      return [
+        ds.id,
+        `"${(ds.name || '').replace(/"/g, '""')}"`,
+        `"${(ds.description || '').replace(/"/g, '""')}"`,
+        ds.url || '',
+        `"${(ds.categories || []).join('; ')}"`,
+        ds.source || '',
+        `"${(ds.region || []).join('; ')}"`,
+        ds.type || '',
+        ds.yearStart || '',
+        ds.yearEnd || '',
+        `"${(ds.tags || []).join('; ')}"`,
+      ].join(',');
+    });
+
+    // Combine headers and rows
+    const csv = [headers.join(','), ...rows].join('\n');
+
+    // Create download
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    link.setAttribute('href', url);
+    link.setAttribute('download', `triosphere-datasets-${new Date().toISOString().split('T')[0]}.csv`);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  if (exportCsvBtn) {
+    exportCsvBtn.addEventListener("click", exportToCSV);
+  }
+
   // Initial draw
   render();
 
@@ -235,5 +309,50 @@ document.addEventListener("DOMContentLoaded", () => {
       a.style.color = 'var(--clr-primary-dark)';
     }
   });
+
+  // --- STICKY PILLS ENHANCEMENT ---
+  const pillsContainer = document.querySelector('.search-category-container');
+  if (pillsContainer) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.intersectionRatio < 1) {
+          pillsContainer.classList.add('is-sticky');
+        } else {
+          pillsContainer.classList.remove('is-sticky');
+        }
+      },
+      { threshold: [1], rootMargin: '-57px 0px 0px 0px' }
+    );
+    observer.observe(pillsContainer);
+  }
+
+  // --- MOBILE FILTER TOGGLE ---
+  function openFilterPanel() {
+    filterPanel.classList.add('open');
+    filterOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    filterToggleBtn.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeFilterPanel() {
+    filterPanel.classList.remove('open');
+    filterOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+    filterToggleBtn.setAttribute('aria-expanded', 'false');
+  }
+
+  if (filterToggleBtn) {
+    filterToggleBtn.addEventListener('click', () => {
+      if (filterPanel.classList.contains('open')) {
+        closeFilterPanel();
+      } else {
+        openFilterPanel();
+      }
+    });
+  }
+
+  if (filterOverlay) {
+    filterOverlay.addEventListener('click', closeFilterPanel);
+  }
 
 });

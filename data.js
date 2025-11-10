@@ -10,10 +10,9 @@ const DATASETS = [
     ],
     "source":"database",
     "region":[
-      "Example Location One",
-      "Example Location Two"
+      "Global"
     ],
-    "type":"Vector;Tabular",
+    "type":"",
     "yearStart":"1996",
     "yearEnd":"2025",
     "tags":[
@@ -158,21 +157,21 @@ const DATASETS = [
       "Present",
       "1996-2025"
     ],
-    "additionalInfo":"<h1>IUCN REDLIST<\/h1><p>The IUCN Red List of Threatened Species contains global assessments for more than 166,000 species with more than 83% of these having spatial data. This data provides information about range, population size, habitat and ecology, use and\/or trade, threats, and conservation actions that will help inform necessary conservation decisions.<\/p><h3>Host Organization<\/h3><ul><li>The International Union for Conservation of Nature<\/li><\/ul><h4>Data Format<\/h4><ul><li>The data are made available in three formats, including taxonomic information, distribution status, IUCN Red List Category, sources and other details about the maps (see metadata document). Most species will have either polygons or points, only some have both:        - <strong>Polygons<\/strong> in Esri shapefile format, containing the known range of each  species. Note that sometimes the range is incomplete.        - <strong>Points<\/strong> as a csv (comma separated value) table including the latitude and longitude of each observation.        - <strong>Freshwater HydroBASIN Tables<\/strong> in csv format. Freshwater species are mapped to pre-defined river\/lake catchment units called HydroBASINS. It is widely accepted that the river\/lake catchment is the most appropriate management unit for inland waters. These species range tables contain the HydroBASINS ID field which can be joined to the HydroBASINS spatial data. <\/li><\/ul><h4>How to access data of interest<\/h4><ul><li>Go to <a href=\"https:\/\/www.iucnredlist.org\/resources\/spatial-data-download\">Spatial Data Download<\/a><\/li><li>Scroll until you find a <strong>Main Dataset<\/strong> or <strong>Specific Group<\/strong> of interest. <\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1996-2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li><p>Follow the instructions on the <a href=\"https:\/\/www.iucnredlist.org\/about\/citationinfo\">Citing The IUCN RedList Site<\/a><\/p><\/li><li><p>IUCN (International Union for Conservation of Nature). 2025. Spatial Data Download. The IUCN Red List of Threatened Species. Version 2025‑2. https:\/\/www.iucnredlist.org\/resources\/spatial‑data‑download.<\/p><\/li><\/ul>"
+    "additionalInfo":"<p>The IUCN Red List of Threatened Species contains global assessments for more than 166,000 species with more than 83% of these having spatial data. This data provides information about range, population size, habitat and ecology, use and\/or trade, threats, and conservation actions that will help inform necessary conservation decisions.<\/p><h4>Host Organization<\/h4><ul><li>The International Union for Conservation of Nature<\/li><\/ul><h4>Data Format<\/h4><ul><li>The data are made available in three formats, including taxonomic information, distribution status, IUCN Red List Category, sources and other details about the maps (see metadata document). Most species will have either polygons or points, only some have both:<ul><li><strong>Polygons<\/strong> in Esri shapefile format, containing the known range of each  species. Note that sometimes the range is incomplete.<\/li><li><strong>Points<\/strong> as a csv (comma separated value) table including the latitude and longitude of each observation.<\/li><li><strong>Freshwater HydroBASIN Tables<\/strong> in csv format. Freshwater species are mapped to pre-defined river\/lake catchment units called HydroBASINS. It is widely accepted that the river\/lake catchment is the most appropriate management unit for inland waters. These species range tables contain the HydroBASINS ID field which can be joined to the HydroBASINS spatial data. <\/li><\/ul><\/li><\/ul><h4>How to access data of interest<\/h4><ul><li>Go to <a href=\"https:\/\/www.iucnredlist.org\/resources\/spatial-data-download\">Spatial Data Download<\/a><\/li><li>Scroll until you find a <strong>Main Dataset<\/strong> or <strong>Specific Group<\/strong> of interest. <\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1996-2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Follow the instructions on the <a href=\"https:\/\/www.iucnredlist.org\/about\/citationinfo\">Citing The IUCN RedList Site<\/a><\/li><li>IUCN (International Union for Conservation of Nature). 2025. Spatial Data Download. <em>The IUCN Red List of Threatened Species<\/em>. Version 2025‑2. <a href=\"https:\/\/www.iucnredlist.org\/resources\/spatial‑data‑download\">https:\/\/www.iucnredlist.org\/resources\/spatial‑data‑download<\/a>.<\/li><\/ul>"
   },
   {
     "id":"2",
     "name":"National Notifiable Diseases Surveillance System",
-    "description":" NNDSS tracks and shares data on notifiable diseases to protect U.S. public health.",
+    "description":"NNDSS tracks and shares data on notifiable diseases to protect U.S. public health.",
     "url":"https:\/\/data.cdc.gov\/browse?category=NNDSS&sortBy=last_modified&pageSize=20&page=1",
     "categories":[
       "People"
     ],
-    "source":"dataset",
+    "source":"database",
     "region":[
-      "Example Location Three"
+      "United States"
     ],
-    "type":"Tabular",
+    "type":"",
     "yearStart":"1997",
     "yearEnd":"2025",
     "tags":[
@@ -300,7 +299,7 @@ const DATASETS = [
       "Present",
       "1997 - 2025"
     ],
-    "additionalInfo":"<h1>National Notifiable Diseases Surveillance System<\/h1><p>The National Notifiable Diseases Surveillance System (NNDSS) collects, analyzes, and shares data on nationally notifiable diseases to monitor and protect public health in the United States.<\/p><h3>Host Organization<\/h3><ul><li>Centers for Disease Control and Prevention<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats. Some datasets may be available in PDF, Plain Text, CSV, JSON, XLSX, and XML<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1997 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Follow the instructions on the <a href=\"https:\/\/www.cdc.gov\/nchs\/products\/citations.htm\">Citations for National Center for Health Statistics<\/a><\/li><li>Centers for Disease Control and Prevention (CDC). “Browse NNDSS Data.” CDC Data Portal, July 2025, https:\/\/data.cdc.gov\/browse?category=NNDSS&amp;sortBy=last_modified&amp;pageSize=20&amp;page=1. <\/li><\/ul>"
+    "additionalInfo":"<p>The National Notifiable Diseases Surveillance System (NNDSS) collects, analyzes, and shares data on nationally notifiable diseases to monitor and protect public health in the United States.<\/p><h4>Host Organization<\/h4><ul><li>Centers for Disease Control and Prevention<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats. Some datasets may be available in PDF, Plain Text, CSV, JSON, XLSX, and XML<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1997 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Follow the instructions on the <a href=\"https:\/\/www.cdc.gov\/nchs\/products\/citations.htm\">Citations for National Center for Health Statistics<\/a><\/li><li>Centers for Disease Control and Prevention (CDC). “Browse NNDSS Data.” <em>CDC Data Portal<\/em>, July 2025, <a href=\"https:\/\/data.cdc.gov\/browse?category=NNDSS&amp;sortBy=last_modified&amp;pageSize=20&amp;page=1\">https:\/\/data.cdc.gov\/browse?category=NNDSS&amp;sortBy=last_modified&amp;pageSize=20&amp;page=1<\/a>. <\/li><\/ul>"
   },
   {
     "id":"3",
@@ -312,7 +311,7 @@ const DATASETS = [
     ],
     "source":"database",
     "region":[
-      "Colorado"
+      "United States"
     ],
     "type":"Tabular",
     "yearStart":"1950",
@@ -445,7 +444,7 @@ const DATASETS = [
       "Present",
       "1950-2025"
     ],
-    "additionalInfo":"<h1>CDC Data<\/h1><p>The CDC’s Data Catalog serves as an open-access repository where a wide range of public health datasets are collected, published, and made available.<\/p><h3>Host Organization<\/h3><ul><li>Centers for Disease Control and Prevention<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats. Some datasets may be available in CSV, JSON, RDF, RSS, XML, GeoJSON, KML, Shapefile<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1950 -2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Follow the instructions on the <a href=\"https:\/\/www.cdc.gov\/nchs\/products\/citations.htm\">Citations for National Center for Health Statistics<\/a><\/li><li>Centers for Disease Control and Prevention (CDC). “Data | Centers for Disease Control and Prevention.” CDC Data Portal, accessed July 2025, https:\/\/data.cdc.gov\/browse?sortBy=relevance&amp;page=1&amp;pageSize=20.<\/li><\/ul>"
+    "additionalInfo":"<p>The CDC’s Data Catalog serves as an open-access repository where a wide range of public health datasets are collected, published, and made available.<\/p><h4>Host Organization<\/h4><ul><li>Centers for Disease Control and Prevention<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats. Some datasets may be available in CSV, JSON, RDF, RSS, XML, GeoJSON, KML, Shapefile<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1950 -2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Follow the instructions on the <a href=\"https:\/\/www.cdc.gov\/nchs\/products\/citations.htm\">Citations for National Center for Health Statistics<\/a><\/li><li>Centers for Disease Control and Prevention (CDC). “Data | Centers for Disease Control and Prevention.” <em>CDC Data Portal<\/em>, accessed July 2025, <a href=\"https:\/\/data.cdc.gov\/browse?sortBy=relevance&amp;page=1&amp;pageSize=20\">https:\/\/data.cdc.gov\/browse?sortBy=relevance&amp;page=1&amp;pageSize=20<\/a>.<\/li><\/ul>"
   },
   {
     "id":"4",
@@ -455,9 +454,9 @@ const DATASETS = [
     "categories":[
       "People"
     ],
-    "source":"",
+    "source":"database",
     "region":[
-
+      "Colorado"
     ],
     "type":"",
     "yearStart":"1951",
@@ -608,7 +607,7 @@ const DATASETS = [
       "Present",
       "1951 - 2025"
     ],
-    "additionalInfo":"<h1>Colorado Information Marketplace<\/h1><p>The Colorado Information Marketplace is the state's official open data portal designed to promote transparency, innovation, and accountability by providing public access to curated, machine-readable datasets from Colorado state government agencies<\/p><h3>Host Organization<\/h3><ul><li>Colorado State Government <\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats. Some datasets may be available in CSV, RDF, RSS, XML, KML, KMZ, Shapefile, GeoJSON<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1951 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>To cite a specific dataset please refer to the information provided in the <strong>About this Dataset<\/strong> section at the top of the page.<\/li><li>State of Colorado. “Colorado Information Marketplace.” Colorado Information Marketplace (data.colorado.gov), accessed July 2025, https:\/\/data.colorado.gov\/.<\/li><\/ul>"
+    "additionalInfo":"<p>The Colorado Information Marketplace is the state's official open data portal designed to promote transparency, innovation, and accountability by providing public access to curated, machine-readable datasets from Colorado state government agencies<\/p><h4>Host Organization<\/h4><ul><li>Colorado State Government <\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats. Some datasets may be available in CSV, RDF, RSS, XML, KML, KMZ, Shapefile, GeoJSON<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1951 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>To cite a specific dataset please refer to the information provided in the <strong>About this Dataset<\/strong> section at the top of the page.<\/li><li>State of Colorado. “Colorado Information Marketplace.” <em>Colorado Information Marketplace (data.colorado.gov)<\/em>, accessed July 2025, <a href=\"https:\/\/data.colorado.gov\/\">https:\/\/data.colorado.gov\/<\/a>.<\/li><\/ul>"
   },
   {
     "id":"5",
@@ -620,9 +619,9 @@ const DATASETS = [
       "Animals",
       "Ecosystems"
     ],
-    "source":"",
+    "source":"database",
     "region":[
-
+      "United States"
     ],
     "type":"",
     "yearStart":"2015",
@@ -816,7 +815,7 @@ const DATASETS = [
       "Present",
       "2015-2025"
     ],
-    "additionalInfo":"<h1>Colorado Geospatial Portal<\/h1><p>Find spatial data from Colorado state agencies and partners.<\/p><h3>Host Organization<\/h3><ul><li>Colorado Office of Information Technology<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats. Some datasets may be available in Shapefile, GeoJSON, KML, CSV, and Tile Formats.<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>2015 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>State of Colorado. “Colorado Geodata Portal.” Colorado Geodata Portal (geodata.colorado.gov), accessed July 2025, https:\/\/geodata.colorado.gov\/.<\/li><\/ul>"
+    "additionalInfo":"<p>Find spatial data from Colorado state agencies and partners.<\/p><h4>Host Organization<\/h4><ul><li>Colorado Office of Information Technology<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats. Some datasets may be available in Shapefile, GeoJSON, KML, CSV, and Tile Formats.<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>2015 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>State of Colorado. “Colorado Geodata Portal.” <em>Colorado Geodata Portal (geodata.colorado.gov)<\/em>, accessed July 2025, <a href=\"https:\/\/geodata.colorado.gov\/\">https:\/\/geodata.colorado.gov\/<\/a>.<\/li><\/ul>"
   },
   {
     "id":"6",
@@ -828,9 +827,9 @@ const DATASETS = [
       "Animals",
       "Ecosystems"
     ],
-    "source":"",
+    "source":"database",
     "region":[
-
+      "Colorado"
     ],
     "type":"",
     "yearStart":"2010",
@@ -930,7 +929,7 @@ const DATASETS = [
       "Present",
       "2010 - 2025"
     ],
-    "additionalInfo":"<h1>Colorado Department of Public Health Open Data<\/h1><p>Access selected geospatial data sets, maps, visualization tools, and web-based mapping applications that are published by the Colorado Department of Public Health and Environment.<\/p><h3>Host Organization<\/h3><ul><li>Colorado Department of Public Health and Environment<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats. Some datasets may be available in CSV, Shapefile, GeoJSON, File Geodatabase, and Tile Service.<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>2010 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Colorado Department of Public Health &amp; Environment (CDPHE). “Colorado Open Data Portal.” data‑cdphe.opendata.arcgis.com, accessed  July 2025, https:\/\/data‑cdphe.opendata.arcgis.com\/.<\/li><\/ul>"
+    "additionalInfo":"<p>Access selected geospatial data sets, maps, visualization tools, and web-based mapping applications that are published by the Colorado Department of Public Health and Environment.<\/p><h4>Host Organization<\/h4><ul><li>Colorado Department of Public Health and Environment<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats. Some datasets may be available in CSV, Shapefile, GeoJSON, File Geodatabase, and Tile Service.<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>2010 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Colorado Department of Public Health &amp; Environment (CDPHE). “Colorado Open Data Portal.” <em>data‑cdphe.opendata.arcgis.com<\/em>, accessed  July 2025, <a href=\"https:\/\/data‑cdphe.opendata.arcgis.com\/\">https:\/\/data‑cdphe.opendata.arcgis.com\/<\/a>.<\/li><\/ul>"
   },
   {
     "id":"7",
@@ -940,9 +939,9 @@ const DATASETS = [
     "categories":[
       "People"
     ],
-    "source":"",
+    "source":"database",
     "region":[
-
+      "Colorado"
     ],
     "type":"",
     "yearStart":"2022",
@@ -1068,7 +1067,7 @@ const DATASETS = [
       "Current",
       "2022 - 2024"
     ],
-    "additionalInfo":"<h1>Colorado Health Indications Dashboard<\/h1><p>The Colorado Health Indicators Dashboard is an interactive Tableau-based tool from CDPHE that presents data on community health indicators.<\/p><h3>Host Organization<\/h3><ul><li>Colorado Department of Public Health and Environment <\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available on <strong>Birth and Death<\/strong>, <strong>Disease and Injury<\/strong>, <strong>Health Behaviors<\/strong>, <strong>Living Conditions<\/strong>, and ** Social and Institutional Equity**.<\/li><li>The data available for download is primarily in XLSX.<\/li><\/ul><h4>How to access data of interest<\/h4><ul><li>Select a <strong>Topic<\/strong> of interest<\/li><li>Scroll to the bottom of the summary data<\/li><li>Select <strong>Download Archived Data<\/strong><\/li><li>This brings you to a Google Drive folder containing archived data on your topic of interest<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>2022 - 2024<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Colorado Department of Public Health &amp; Environment (CDPHE). “Child Health Indicators Dashboard.” Colorado Health Dashboard, accessed July 2025, https:\/\/cohealthviz.dphe.state.co.us\/t\/HSEBPublic\/views\/CHIDashboard_2024Redesign\/CHILandingPage?%3Aembed=y&amp;%3AisGuestRedirectFromVizportal=y.<\/li><\/ul>"
+    "additionalInfo":"<p>The Colorado Health Indicators Dashboard is an interactive Tableau-based tool from CDPHE that presents data on community health indicators.<\/p><h4>Host Organization<\/h4><ul><li>Colorado Department of Public Health and Environment <\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available on <strong>Birth and Death<\/strong>, <strong>Disease and Injury<\/strong>, <strong>Health Behaviors<\/strong>, <strong>Living Conditions<\/strong>, and ** Social and Institutional Equity**.<\/li><li>The data available for download is primarily in XLSX.<\/li><\/ul><h4>How to access data of interest<\/h4><ul><li>Select a <strong>Topic<\/strong> of interest<\/li><li>Scroll to the bottom of the summary data<\/li><li>Select <strong>Download Archived Data<\/strong><\/li><li>This brings you to a Google Drive folder containing archived data on your topic of interest<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>2022 - 2024<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Colorado Department of Public Health &amp; Environment (CDPHE). “Child Health Indicators Dashboard.” <em>Colorado Health Dashboard<\/em>, accessed July 2025, <a href=\"https:\/\/cohealthviz.dphe.state.co.us\/t\/HSEBPublic\/views\/CHIDashboard_2024Redesign\/CHILandingPage?%3Aembed=y&amp;%3AisGuestRedirectFromVizportal=y\">https:\/\/cohealthviz.dphe.state.co.us\/t\/HSEBPublic\/views\/CHIDashboard_2024Redesign\/CHILandingPage?%3Aembed=y&amp;%3AisGuestRedirectFromVizportal=y<\/a>.<\/li><\/ul>"
   },
   {
     "id":"8",
@@ -1078,9 +1077,9 @@ const DATASETS = [
     "categories":[
       "People"
     ],
-    "source":"",
+    "source":"database",
     "region":[
-
+      "Colorado"
     ],
     "type":"",
     "yearStart":"2020",
@@ -1195,19 +1194,19 @@ const DATASETS = [
       "Current",
       "2020 - 2023"
     ],
-    "additionalInfo":"<h1>CDPHE Viral Respiratory Illnesses Archived Data Files<\/h1><p>Google Drive folder containing archived data from CDPHE concerning respiratory illness in Colorado, including data on vaccines, cases, mortality, viral variants and more.<\/p><h3>Host Organization<\/h3><ul><li>Colorado Department of Public Health and Environment <\/li><\/ul><h4>Data Format<\/h4><ul><li>The data available for download is primarily in XLSX.<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>2020 - 2023<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Colorado Department of Public Health and Environment. (n.d.). Viral Respiratory Illnesses Archived Data Files [Online folder]. Retrieved July, 2025, from https:\/\/drive.google.com\/drive\/folders\/1efQVBclGxwnCCYVLbzH96A0QRSWwmTYI<\/li><\/ul>"
+    "additionalInfo":"<p>Google Drive folder containing archived data from CDPHE concerning respiratory illness in Colorado, including data on vaccines, cases, mortality, viral variants and more.<\/p><h4>Host Organization<\/h4><ul><li>Colorado Department of Public Health and Environment <\/li><\/ul><h4>Data Format<\/h4><ul><li>The data available for download is primarily in XLSX.<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>2020 - 2023<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Colorado Department of Public Health and Environment. (n.d.). <em>Viral Respiratory Illnesses Archived Data Files<\/em> [Online folder]. Retrieved July, 2025, from <a href=\"https:\/\/drive.google.com\/drive\/folders\/1efQVBclGxwnCCYVLbzH96A0QRSWwmTYI\">https:\/\/drive.google.com\/drive\/folders\/1efQVBclGxwnCCYVLbzH96A0QRSWwmTYI<\/a><\/li><\/ul>"
   },
   {
     "id":"9",
     "name":"EMPRES-i",
-    "description":" EMPRES-i maps global animal disease events with data to support early warning and control strategies.",
+    "description":"EMPRES-i maps global animal disease events with data to support early warning and control strategies.",
     "url":"https:\/\/empres-i.apps.fao.org\/general",
     "categories":[
       "Animals"
     ],
     "source":"database",
     "region":[
-
+      "Global"
     ],
     "type":"",
     "yearStart":"2004",
@@ -1483,7 +1482,7 @@ const DATASETS = [
       "Present",
       "2004 - 2025"
     ],
-    "additionalInfo":"<h1>EMPRES-i<\/h1><p>EMPRES‑i is FAO’s global animal disease information system that collects, verifies, and maps up-to-date “disease event” data - sourced from national governments, field reports, media and surveillance systems - and is integrated with layers like livestock density and environmental factors to support disease prevention, control strategies, and early warning for disease outbreaks.<\/p><h3>Host Organization<\/h3><ul><li>Food and Agricultural Organization of the United Nations - Global Animal Disease Information System<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is primarily available in CSV and JSON.<\/li><\/ul><h4>How to access data of interest<\/h4><ul><li>Search for data of interest<\/li><li>Select data point of interest on map<\/li><li>On the pop-up window for that data point, select <strong>Show Raw Data<\/strong><\/li><li>Scroll down slightly and select <strong>Download this Table<\/strong> <\/li><\/ul><h4>Database Time Range<\/h4><ul><li>2004 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Food and Agriculture Organization of the United Nations. (n.d.). EMPRES‑i: Global Animal Disease Information System. Retrieved from https:\/\/empres‑i.apps.fao.org\/general<\/li><\/ul>"
+    "additionalInfo":"<p>EMPRES‑i is FAO’s global animal disease information system that collects, verifies, and maps up-to-date “disease event” data - sourced from national governments, field reports, media and surveillance systems - and is integrated with layers like livestock density and environmental factors to support disease prevention, control strategies, and early warning for disease outbreaks.<\/p><h4>Host Organization<\/h4><ul><li>Food and Agricultural Organization of the United Nations - Global Animal Disease Information System<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is primarily available in CSV and JSON.<\/li><\/ul><h4>How to access data of interest<\/h4><ul><li>Search for data of interest<\/li><li>Select data point of interest on map<\/li><li>On the pop-up window for that data point, select <strong>Show Raw Data<\/strong><\/li><li>Scroll down slightly and select <strong>Download this Table<\/strong> <\/li><\/ul><h4>Database Time Range<\/h4><ul><li>2004 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Food and Agriculture Organization of the United Nations. (n.d.). <em>EMPRES‑i: Global Animal Disease Information System<\/em>. Retrieved from <a href=\"https:\/\/empres‑i.apps.fao.org\/general\">https:\/\/empres‑i.apps.fao.org\/general<\/a><\/li><\/ul>"
   },
   {
     "id":"10",
@@ -1495,7 +1494,7 @@ const DATASETS = [
     ],
     "source":"database",
     "region":[
-
+      "United States"
     ],
     "type":"",
     "yearStart":"1872",
@@ -1660,7 +1659,7 @@ const DATASETS = [
       "Present",
       "1872 - 2025"
     ],
-    "additionalInfo":"<h1>NOWDATA<\/h1><p>NOWDATA provides a range of preliminary local climatological data—such as daily and monthly temperature (max\/min\/avg), precipitation, degree‑day summaries, record events, and more—via curated reports and links to detailed datasets and archives.<\/p><h3>Host Organization<\/h3><ul><li>National Weather Service<\/li><li>National Oceanic and Atmospheric Administration<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is primarily available in CSV format<\/li><\/ul><h4>How to access data of interest<\/h4><ul><li>Data can be summarized in 9 different <strong>Products<\/strong>.<\/li><li>Data is available for the following weather variables: <strong>Maximum, Minimum, and Average Temperatures<\/strong>, <strong>Precipitation<\/strong>, <strong>Snowfall<\/strong>, <strong>Snow Depth<\/strong>, <strong>Heating Degree Days Base 65<\/strong>, <strong>Cooling Degree Days Base 65<\/strong>, ** Growing Degree Days Base 50<strong>, <\/strong>Humidity<strong>, <\/strong>Sunrise and Sunset**, and more.<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1872 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Follow the instructions on the <a href=\"https:\/\/sciencecouncil.noaa.gov\/noaa-by-the-numbers\/how-to-cite\/\">NOAA by the Numbers - How to Cite Page<\/a><\/li><\/ul>"
+    "additionalInfo":"<p>NOWDATA provides a range of preliminary local climatological data—such as daily and monthly temperature (max\/min\/avg), precipitation, degree‑day summaries, record events, and more—via curated reports and links to detailed datasets and archives.<\/p><h4>Host Organization<\/h4><ul><li>National Weather Service<\/li><li>National Oceanic and Atmospheric Administration<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is primarily available in CSV format<\/li><\/ul><h4>How to access data of interest<\/h4><ul><li>Data can be summarized in 9 different <strong>Products<\/strong>.<\/li><li>Data is available for the following weather variables: <strong>Maximum, Minimum, and Average Temperatures<\/strong>, <strong>Precipitation<\/strong>, <strong>Snowfall<\/strong>, <strong>Snow Depth<\/strong>, <strong>Heating Degree Days Base 65<\/strong>, <strong>Cooling Degree Days Base 65<\/strong>, ** Growing Degree Days Base 50<strong>, <\/strong>Humidity<strong>, <\/strong>Sunrise and Sunset**, and more.<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1872 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Follow the instructions on the <a href=\"https:\/\/sciencecouncil.noaa.gov\/noaa-by-the-numbers\/how-to-cite\/\">NOAA by the Numbers - How to Cite Page<\/a><\/li><\/ul>"
   },
   {
     "id":"11",
@@ -1670,9 +1669,9 @@ const DATASETS = [
     "categories":[
       "Ecosystems"
     ],
-    "source":"",
+    "source":"database",
     "region":[
-
+      "United States"
     ],
     "type":"",
     "yearStart":"1991",
@@ -1810,7 +1809,7 @@ const DATASETS = [
       "Present",
       "1991 - 2025"
     ],
-    "additionalInfo":"<h1>Wind Data Hub<\/h1><p>The U.S. Department of Energy’s Wind Data Hub (WDH) is a centralized, interactive platform offering access to curated wind energy datasets—including turbine performance, resource potential, project locations, and atmospheric data—designed to support analysis, research, and deployment of wind power nationwide.<\/p><h3>Host Organization<\/h3><ul><li>U.S. Department of Energy: Wind Energy Technologies Office  Energy Efficiency and Renewable Energy<\/li><li>Pacific Northwest National Laboratory<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is often available in the following formats: Endnote, RIS, CSV, Excel, XML, and JSON<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1991 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Private<ul><li>Must create an account to access data<\/li><\/ul><\/li><li>Requires: First Name, Last Name, ORCID (ORCID is a free, unique, persistent identifier (PID) for individuals to use as they engage in research, scholarship, and innovation activities), Justification, and Email.<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Citation is provided for each individual dataset in the <strong>Citation<\/strong> section of the dataset page. <\/li><li>U.S. Department of Energy. (n.d.). Wind Data Hub (WDH). Retrieved July 22, 2025, from https:\/\/wdh.energy.gov\/home<\/li><\/ul>"
+    "additionalInfo":"<p>The U.S. Department of Energy’s Wind Data Hub (WDH) is a centralized, interactive platform offering access to curated wind energy datasets—including turbine performance, resource potential, project locations, and atmospheric data—designed to support analysis, research, and deployment of wind power nationwide.<\/p><h4>Host Organization<\/h4><ul><li>U.S. Department of Energy: Wind Energy Technologies Office  Energy Efficiency and Renewable Energy<\/li><li>Pacific Northwest National Laboratory<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is often available in the following formats: Endnote, RIS, CSV, Excel, XML, and JSON<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1991 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Private<ul><li>Must create an account to access data<\/li><\/ul><\/li><li>Requires: First Name, Last Name, ORCID (ORCID is a free, unique, persistent identifier (PID) for individuals to use as they engage in research, scholarship, and innovation activities), Justification, and Email.<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Citation is provided for each individual dataset in the <strong>Citation<\/strong> section of the dataset page. <\/li><li>U.S. Department of Energy. (n.d.). <em>Wind Data Hub (WDH)<\/em>. Retrieved July 22, 2025, from <a href=\"https:\/\/wdh.energy.gov\/home\">https:\/\/wdh.energy.gov\/home<\/a><\/li><\/ul>"
   },
   {
     "id":"12",
@@ -1822,9 +1821,9 @@ const DATASETS = [
       "Animals",
       "Ecosystems"
     ],
-    "source":"",
+    "source":"database",
     "region":[
-
+      "United States"
     ],
     "type":"",
     "yearStart":"2019",
@@ -2163,7 +2162,7 @@ const DATASETS = [
       "Present",
       "2019 - 2025"
     ],
-    "additionalInfo":"<h1>Pacific Northwest National Laboratory DataHUB<\/h1><p>The PNNL DataHub is an open-access, DOE‑supported platform hosting thousands of research datasets—spanning biology, Earth and atmospheric sciences, energy systems, materials science, and more—complete with associated publications, project information, metadata, and source code for reuse and citation.<\/p><h3>Host Organization<\/h3><ul><li>Pacific Northwest National Laboratory<\/li><li>U.S. Department of Energy: Wind Energy Technologies Office  Energy Efficiency and Renewable Energy<\/li><\/ul><h4>Data Format<\/h4><ul><li>A wide variety of data formats are available depending on the dataset of choice.<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>2019 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Citation information is available through each dataset.<\/li><li>Pacific Northwest National Laboratory. (n.d.). PNNL DataHub. Retrieved July, 2025, from https:\/\/data.pnnl.gov\/<\/li><\/ul>"
+    "additionalInfo":"<p>The PNNL DataHub is an open-access, DOE‑supported platform hosting thousands of research datasets—spanning biology, Earth and atmospheric sciences, energy systems, materials science, and more—complete with associated publications, project information, metadata, and source code for reuse and citation.<\/p><h4>Host Organization<\/h4><ul><li>Pacific Northwest National Laboratory<\/li><li>U.S. Department of Energy: Wind Energy Technologies Office  Energy Efficiency and Renewable Energy<\/li><\/ul><h4>Data Format<\/h4><ul><li>A wide variety of data formats are available depending on the dataset of choice.<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>2019 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Citation information is available through each dataset.<\/li><li>Pacific Northwest National Laboratory. (n.d.). <em>PNNL DataHub<\/em>. Retrieved July, 2025, from <a href=\"https:\/\/data.pnnl.gov\/\">https:\/\/data.pnnl.gov\/<\/a><\/li><\/ul>"
   },
   {
     "id":"13",
@@ -2175,9 +2174,9 @@ const DATASETS = [
       "Animals",
       "Ecosystems"
     ],
-    "source":"datasbase",
+    "source":"database",
     "region":[
-
+      "Global"
     ],
     "type":"",
     "yearStart":"1810",
@@ -2307,7 +2306,7 @@ const DATASETS = [
       "Present",
       "1810 - 2025"
     ],
-    "additionalInfo":"<h1>Dryad<\/h1><p>Dryad is a nonprofit, curated, open-access repository that enables researchers to publish, preserve, and cite research data—including datasets, code, and supplemental materials—across all disciplines under a Creative Commons Zero (CC0) license, with DOIs, metadata quality checks, and long-term archival for reproducibility and reuse.<\/p><h3>Host Organization<\/h3><ul><li>Dryad<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1810 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Citation provided under <strong>Citation<\/strong> section on each dataset page<\/li><li>Dryad. (n.d.). Dryad Digital Repository. Retrieved July, 2025, from https:\/\/datadryad.org\/<\/li><\/ul>"
+    "additionalInfo":"<p>Dryad is a nonprofit, curated, open-access repository that enables researchers to publish, preserve, and cite research data—including datasets, code, and supplemental materials—across all disciplines under a Creative Commons Zero (CC0) license, with DOIs, metadata quality checks, and long-term archival for reproducibility and reuse.<\/p><h4>Host Organization<\/h4><ul><li>Dryad<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1810 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Citation provided under <strong>Citation<\/strong> section on each dataset page<\/li><li>Dryad. (n.d.). <em>Dryad Digital Repository<\/em>. Retrieved July, 2025, from <a href=\"https:\/\/datadryad.org\/\">https:\/\/datadryad.org\/<\/a><\/li><\/ul>"
   },
   {
     "id":"14",
@@ -2317,9 +2316,9 @@ const DATASETS = [
     "categories":[
       "Animals"
     ],
-    "source":"",
+    "source":"database",
     "region":[
-
+      "Global"
     ],
     "type":"",
     "yearStart":"2005",
@@ -2616,7 +2615,7 @@ const DATASETS = [
       "Present",
       "2005 - 2025"
     ],
-    "additionalInfo":"<h1>World Organisation for Animal Health Information System<\/h1><p>The World Animal Health Information System (WAHIS), provided by WOAH, is a publicly accessible global platform that publishes verified, real-time animal disease data—including immediate alerts, follow-up updates, six‑monthly and annual reports on WOAH-listed diseases (for both domestic and wild species), with detailed outbreak counts, species affected, geographic spread, control measures, and veterinary capacities to support surveillance, trade, decision‑making, and research.<\/p><h3>Host Organization<\/h3><ul><li>World Organization for Animal Health <\/li><\/ul><h4>Data Format<\/h4><ul><li>Event reports are primarily available in PDF format.<\/li><\/ul><h4>How to access data of interest<\/h4><ul><li>Select disease event(s) of interest<\/li><li>Select report of interest, using the <strong>^<\/strong> symbol, open the drop down for the event of interest<\/li><li>Select <strong>Open Report<\/strong><\/li><li>Select <strong>Download<\/strong><\/li><\/ul><h4>Database Time Range<\/h4><ul><li>2005 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>World Organisation for Animal Health. (n.d.). World Animal Health Information System. Retrieved July, 2025, from https:\/\/www.woah.org\/en\/what-we-do\/animal-health-and-welfare\/disease-data-collection\/world-animal-health-information-system\/<\/li><\/ul>"
+    "additionalInfo":"<p>The World Animal Health Information System (WAHIS), provided by WOAH, is a publicly accessible global platform that publishes verified, real-time animal disease data—including immediate alerts, follow-up updates, six‑monthly and annual reports on WOAH-listed diseases (for both domestic and wild species), with detailed outbreak counts, species affected, geographic spread, control measures, and veterinary capacities to support surveillance, trade, decision‑making, and research.<\/p><h4>Host Organization<\/h4><ul><li>World Organization for Animal Health <\/li><\/ul><h4>Data Format<\/h4><ul><li>Event reports are primarily available in PDF format.<\/li><\/ul><h4>How to access data of interest<\/h4><ul><li>Select disease event(s) of interest<\/li><li>Select report of interest, using the <strong>^<\/strong> symbol, open the drop down for the event of interest<\/li><li>Select <strong>Open Report<\/strong><\/li><li>Select <strong>Download<\/strong><\/li><\/ul><h4>Database Time Range<\/h4><ul><li>2005 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>World Organisation for Animal Health. (n.d.). <em>World Animal Health Information System<\/em>. Retrieved July, 2025, from <a href=\"https:\/\/www.woah.org\/en\/what-we-do\/animal-health-and-welfare\/disease-data-collection\/world-animal-health-information-system\/\">https:\/\/www.woah.org\/en\/what-we-do\/animal-health-and-welfare\/disease-data-collection\/world-animal-health-information-system\/<\/a><\/li><\/ul>"
   },
   {
     "id":"15",
@@ -2629,7 +2628,7 @@ const DATASETS = [
     ],
     "source":"dataset",
     "region":[
-
+      "Global"
     ],
     "type":"",
     "yearStart":"1770",
@@ -2785,12 +2784,12 @@ const DATASETS = [
       "Present",
       "1770 - 2025"
     ],
-    "additionalInfo":"<h1>Global Biodiversity Information Facility<\/h1><p>The Global Biodiversity Information Facility (GBIF) is an international network providing open access to over two billion species occurrence records from institutions worldwide, enabling users to explore biodiversity data across taxa, geography, and time through standardized formats like Darwin Core and APIs for advanced analysis.<\/p><h3>Host Organization<\/h3><ul><li>Global Biodiversity Information Facility<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats including: GBIF annotated archive, EML, and Darwin Core Archive<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1770 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Private<ul><li>Must create free account to download datasets<\/li><\/ul><\/li><\/ul><h4>Citation Information<\/h4><ul><li>Follow the instructions on the <a href=\"https:\/\/www.gbif.org\/citation-guidelines\">GBIF Citation Guidelines Page<\/a><\/li><\/ul>"
+    "additionalInfo":"<p>The Global Biodiversity Information Facility (GBIF) is an international network providing open access to over two billion species occurrence records from institutions worldwide, enabling users to explore biodiversity data across taxa, geography, and time through standardized formats like Darwin Core and APIs for advanced analysis.<\/p><h4>Host Organization<\/h4><ul><li>Global Biodiversity Information Facility<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats including: GBIF annotated archive, EML, and Darwin Core Archive<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1770 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Private<ul><li>Must create free account to download datasets<\/li><\/ul><\/li><\/ul><h4>Citation Information<\/h4><ul><li>Follow the instructions on the <a href=\"https:\/\/www.gbif.org\/citation-guidelines\">GBIF Citation Guidelines Page<\/a><\/li><\/ul>"
   },
   {
     "id":"16",
     "name":"U.S. Fish and Wildlife Service Open Data",
-    "description":" FWS Open Data Portal provides geospatial data on refuges, amenities, offices, and conservation planning layers.",
+    "description":"FWS Open Data Portal provides geospatial data on refuges, amenities, offices, and conservation planning layers.",
     "url":"https:\/\/gis-fws.opendata.arcgis.com\/",
     "categories":[
       "Ecosystems",
@@ -2798,7 +2797,7 @@ const DATASETS = [
     ],
     "source":"database",
     "region":[
-
+      "United States"
     ],
     "type":"",
     "yearStart":"1939",
@@ -2967,7 +2966,7 @@ const DATASETS = [
       "Present",
       "1939 - 2025"
     ],
-    "additionalInfo":"<h1>U.S. Fish and Wildlife Service Open Data<\/h1><p>The U.S. Fish and Wildlife Service (FWS) Open Data Portal offers a comprehensive collection of geospatial datasets, including boundaries of National Wildlife Refuges, visitor amenities, and office locations, as well as authoritative layers for conservation planning and land management.<\/p><h3>Host Organization<\/h3><ul><li>United States Fish and Wildlife Service<\/li><\/ul><h4>Data Format<\/h4><p>Data is available in a variety of formats including: CSV, Shapefile, GeoJSON, KML<\/p><h4>Database Time Range<\/h4><ul><li>1939 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><li>Some data may require ARCGIS login to access<\/li><\/ul><h4>Citation Information<\/h4><ul><li>U.S. Fish and Wildlife Service. (n.d.). USFWS Open Data Portal. Retrieved July, 2025, from https:\/\/gis-fws.opendata.arcgis.com\/<\/li><\/ul>"
+    "additionalInfo":"<p>The U.S. Fish and Wildlife Service (FWS) Open Data Portal offers a comprehensive collection of geospatial datasets, including boundaries of National Wildlife Refuges, visitor amenities, and office locations, as well as authoritative layers for conservation planning and land management.<\/p><h4>Host Organization<\/h4><ul><li>United States Fish and Wildlife Service<\/li><\/ul><h4>Data Format<\/h4><p>Data is available in a variety of formats including: CSV, Shapefile, GeoJSON, KML<\/p><h4>Database Time Range<\/h4><ul><li>1939 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><li>Some data may require ARCGIS login to access<\/li><\/ul><h4>Citation Information<\/h4><ul><li>U.S. Fish and Wildlife Service. (n.d.). <em>USFWS Open Data Portal<\/em>. Retrieved July, 2025, from <a href=\"https:\/\/gis-fws.opendata.arcgis.com\/\">https:\/\/gis-fws.opendata.arcgis.com\/<\/a><\/li><\/ul>"
   },
   {
     "id":"17",
@@ -2979,7 +2978,7 @@ const DATASETS = [
     ],
     "source":"database",
     "region":[
-
+      "United States"
     ],
     "type":"",
     "yearStart":"2017",
@@ -3136,7 +3135,7 @@ const DATASETS = [
       "Present",
       "2017 - 2025"
     ],
-    "additionalInfo":"<h1>National Wildlife Refuge System GIS Data and Mapping Tools<\/h1><p>The U.S. Fish and Wildlife Service's National Wildlife Refuge System GIS Data and Mapping Tools portal offers a comprehensive suite of geospatial resources enabling users to access and analyze spatial data on refuge boundaries, land status, guide use areas, and other conservation-related features across the National Wildlife Refuge System.<\/p><h3>Host Organization<\/h3><ul><li>United States Fish and Wildlife Service<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>2017 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>U.S. Fish and Wildlife Service. (n.d.). National Wildlife Refuge System GIS Data and Mapping Tools. Retrieved July, 2025, from https:\/\/www.fws.gov\/service\/national-wildlife-refuge-system-gis-data-and-mapping-tools<\/li><\/ul>"
+    "additionalInfo":"<p>The U.S. Fish and Wildlife Service's National Wildlife Refuge System GIS Data and Mapping Tools portal offers a comprehensive suite of geospatial resources enabling users to access and analyze spatial data on refuge boundaries, land status, guide use areas, and other conservation-related features across the National Wildlife Refuge System.<\/p><h4>Host Organization<\/h4><ul><li>United States Fish and Wildlife Service<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>2017 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>U.S. Fish and Wildlife Service. (n.d.). <em>National Wildlife Refuge System GIS Data and Mapping Tools<\/em>. Retrieved July, 2025, from <a href=\"https:\/\/www.fws.gov\/service\/national-wildlife-refuge-system-gis-data-and-mapping-tools\">https:\/\/www.fws.gov\/service\/national-wildlife-refuge-system-gis-data-and-mapping-tools<\/a><\/li><\/ul>"
   },
   {
     "id":"18",
@@ -3146,9 +3145,9 @@ const DATASETS = [
     "categories":[
       "Animals"
     ],
-    "source":"",
+    "source":"database",
     "region":[
-
+      "United States"
     ],
     "type":"",
     "yearStart":"2022",
@@ -3325,12 +3324,12 @@ const DATASETS = [
       "Present",
       "2022 - 2025"
     ],
-    "additionalInfo":"<h1>Detections of Highly Pathogenic Avian Influenza<\/h1><p>The USDA Animal and Plant Health Inspection Service (APHIS) provides a comprehensive, publicly accessible dataset detailing confirmed detections of Highly Pathogenic Avian Influenza (HPAI) H5N1 across various species—including commercial and backyard poultry, wild birds, livestock, and mammals—across the United States, with data updated regularly to support surveillance and response efforts.<\/p><h3>Host Organization<\/h3><ul><li>Animal Plant Health Inspection Services<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in CSV and Excel formats.<\/li><\/ul><h4>How to access data of interest<\/h4><ul><li>Select an animal population of interest<\/li><li>Scroll past the heading that reads <strong>Confirmed HPAI Detections<\/strong> <\/li><li>On the interactive summary data select <strong>Download Data<\/strong><\/li><\/ul><h4>Database Time Range<\/h4><ul><li>2022 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>U.S. Department of Agriculture, Animal and Plant Health Inspection Service. (n.d.). H5N1 Influenza: Detections of Highly Pathogenic Avian Influenza (HPAI). Retrieved July, 2025, from https:\/\/www.aphis.usda.gov\/h5n1-hpai#detections-hpai<\/li><\/ul>"
+    "additionalInfo":"<p>The USDA Animal and Plant Health Inspection Service (APHIS) provides a comprehensive, publicly accessible dataset detailing confirmed detections of Highly Pathogenic Avian Influenza (HPAI) H5N1 across various species—including commercial and backyard poultry, wild birds, livestock, and mammals—across the United States, with data updated regularly to support surveillance and response efforts.<\/p><h4>Host Organization<\/h4><ul><li>Animal Plant Health Inspection Services<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in CSV and Excel formats.<\/li><\/ul><h4>How to access data of interest<\/h4><ul><li>Select an animal population of interest<\/li><li>Scroll past the heading that reads <strong>Confirmed HPAI Detections<\/strong> <\/li><li>On the interactive summary data select <strong>Download Data<\/strong><\/li><\/ul><h4>Database Time Range<\/h4><ul><li>2022 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>U.S. Department of Agriculture, Animal and Plant Health Inspection Service. (n.d.). H5N1 Influenza: Detections of Highly Pathogenic Avian Influenza (HPAI). Retrieved July, 2025, from https:\/\/www.aphis.usda.gov\/h5n1-hpai#detections-hpai<\/li><\/ul>"
   },
   {
     "id":"19",
     "name":"Census of Agriculture",
-    "description":" USDA Census of Agriculture surveys U.S. farms every five years, providing detailed data on land, operators, production, and finances.",
+    "description":"USDA Census of Agriculture surveys U.S. farms every five years, providing detailed data on land, operators, production, and finances.",
     "url":"https:\/\/www.nass.usda.gov\/AgCensus\/index.php",
     "categories":[
       "People",
@@ -3339,7 +3338,7 @@ const DATASETS = [
     ],
     "source":"dataset",
     "region":[
-
+      "United States"
     ],
     "type":"",
     "yearStart":"1840",
@@ -3483,7 +3482,7 @@ const DATASETS = [
       "Current",
       "1840 - 2023"
     ],
-    "additionalInfo":"<h1>Census of Agriculture<\/h1><p>The USDA Census of Agriculture is a comprehensive, quinquennial survey conducted by the National Agricultural Statistics Service (NASS) that provides detailed data on U.S. farms and ranches—including land use, operator demographics, production practices, and financial information—serving as a vital resource for policymakers, researchers, and the agricultural community to assess trends and inform decisions.<\/p><h3>Host Organization<\/h3><ul><li>United States Department of Agriculture<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is primarily available in PDF format.<\/li><li>Data on the following is available: <ul><li>Farms by type: Individual, Partnership, Corporate, Other<\/li><\/ul><\/li><li>Farms by tenure: Full Owners, Part Owners, Tenants<\/li><li>Farms by class: Livestock &amp; Poultry, Crops<\/li><li>Farm Cash Receipts<\/li><li>Data on commodity production: field crops, vegetables, fruit, livestock<\/li><li>Farm Value<\/li><li>Farm ownership<\/li><li>Farm Acreage (land use)<\/li><li>Agricultural exports <\/li><li>Records of Commodity Production<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1840 - 2023<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>U.S. Department of Agriculture, National Agricultural Statistics Service. (2024). 2022 Census of Agriculture. Retrieved July 22, 2025, from https:\/\/www.nass.usda.gov\/AgCensus\/index.php<\/li><\/ul>"
+    "additionalInfo":"<p>The USDA Census of Agriculture is a comprehensive, quinquennial survey conducted by the National Agricultural Statistics Service (NASS) that provides detailed data on U.S. farms and ranches—including land use, operator demographics, production practices, and financial information—serving as a vital resource for policymakers, researchers, and the agricultural community to assess trends and inform decisions.<\/p><h4>Host Organization<\/h4><ul><li>United States Department of Agriculture<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is primarily available in PDF format.<\/li><li>Data on the following is available: <ul><li>Farms by type: Individual, Partnership, Corporate, Other<\/li><\/ul><\/li><li>Farms by tenure: Full Owners, Part Owners, Tenants<\/li><li>Farms by class: Livestock &amp; Poultry, Crops<\/li><li>Farm Cash Receipts<\/li><li>Data on commodity production: field crops, vegetables, fruit, livestock<\/li><li>Farm Value<\/li><li>Farm ownership<\/li><li>Farm Acreage (land use)<\/li><li>Agricultural exports <\/li><li>Records of Commodity Production<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1840 - 2023<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>U.S. Department of Agriculture, National Agricultural Statistics Service. (2024). <em>2022 Census of Agriculture<\/em>. Retrieved July 22, 2025, from <a href=\"https:\/\/www.nass.usda.gov\/AgCensus\/index.php\">https:\/\/www.nass.usda.gov\/AgCensus\/index.php<\/a><\/li><\/ul>"
   },
   {
     "id":"20",
@@ -3495,7 +3494,7 @@ const DATASETS = [
     ],
     "source":"database",
     "region":[
-
+      "Global"
     ],
     "type":"",
     "yearStart":"1740",
@@ -3626,7 +3625,7 @@ const DATASETS = [
       "Present",
       "1740 - 2025"
     ],
-    "additionalInfo":"<h1>National Snow and Ice Data Center<\/h1><p>The NOAA at NSIDC program offers over 100 open-access datasets focused on Earth's cryosphere, including sea ice, snow cover, glaciers, and permafrost, derived from satellite observations, field measurements, and historical records, to support climate research and environmental monitoring.<\/p><h3>Host Organization<\/h3><ul><li>National Snow and Ice Data Center<\/li><li>National Oceanic and Atmospheric Administration<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats<\/li><\/ul><h4>Database Time Range<\/h4><p>1740 - 2025<\/p><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Follow the instructions on the <a href=\"https:\/\/sciencecouncil.noaa.gov\/noaa-by-the-numbers\/how-to-cite\/\">NOAA by the Numbers - How to Cite Page<\/a><\/li><li>National Snow and Ice Data Center. (n.d.). NOAA@NSIDC data search. Retrieved July, 2025, from https:\/\/nsidc.org\/data\/search#sortKeys=score,,desc\/facetFilters=%257B%2522facet_sponsored_program%2522%253A%255B%2522National%2520Oceanic%2520and%2520Atmospheric%2520Administration%2520%257C%2520NOAA%2522%255D%257D\/pageNumber=1\/itemsPerPage=25<\/li><\/ul>"
+    "additionalInfo":"<p>The NOAA at NSIDC program offers over 100 open-access datasets focused on Earth's cryosphere, including sea ice, snow cover, glaciers, and permafrost, derived from satellite observations, field measurements, and historical records, to support climate research and environmental monitoring.<\/p><h4>Host Organization<\/h4><ul><li>National Snow and Ice Data Center<\/li><li>National Oceanic and Atmospheric Administration<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats<\/li><\/ul><h4>Database Time Range<\/h4><p>1740 - 2025<\/p><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Follow the instructions on the <a href=\"https:\/\/sciencecouncil.noaa.gov\/noaa-by-the-numbers\/how-to-cite\/\">NOAA by the Numbers - How to Cite Page<\/a><\/li><li>National Snow and Ice Data Center. (n.d.). <em>NOAA@NSIDC data search<\/em>. Retrieved July, 2025, from <a href=\"https:\/\/nsidc.org\/data\/search#sortKeys=score,,desc\/facetFilters=%257B%2522facet_sponsored_program%2522%253A%255B%2522National%2520Oceanic%2520and%2520Atmospheric%2520Administration%2520%257C%2520NOAA%2522%255D%257D\/pageNumber=1\/itemsPerPage=25\">https:\/\/nsidc.org\/data\/search#sortKeys=score,,desc\/facetFilters=%257B%2522facet_sponsored_program%2522%253A%255B%2522National%2520Oceanic%2520and%2520Atmospheric%2520Administration%2520%257C%2520NOAA%2522%255D%257D\/pageNumber=1\/itemsPerPage=25<\/a><\/li><\/ul>"
   },
   {
     "id":"21",
@@ -3636,9 +3635,9 @@ const DATASETS = [
     "categories":[
       "Animals"
     ],
-    "source":"dataset",
+    "source":"database",
     "region":[
-
+      "Global"
     ],
     "type":"",
     "yearStart":"1965",
@@ -3811,7 +3810,7 @@ const DATASETS = [
       "Present",
       "1965 - 2025"
     ],
-    "additionalInfo":"<h1>Move Bank Data Repository<\/h1><p>The Movebank Tracking Data Map is an interactive platform that allows users to search, visualize, and explore animal movement data from over 9,000 studies worldwide, offering tools to filter by species, sensor type, and study access permissions, and enabling users to view and download available tracking data for scientific research.<\/p><h3>Host Organization<\/h3><ul><li>Movebank for Animal Tracking Data<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1965 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public*<ul><li>*Must agree to user agreement, but no log in required.<\/li><\/ul><\/li><\/ul><h4>Citation Information<\/h4><ul><li>Follow the instructions on the <a href=\"https:\/\/www.movebank.org\/cms\/movebank-content\/citation-guidelines\">Move Bank Citation Guidelines Page<\/a><\/li><\/ul>"
+    "additionalInfo":"<p>The Movebank Tracking Data Map is an interactive platform that allows users to search, visualize, and explore animal movement data from over 9,000 studies worldwide, offering tools to filter by species, sensor type, and study access permissions, and enabling users to view and download available tracking data for scientific research.<\/p><h4>Host Organization<\/h4><ul><li>Movebank for Animal Tracking Data<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1965 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public*<ul><li>*Must agree to user agreement, but no log in required.<\/li><\/ul><\/li><\/ul><h4>Citation Information<\/h4><ul><li>Follow the instructions on the <a href=\"https:\/\/www.movebank.org\/cms\/movebank-content\/citation-guidelines\">Move Bank Citation Guidelines Page<\/a><\/li><\/ul>"
   },
   {
     "id":"22",
@@ -3823,7 +3822,7 @@ const DATASETS = [
     ],
     "source":"dataset",
     "region":[
-
+      "United States"
     ],
     "type":"",
     "yearStart":"2012",
@@ -3978,7 +3977,7 @@ const DATASETS = [
       "Present",
       "2012 - 2025"
     ],
-    "additionalInfo":"<h1>NEON<\/h1><p>The NEON Data Portal offers free and open access to a comprehensive collection of standardized, quality-controlled ecological data, encompassing atmospheric, aquatic, terrestrial, and organismal measurements across 81 field sites in the continental U.S., Puerto Rico, and Hawaii, supporting research on ecosystem dynamics and environmental change.<\/p><h3>Host Organization<\/h3><ul><li>The U.S. National Science Foundation’s National Ecological Observatory Network<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>2012 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Follow the instructions on the <a href=\"https:\/\/www.neonscience.org\/data-samples\/guidelines-policies\/citing\">Acknowledging and Citing NEON Page<\/a><\/li><li>National Ecological Observatory Network. (n.d.). NEON Data Portal. Retrieved July 22, 2025, from https:\/\/www.neonscience.org\/data<\/li><\/ul>"
+    "additionalInfo":"<p>The NEON Data Portal offers free and open access to a comprehensive collection of standardized, quality-controlled ecological data, encompassing atmospheric, aquatic, terrestrial, and organismal measurements across 81 field sites in the continental U.S., Puerto Rico, and Hawaii, supporting research on ecosystem dynamics and environmental change.<\/p><h4>Host Organization<\/h4><ul><li>The U.S. National Science Foundation’s National Ecological Observatory Network<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>2012 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Follow the instructions on the <a href=\"https:\/\/www.neonscience.org\/data-samples\/guidelines-policies\/citing\">Acknowledging and Citing NEON Page<\/a><\/li><li>National Ecological Observatory Network. (n.d.). <em>NEON Data Portal<\/em>. Retrieved July 22, 2025, from <a href=\"https:\/\/www.neonscience.org\/data\">https:\/\/www.neonscience.org\/data<\/a><\/li><\/ul>"
   },
   {
     "id":"23",
@@ -3988,9 +3987,9 @@ const DATASETS = [
     "categories":[
       "Ecosystems"
     ],
-    "source":"",
+    "source":"database",
     "region":[
-
+      "United States"
     ],
     "type":"",
     "yearStart":"1976",
@@ -4179,7 +4178,7 @@ const DATASETS = [
       "Present",
       "1976 - 2025"
     ],
-    "additionalInfo":"<h1>United States Forest Service Data Sets<\/h1><p>The USDA Forest Service Enterprise Data Warehouse (EDW) offers a comprehensive repository of geospatial and tabular datasets encompassing various themes such as biota, boundaries, environment, geoscientific information, inland waters, planning cadastre, structure, and transportation, providing access to standardized, authoritative data for public use and integration into mapping and analysis applications.<\/p><h3>Host Organization<\/h3><ul><li>United States Forest Service<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1976 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>U.S. Department of Agriculture, Forest Service. (n.d.). Enterprise Data Warehouse: Download National Datasets. Retrieved July, 2025, from https:\/\/data.fs.usda.gov\/geodata\/edw\/datasets.php<\/li><\/ul>"
+    "additionalInfo":"<p>The USDA Forest Service Enterprise Data Warehouse (EDW) offers a comprehensive repository of geospatial and tabular datasets encompassing various themes such as biota, boundaries, environment, geoscientific information, inland waters, planning cadastre, structure, and transportation, providing access to standardized, authoritative data for public use and integration into mapping and analysis applications.<\/p><h4>Host Organization<\/h4><ul><li>United States Forest Service<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1976 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>U.S. Department of Agriculture, Forest Service. (n.d.). <em>Enterprise Data Warehouse: Download National Datasets<\/em>. Retrieved July, 2025, from <a href=\"https:\/\/data.fs.usda.gov\/geodata\/edw\/datasets.php\">https:\/\/data.fs.usda.gov\/geodata\/edw\/datasets.php<\/a><\/li><\/ul>"
   },
   {
     "id":"24",
@@ -4191,7 +4190,7 @@ const DATASETS = [
     ],
     "source":"dataset",
     "region":[
-
+      "Global"
     ],
     "type":"",
     "yearStart":"1700",
@@ -4350,7 +4349,7 @@ const DATASETS = [
       "Present",
       "1700 - 2025"
     ],
-    "additionalInfo":"<h1>DASH Search via NCAR Library<\/h1><p>The UCAR Data Portal, accessible via DASH Search, provides a comprehensive collection of Earth system science resources, including datasets, software, models, and publications, curated by NSF NCAR and UCAR Community Programs, facilitating research across atmospheric, oceanic, and space sciences.<\/p><h3>Host Organization<\/h3><ul><li>National Center for Atmospheric Research<\/li><li>University Corporation for Atmospheric Research<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats.<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1700 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public*<\/li><li>*User login is not required to download files, but is required for customizable data set requests<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Follow the instructions on the <a href=\"https:\/\/rda.ucar.edu\/resources\/citations\/\">UCAR Data Citation Page<\/a><\/li><li>National Center for Atmospheric Research. (n.d.). Research Data Archive. Retrieved July 22, 2025, from https:\/\/rda.ucar.edu\/<\/li><\/ul>"
+    "additionalInfo":"<p>The UCAR Data Portal, accessible via DASH Search, provides a comprehensive collection of Earth system science resources, including datasets, software, models, and publications, curated by NSF NCAR and UCAR Community Programs, facilitating research across atmospheric, oceanic, and space sciences.<\/p><h4>Host Organization<\/h4><ul><li>National Center for Atmospheric Research<\/li><li>University Corporation for Atmospheric Research<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats.<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1700 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public*<\/li><li>*User login is not required to download files, but is required for customizable data set requests<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Follow the instructions on the <a href=\"https:\/\/rda.ucar.edu\/resources\/citations\/\">UCAR Data Citation Page<\/a><\/li><li>National Center for Atmospheric Research. (n.d.). <em>Research Data Archive<\/em>. Retrieved July 22, 2025, from <a href=\"https:\/\/rda.ucar.edu\/\">https:\/\/rda.ucar.edu\/<\/a><\/li><\/ul>"
   },
   {
     "id":"25",
@@ -4362,9 +4361,9 @@ const DATASETS = [
       "Animals",
       "People"
     ],
-    "source":"",
+    "source":"database",
     "region":[
-
+      "United States"
     ],
     "type":"",
     "yearStart":"1850",
@@ -4593,7 +4592,7 @@ const DATASETS = [
       "Present",
       "1850 - 2025"
     ],
-    "additionalInfo":"<h1>Bureau of Land Management Geospatial Business Platform<\/h1><p>The Bureau of Land Management (BLM) Geospatial Business Platform (GBP) Hub provides open public access to a wide array of geospatial datasets, including maps, shapefiles, and GIS services, covering topics such as land use, vegetation, wildlife, and planning across national and state levels, facilitating data discovery and integration for environmental and land management applications.<\/p><h3>Host Organization<\/h3><ul><li>Bureau of Land Management <\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats including: CSV, Shapefile, GeoJSON, KML, File Geodatabase, Excel, GeoPackage, SQLite Geodatabase<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1850 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>U.S. Department of the Interior, Bureau of Land Management. (n.d.). Geospatial Business Platform Hub. Retrieved July, 2025, from https:\/\/gbp-blm-egis.hub.arcgis.com\/<\/li><\/ul>"
+    "additionalInfo":"<p>The Bureau of Land Management (BLM) Geospatial Business Platform (GBP) Hub provides open public access to a wide array of geospatial datasets, including maps, shapefiles, and GIS services, covering topics such as land use, vegetation, wildlife, and planning across national and state levels, facilitating data discovery and integration for environmental and land management applications.<\/p><h4>Host Organization<\/h4><ul><li>Bureau of Land Management <\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats including: CSV, Shapefile, GeoJSON, KML, File Geodatabase, Excel, GeoPackage, SQLite Geodatabase<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1850 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>U.S. Department of the Interior, Bureau of Land Management. (n.d.). <em>Geospatial Business Platform Hub<\/em>. Retrieved July, 2025, from <a href=\"https:\/\/gbp-blm-egis.hub.arcgis.com\/\">https:\/\/gbp-blm-egis.hub.arcgis.com\/<\/a><\/li><\/ul>"
   },
   {
     "id":"26",
@@ -4604,9 +4603,9 @@ const DATASETS = [
       "Ecosystems",
       "People"
     ],
-    "source":"",
+    "source":"database",
     "region":[
-
+      "United States"
     ],
     "type":"",
     "yearStart":"1750",
@@ -4815,7 +4814,7 @@ const DATASETS = [
       "Present",
       "1750 - 2025"
     ],
-    "additionalInfo":"<h1>United States Government Data Catalog<\/h1><p>Data.gov is the U.S. government's open data platform, offering over 312,000 datasets from federal, state, local, and tribal agencies, covering topics such as agriculture, climate, education, energy, and public safety, to support research, innovation, and transparency.<\/p><h3>Host Organization<\/h3><ul><li>United States General Services Administration<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1750 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Follow the instructions on Data.gov’s <a href=\"https:\/\/data.gov\/privacy-policy\/#attribution\">Privacy Policy Page<\/a> by scrolling down to the <strong>Attribution<\/strong> header.<\/li><li>U.S. General Services Administration. (n.d.). Data.gov. Retrieved July, 2025, from https:\/\/data.gov\/<\/li><\/ul>"
+    "additionalInfo":"<p>Data.gov is the U.S. government's open data platform, offering over 312,000 datasets from federal, state, local, and tribal agencies, covering topics such as agriculture, climate, education, energy, and public safety, to support research, innovation, and transparency.<\/p><h4>Host Organization<\/h4><ul><li>United States General Services Administration<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1750 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Follow the instructions on Data.gov’s <a href=\"https:\/\/data.gov\/privacy-policy\/#attribution\">Privacy Policy Page<\/a> by scrolling down to the <strong>Attribution<\/strong> header.<\/li><li>U.S. General Services Administration. (n.d.). <em>Data.gov<\/em>. Retrieved July, 2025, from <a href=\"https:\/\/data.gov\/\">https:\/\/data.gov\/<\/a><\/li><\/ul>"
   },
   {
     "id":"27",
@@ -4825,9 +4824,9 @@ const DATASETS = [
     "categories":[
       "Ecosystems"
     ],
-    "source":"",
+    "source":"database",
     "region":[
-
+      "Global"
     ],
     "type":"",
     "yearStart":"1800",
@@ -4998,7 +4997,7 @@ const DATASETS = [
       "Present",
       "1800 - 2025"
     ],
-    "additionalInfo":"<h1>World Ocean Database<\/h1><p>The World Ocean Database (WOD), maintained by NOAA's National Centers for Environmental Information (NCEI), is the world's largest collection of publicly available, uniformly formatted, and quality-controlled ocean profile data, encompassing over 18.6 million oceanographic casts and 3.13 billion individual profile measurements, facilitating comprehensive oceanographic, climatic, and environmental research.<\/p><h3>Host Organization<\/h3><ul><li>National Centers for Environmental Information <\/li><li>National Oceanic and Atmospheric Administration<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats including CSV and Excel.<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1800 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Follow the instructions on the <a href=\"https:\/\/sciencecouncil.noaa.gov\/noaa-by-the-numbers\/how-to-cite\/\">NOAA by the Numbers - How to Cite Page<\/a><\/li><li>National Centers for Environmental Information. (n.d.). World Ocean Database. Retrieved July 22, 2025, from https:\/\/www.ncei.noaa.gov\/products\/world-ocean-database Wikipedia+13NCEI+13Data.gov+13<\/li><\/ul>"
+    "additionalInfo":"<p>The World Ocean Database (WOD), maintained by NOAA's National Centers for Environmental Information (NCEI), is the world's largest collection of publicly available, uniformly formatted, and quality-controlled ocean profile data, encompassing over 18.6 million oceanographic casts and 3.13 billion individual profile measurements, facilitating comprehensive oceanographic, climatic, and environmental research.<\/p><h4>Host Organization<\/h4><ul><li>National Centers for Environmental Information <\/li><li>National Oceanic and Atmospheric Administration<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats including CSV and Excel.<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1800 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Follow the instructions on the <a href=\"https:\/\/sciencecouncil.noaa.gov\/noaa-by-the-numbers\/how-to-cite\/\">NOAA by the Numbers - How to Cite Page<\/a><\/li><li>National Centers for Environmental Information. (n.d.). <em>World Ocean Database<\/em>. Retrieved July 22, 2025, from <a href=\"https:\/\/www.ncei.noaa.gov\/products\/world-ocean-database Wikipedia+13NCEI+13Data.gov+13\">https:\/\/www.ncei.noaa.gov\/products\/world-ocean-database Wikipedia+13NCEI+13Data.gov+13<\/a><\/li><\/ul>"
   },
   {
     "id":"28",
@@ -5010,9 +5009,9 @@ const DATASETS = [
       "Animals",
       "Ecosystems"
     ],
-    "source":"",
+    "source":"database",
     "region":[
-
+      "Global"
     ],
     "type":"",
     "yearStart":"",
@@ -5295,7 +5294,1398 @@ const DATASETS = [
       "Present",
       "2025"
     ],
-    "additionalInfo":"<h1>Bacterial and Viral Bioinformatics Resource Center<\/h1><p>BV‑BRC (Bacterial &amp; Viral Bioinformatics Resource Center) houses structured data linked to millions of assembled and annotated bacterial, archaeal, viral, phage and select eukaryotic genomes—sourced primarily from NCBI’s GenBank\/RefSeq and SRA—and enriched with standardized metadata (e.g. antimicrobial resistance, clinical, taxonomy), curated features (genes, pathways, protein families, virulence factors) and integrated additional data types like protein‑protein interactions, protein structures, epitopes, domains, transcriptomics, and surveillance\/serology datasets. It supports this data through a distributed SolrCloud database and offers users both a web interface and API\/command‑line tools (e.g. annotation, BLAST, phylogenomics, metagenomics, primer design) to enable integrated infectious‑disease research and comparative analysis workflows.<\/p><h3>Host Organization<\/h3><ul><li>National Institute of Allergy and Infectious Diseases <\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats including: Text, CSV, and DNA FASTA.<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>X* - 2025<ul><li>While genomic sequencing has been possible since the late 1970’s, since then many samples that were taken from before then have been sequenced making it difficult to give a start time range to this database.<\/li><\/ul><\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Follow the instructions on the <a href=\"https:\/\/www.bv-brc.org\/citation\">Citing BV-BRC Resources Page<\/a><\/li><li>Olson RD, Assaf R, Brettin T, Conrad N, Cucinell C, Davis JJ, Dempsey DM, Dickerman A, Dietrich EM, Kenyon RW, Kuscuoglu M, Lefkowitz EJ, Lu J, Machi D, Macken C, Mao C, Niewiadomska A, Nguyen M, Olsen GJ, Overbeek JC, Parrello B, Parrello V, Porter JS, Pusch GD, Shukla M, Singh I, Stewart L, Tan G, Thomas C, VanOeffelen M, Vonstein V, Wallace ZS, Warren AS, Wattam AR, Xia F, Yoo H, Zhang Y, Zmasek CM, Scheuermann RH, Stevens RL. Introducing the Bacterial and Viral Bioinformatics Resource Center (BV‑BRC): a resource combining PATRIC, IRD and ViPR. Nucleic Acids Res. 2022 Nov 9 (online ahead of print): gkac1003. doi: 10.1093\/nar\/gkac1003. PMID: 36350631.<\/li><\/ul>"
+    "additionalInfo":"<p>BV‑BRC (Bacterial &amp; Viral Bioinformatics Resource Center) houses structured data linked to millions of assembled and annotated bacterial, archaeal, viral, phage and select eukaryotic genomes—sourced primarily from NCBI’s GenBank\/RefSeq and SRA—and enriched with standardized metadata (e.g. antimicrobial resistance, clinical, taxonomy), curated features (genes, pathways, protein families, virulence factors) and integrated additional data types like protein‑protein interactions, protein structures, epitopes, domains, transcriptomics, and surveillance\/serology datasets. It supports this data through a distributed SolrCloud database and offers users both a web interface and API\/command‑line tools (e.g. annotation, BLAST, phylogenomics, metagenomics, primer design) to enable integrated infectious‑disease research and comparative analysis workflows.<\/p><h4>Host Organization<\/h4><ul><li>National Institute of Allergy and Infectious Diseases <\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats including: Text, CSV, and DNA FASTA.<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>X* - 2025        - While genomic sequencing has been possible since the late 1970’s, since then many samples that were taken from before then have been sequenced making it difficult to give a start time range to this database.<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Follow the instructions on the <a href=\"https:\/\/www.bv-brc.org\/citation\">Citing BV-BRC Resources Page<\/a><\/li><li>Olson RD, Assaf R, Brettin T, Conrad N, Cucinell C, Davis JJ, Dempsey DM, Dickerman A, Dietrich EM, Kenyon RW, Kuscuoglu M, Lefkowitz EJ, Lu J, Machi D, Macken C, Mao C, Niewiadomska A, Nguyen M, Olsen GJ, Overbeek JC, Parrello B, Parrello V, Porter JS, Pusch GD, Shukla M, Singh I, Stewart L, Tan G, Thomas C, VanOeffelen M, Vonstein V, Wallace ZS, Warren AS, Wattam AR, Xia F, Yoo H, Zhang Y, Zmasek CM, Scheuermann RH, Stevens RL. <em>Introducing the Bacterial and Viral Bioinformatics Resource Center (BV‑BRC): a resource combining PATRIC, IRD and ViPR<\/em>. Nucleic Acids Res. 2022 Nov 9 (online ahead of print): gkac1003. doi: 10.1093\/nar\/gkac1003. PMID: 36350631.<\/li><\/ul>"
+  },
+  {
+    "id":"29",
+    "name":"Research Collaboratory for Structural Bioinformatics Protein Data Bank",
+    "description":"3D structures of biomolecules with tools for search, analysis, modeling, and data download.",
+    "url":"https:\/\/www.rcsb.org\/",
+    "categories":[
+      "Animals",
+      "People"
+    ],
+    "source":"database",
+    "region":[
+      "United States",
+      "Global"
+    ],
+    "type":"",
+    "yearStart":"1971",
+    "yearEnd":"2025",
+    "tags":[
+      "Biological Variability",
+      "Population Health",
+      "Public Health",
+      "Energy",
+      "Global",
+      "Infectious Disease Monitoring",
+      "United States"
+    ],
+    "invisibleTags":[
+      "Protein Data Bank",
+      "PDB structure",
+      "Macromolecular structure",
+      "Biological assembly",
+      "Polymer entity",
+      "Non-polymer entity",
+      "Ligand",
+      "Atomic coordinates",
+      "3D structure",
+      "Cryo-EM",
+      "X-ray crystallography",
+      "Nuclear Magnetic Resonance (NMR)",
+      "Integrative\/hybrid methods",
+      "Computed structure models (CSMs)",
+      "AlphaFold",
+      "ModelArchive",
+      "mmCIF format",
+      "Data deposition",
+      "Resolution (Ångstrom)",
+      "Experimental methodology",
+      "Structure determination",
+      "Symmetry",
+      "Biological relevance",
+      "Enzyme classification (EC number)",
+      "UniProt accession",
+      "Sequence motif",
+      "Sequence search",
+      "Sequence alignment",
+      "Protein sequence",
+      "DNA sequence",
+      "RNA sequence",
+      "Chemical component",
+      "Chemical definition",
+      "SMILES",
+      "InChI",
+      "Chemical similarity search",
+      "Free ligand search",
+      "Structure motif search",
+      "Structure shape search",
+      "Graph matching",
+      "Fingerprint similarity",
+      "Substructure search",
+      "Atomic interactions",
+      "Binding site",
+      "Active site",
+      "Protein-protein interaction",
+      "Protein-ligand interaction",
+      "Membrane protein",
+      "Transmembrane region",
+      "Metal ion coordination",
+      "Cofactor",
+      "Post-translational modification",
+      "Mutant",
+      "Variant",
+      "Wild type",
+      "Homolog",
+      "Ortholog",
+      "Paralog",
+      "Taxonomy",
+      "Organism",
+      "Biological source",
+      "Functional annotation",
+      "Ligand binding",
+      "Inhibitor",
+      "Activator",
+      "Drug design",
+      "Structural dynamics",
+      "Conformational change",
+      "Flexibility",
+      "Disordered regions",
+      "Domain architecture",
+      "Protein fold",
+      "Structural classification",
+      "CATH",
+      "SCOP",
+      "Reaction mechanism",
+      "Catalysis",
+      "Hydrogen bonds",
+      "Van der Waals interactions",
+      "Solvent accessibility",
+      "Surface area",
+      "Electrostatic potential",
+      "Hydrophobic regions",
+      "Hydrophilic regions",
+      "Temperature factor",
+      "B-factor",
+      "Model validation",
+      "R-factor",
+      "R-free",
+      "Map resolution",
+      "Density",
+      "Fit to density",
+      "Crosslinking",
+      "SAXS",
+      "Small-angle X-ray scattering",
+      "Mass spectrometry",
+      "Isotope labeling",
+      "NMR",
+      "Dynamics",
+      "NMR relaxation",
+      "Chemical shift",
+      "NOE restraints",
+      "Structure refinement",
+      "Structural alignment",
+      "Root mean square deviation (RMSD)",
+      "Superposition",
+      "Quaternary structure",
+      "Dimerization",
+      "Oligomerization",
+      "Interface",
+      "Stoichiometry of assembly",
+      "Biological unit",
+      "Asymmetric unit",
+      "Crystallization conditions",
+      "pH",
+      "Temperature",
+      "Buffer",
+      "Data collection",
+      "Diffraction",
+      "Micrographs",
+      "Data processing",
+      "Deposited data release date",
+      "Citation",
+      "Journal",
+      "Secondary structure",
+      "Helix",
+      "Sheet",
+      "Coil",
+      "Tertiary structure",
+      "Folding",
+      "Unfolding",
+      "Hydrophobic core",
+      "Disulfide bonds",
+      "Glycosylation",
+      "Mutation",
+      "SNP",
+      "Disease mutation",
+      "Structural homolog",
+      "Evolutionary conservation",
+      "Protein engineering",
+      "Drug target",
+      "Binding affinity",
+      "Hydrogen\/deuterium exchange",
+      "Proteomics",
+      "Genomics",
+      "Annotation pipelines",
+      "External resources",
+      "Cross-references",
+      "Pfam",
+      "InterPro",
+      "Functional site databases",
+      "Protein family",
+      "Structural motif",
+      "Helix-turn-helix",
+      "Topology",
+      "Secondary structure prediction",
+      "Homology modeling",
+      "Comparative modeling",
+      "Structural genomics",
+      "Molecular dynamics simulations",
+      "Docking",
+      "Virtual screening",
+      "Structural bioinformatics",
+      "Data API",
+      "Search API",
+      "REST API",
+      "Query builder",
+      "Faceted search",
+      "Boolean logic",
+      "Range query",
+      "Exact match search",
+      "Full-text search",
+      "Attribute search",
+      "Search filters",
+      "Pagination",
+      "Sorting",
+      "Facets",
+      "Histogram",
+      "Date ranges",
+      "Data download",
+      "Coordinates",
+      "Structure factors",
+      "Maps",
+      "Visualization tools",
+      "3D molecular viewer",
+      "Interactive exploration",
+      "Educational resources",
+      "Tutorials",
+      "Outreach",
+      "Workshops",
+      "News",
+      "Updates",
+      "Release notes",
+      "Versioning",
+      "Legacy data",
+      "Current data",
+      "Citation of PDB IDs",
+      "Data reuse",
+      "Open access",
+      "FAIR principles",
+      "Findable",
+      "Accessible",
+      "Interoperable",
+      "Reusable",
+      "Historic",
+      "Current",
+      "Present",
+      "1971-2025"
+    ],
+    "additionalInfo":"<p>RCSB PDB is the U.S. data center for the global Protein Data Bank (PDB) archive, offering freely accessible, expertly curated 3D structural data for biological macromolecules—proteins, DNA, RNA, and complex assemblies—derived from experimental methods such as X-ray crystallography, NMR, cryo-electron microscopy, and integrative hybrid models. Besides experimental structures, RCSB PDB provides Computed Structure Models (CSMs) like AlphaFold predictions, enriched metadata, external resource integrations, advanced search tools, APIs, visualization features, and downloadable coordinate, sequence, and ligand files.<\/p><h4>Host Organization<\/h4><ul><li>U.S. National Science Foundation (NSF)<\/li><li>National Institutes of Health (NIH)<\/li><li>Department of Energy (DOE)<\/li><li>Rutgers University<\/li><li>University of California San Diego (UCSD)<\/li><li>University of California San Francisco (UCSF)<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is available in a variety of formats including: PDBx\/mmCIF, PDB (legacy format), PDBML\/XML, BinaryCIF, FASTA, DSN6, JSON, XML, CSV, TSV, PDF<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1971 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Follow the instructions on the <a href=\"https:\/\/www.rcsb.org\/pages\/policies#References\">RCSB’s Citation Policies Page<\/a><\/li><li>RCSB Protein Data Bank. (n.d.). <em>RCSB PDB<\/em> [Website]. Retrieved September 23, 2025, from <a href=\"https:\/\/www.rcsb.org\/\">https:\/\/www.rcsb.org\/<\/a><\/li><\/ul>"
+  },
+  {
+    "id":"30",
+    "name":"NIAID Data Ecosystem",
+    "description":"Search portal for datasets, tools, and resources in infectious and immune disease research.",
+    "url":"https:\/\/data.niaid.nih.gov\/",
+    "categories":[
+      "People"
+    ],
+    "source":"database",
+    "region":[
+      "United States"
+    ],
+    "type":"",
+    "yearStart":"1975",
+    "yearEnd":"2025",
+    "tags":[
+      "Biological Variability",
+      "Disease Surveillance",
+      "Global",
+      "Infectious Disease Monitoring",
+      "Population Health",
+      "Public Health",
+      "United States"
+    ],
+    "invisibleTags":[
+      "Infectious disease",
+      "Immune-mediated disease",
+      "Dataset repository",
+      "Computational tool",
+      "Resource catalog",
+      "Metadata aggregation",
+      "Search portal",
+      "Discovery portal",
+      "Epidemiology",
+      "Clinical data",
+      "Multi-omic data",
+      "Genomic data",
+      "Proteomic data",
+      "Transcriptomic data",
+      "Pathogen",
+      "Host response",
+      "Immune response",
+      "Disease surveillance",
+      "Public health",
+      "NIAID-funded",
+      "Grant metadata",
+      "Filter by species",
+      "Filter by condition",
+      "Filter by repository",
+      "API access",
+      "Programmatic search",
+      "Data harmonization",
+      "Metadata schema",
+      "Provenance",
+      "Cited by",
+      "Funding information",
+      "Access restrictions",
+      "Controlled-access",
+      "Open-access",
+      "Interoperability",
+      "Findability",
+      "Accessibility",
+      "Reusable data",
+      "FAIR principles",
+      "Resource catalogs",
+      "Repository links",
+      "Cross-references",
+      "Search facets",
+      "Advanced search",
+      "Boolean filtering",
+      "Temporal coverage",
+      "Geographic coverage",
+      "File download links",
+      "Data formats",
+      "Data portal UI",
+      "Search engine",
+      "Discovery interface",
+      "Metadata fields",
+      "Search filters",
+      "Query builder",
+      "Facet browsing",
+      "Tool registry",
+      "Repository registry",
+      "Resource metadata",
+      "Usage metrics",
+      "Resource documentation",
+      "APIs",
+      "Data access committee",
+      "Controlled-access data",
+      "Public datasets",
+      "Clinical trials data",
+      "Observational studies",
+      "Cohort data",
+      "Longitudinal data",
+      "Cross-sectional data",
+      "Sequencing data",
+      "Variant data",
+      "Genotype",
+      "Phenotype data",
+      "Immune profiling",
+      "Serology",
+      "Virology",
+      "Pathogen genomics",
+      "Vaccine studies",
+      "Disease modeling",
+      "Surveillance data",
+      "Spatial data",
+      "Temporal trends",
+      "Time-series data",
+      "Population studies",
+      "Epidemiological modeling",
+      "Comparison across datasets",
+      "Integrated datasets",
+      "Harmonized metadata",
+      "Resource discovery",
+      "Portal updates",
+      "News & release notes",
+      "Documentation",
+      "User guides",
+      "Tutorial resources",
+      "Historic, Current, Present, 1975-2025"
+    ],
+    "additionalInfo":"<p>The NIAID Data Ecosystem Discovery Portal is a centralized search interface for datasets, computational tools, and other resources focused on infectious and immune-mediated disease research, aggregating metadata across multiple repositories.<\/p><h4>Host Organization<\/h4><ul><li>National Institute of Health<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is primarily available in CSV, JSON, XML, Excel (XLSX\/ODS), Shapefiles (SHP), SQL Dumps, TopoJSON.<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1975 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<em>-<\/em>Some datasets may not be freely available or may be restricted. Please refer to the <strong>Resource Access<\/strong> box that appears when a dataset is selected.<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Follow the instructions on the <a href=\"https:\/\/www.niaid.nih.gov\/global\/copyright-and-reuse\">NIH’s Copyright and Reuse of Graphics and Text Page<\/a> <\/li><li>NIAID Data Ecosystem Discovery Portal. (n.d.). <em>NIAID<\/em>. Retrieved September 23, 2025, from <a href=\"https:\/\/data.niaid.nih.gov\">https:\/\/data.niaid.nih.gov<\/a><\/li><\/ul>"
+  },
+  {
+    "id":"31",
+    "name":"ImmPort Shared Data",
+    "description":"ImmPort is a data repository for immunology and infectious disease research, supporting data sharing.",
+    "url":"https:\/\/www.immport.org\/shared\/home",
+    "categories":[
+      "People"
+    ],
+    "source":"database",
+    "region":[
+      "United States"
+    ],
+    "type":"",
+    "yearStart":"2012",
+    "yearEnd":"2025",
+    "tags":[
+      "Biological Variability",
+      "Disease Surveillance",
+      "Global",
+      "Infectious Disease Monitoring",
+      "Population Health",
+      "Public Health",
+      "United States"
+    ],
+    "invisibleTags":[
+      "Immunology",
+      "Infectious disease",
+      "Immune response",
+      "Pathogen",
+      "Antigen",
+      "Antibody",
+      "Cytokine",
+      "T cell",
+      "B cell",
+      "NK cell",
+      "Monocyte",
+      "Dendritic cell",
+      "Flow Cytometry",
+      "ELISA",
+      "ELISPOT",
+      "Neutralizing antibody titer",
+      "Gene expression",
+      "RNA sequencing",
+      "Genotyping",
+      "HLA typing",
+      "KIR typing",
+      "Mass spectrometry",
+      "Proteomics",
+      "Serology",
+      "Vaccine study",
+      "Clinical trial",
+      "Human study",
+      "Animal study",
+      "Cohort study",
+      "Observational study",
+      "Immune profiling",
+      "Host response",
+      "Innate immunity",
+      "Adaptive immunity",
+      "Inflammatory response",
+      "Immunophenotyping",
+      "Antigen-specific response",
+      "T cell activation",
+      "B cell activation",
+      "Cytokine profiling",
+      "Immune cell population",
+      "Pathogen challenge",
+      "Viral infection",
+      "Bacterial infection",
+      "Parasitic infection",
+      "Fungal infection",
+      "Immune memory",
+      "Vaccine efficacy",
+      "Immune signaling",
+      "Immune biomarkers",
+      "Neutralization assay",
+      "Multiplex cytokine assay",
+      "ELISPOT assay",
+      "Intracellular cytokine staining",
+      "Surface marker expression",
+      "Single-cell RNA sequencing",
+      "High-throughput sequencing",
+      "Proteomic profiling",
+      "Immunogenetics",
+      "Immune repertoire",
+      "Autoimmunity",
+      "Allergy",
+      "Immunotherapy",
+      "Adjuvant response",
+      "Immune kinetics",
+      "Antigen presentation",
+      "Immune modulation",
+      "Antigen-specific T cells",
+      "Antigen-specific B cells",
+      "Pathogen-specific antibodies",
+      "Immune cell subsets",
+      "Cytotoxicity assay",
+      "Complement activation",
+      "Immune checkpoint",
+      "Innate immune activation",
+      "Adaptive immune activation",
+      "Memory T cells",
+      "Memory B cells",
+      "Effector T cells",
+      "Effector B cells",
+      "Immune tolerance",
+      "Immune exhaustion",
+      "Immunodominance",
+      "Epitope mapping",
+      "Peptide stimulation",
+      "Vaccine antigen",
+      "Viral vector vaccine",
+      "Protein subunit vaccine",
+      "mRNA vaccine",
+      "Live attenuated vaccine",
+      "Inactivated vaccine",
+      "Adoptive cell transfer",
+      "Immune cell expansion",
+      "Cytokine secretion",
+      "Antibody neutralization",
+      "Immune cell trafficking",
+      "Chemokine profiling",
+      "Lymphocyte proliferation",
+      "Cell-mediated immunity",
+      "Humoral immunity",
+      "Immunophenotyping panels",
+      "Pathogen challenge model",
+      "Historic",
+      "Current",
+      "Present",
+      "2012-2025"
+    ],
+    "additionalInfo":"<p>ImmPort is a data repository maintained by the NIAID that facilitates the sharing and reuse of immunology and infectious disease research data. It provides tools for data submission, access, and analysis, supporting various assay types and study designs.<\/p><h4>Host Organization<\/h4><ul><li>National Institutes of Health (NIH)<\/li><li>National Institute of Allergy and Infectious Diseases (NIAID)<\/li><li>Division of Allergy, Immunology, and Transplantation (DAIT)<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is primarily available in CSV, JSON, XML, Excel (XLSX\/ODS), Flow Cytometry Standard (FCS), PDF (for protocol or documentation), and API access for programmatic retrieval.<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>2012 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<em>-<\/em>Some datasets require controlled-access permission due to privacy or human subject considerations.<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Follow the instructions on the <a href=\"https:\/\/docs.immport.org\/home\/cite\/\">Cite ImmPort<\/a> <\/li><li>ImmPort. (n.d.). <em>ImmPort: Immunology Data Repository<\/em>. Retrieved September 23, 2025, from <a href=\"https:\/\/www.immport.org\/shared\/home\">https:\/\/www.immport.org\/shared\/home<\/a><\/li><\/ul>"
+  },
+  {
+    "id":"32",
+    "name":"Immune Epitope Database & Tools",
+    "description":"The IEDB is a freely accessible resource cataloging experimental data on antibody and T cell epitopes.",
+    "url":"https:\/\/www.iedb.org\/",
+    "categories":[
+      "People"
+    ],
+    "source":"database",
+    "region":[
+      "United States"
+    ],
+    "type":"",
+    "yearStart":"2004",
+    "yearEnd":"2025",
+    "tags":[
+      "Biological Variability",
+      "Disease Surveillance",
+      "Global",
+      "Infectious Disease Monitoring",
+      "Population Health",
+      "Public Health",
+      "United States"
+    ],
+    "invisibleTags":[
+      "Antibody",
+      "T cell epitope",
+      "B cell epitope",
+      "MHC binding",
+      "Peptide",
+      "Antigen",
+      "Immune response",
+      "Immunogen",
+      "Influenza",
+      "HIV",
+      "Hepatitis C",
+      "Malaria",
+      "Tuberculosis",
+      "Autoimmunity",
+      "Allergy",
+      "Transplantation",
+      "Immunotherapy",
+      "Vaccine",
+      "Immunogenetics",
+      "Immunology",
+      "MHC class I",
+      "MHC class II",
+      "Epitope mapping",
+      "Immune repertoire",
+      "Cytokine",
+      "T cell receptor",
+      "B cell receptor",
+      "Immunodominant epitope",
+      "Cross-reactivity",
+      "Immunogenicity",
+      "Immunization",
+      "Adjuvant",
+      "Antigen presentation",
+      "MHC allele",
+      "HLA",
+      "TAP transporter",
+      "Proteasome",
+      "Peptide-MHC complex",
+      "Immunological assay",
+      "Flow cytometry",
+      "ELISA",
+      "ELISPOT",
+      "Western blot",
+      "Mass spectrometry",
+      "Peptide synthesis",
+      "Antibody production",
+      "T cell activation",
+      "B cell activation",
+      "Cytotoxic T lymphocyte",
+      "Helper T cell",
+      "Regulatory T cell",
+      "Memory T cell",
+      "Naive T cell",
+      "Plasma cell",
+      "Dendritic cell",
+      "Monocyte",
+      "Macrophage",
+      "Neutrophil",
+      "Natural killer cell",
+      "Viral epitope",
+      "Bacterial epitope",
+      "Fungal epitope",
+      "Parasitic epitope",
+      "Vaccine design",
+      "Epitope conservation",
+      "Epitope specificity",
+      "Epitope affinity",
+      "Epitope processing",
+      "Epitope recognition",
+      "Epitope validation",
+      "Epitope characterization",
+      "Epitope identification",
+      "Epitope screening",
+      "Epitope mapping tool",
+      "Historic",
+      "Current",
+      "Present",
+      "2004-2025"
+    ],
+    "additionalInfo":"<p>The Immune Epitope Database (IEDB) is a free resource supported by the National Institute of Allergy and Infectious Diseases (NIAID) that catalogs experimental data on antibody and T cell epitopes. It includes data from humans, non-human primates, and other species, covering infectious diseases, allergies, autoimmunity, and transplantation.<\/p><h3>Host Organization<\/h3><ul><li>National Institute of Allergy and Infectious Disease<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is primarily available in CSV, Excel, FASTA, JSON\/XML, API Access.<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>2004 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Follow the instructions on the <a href=\"https:\/\/www.iedb.org\/citation_v3.php\">Cite IEDB<\/a> <\/li><li>Vita, R., Mahajan, S., Overton, J. A., Dhanda, S. K., Martini, S., Cantrell, J. R., ... &amp; Peters, B. (n.d.). <em>Immune Epitope Database (IEDB)<\/em>. Retrieved September 23, 2025, from <a href=\"https:\/\/www.iedb.org\/\">https:\/\/www.iedb.org\/<\/a><\/li><\/ul>"
+  },
+  {
+    "id":"33",
+    "name":"Immune Space",
+    "description":"ImmuneSpace is a data portal for human immunology research, integrating and visualizing multi-omic datasets",
+    "url":"https:\/\/immunespace.org\/query\/filters",
+    "categories":[
+      "People"
+    ],
+    "source":"database",
+    "region":[
+      "United States"
+    ],
+    "type":"",
+    "yearStart":"2008",
+    "yearEnd":"2025",
+    "tags":[
+      "Biological Variability",
+      "Disease Surveillance",
+      "Global",
+      "Population Health",
+      "Public Health",
+      "United States"
+    ],
+    "invisibleTags":[
+      "Human immunology",
+      "Multi-omics",
+      "Gene expression",
+      "Flow cytometry",
+      "Single-cell RNA-seq",
+      "Proteomics",
+      "Metabolomics",
+      "Transcriptomics",
+      "Vaccine response",
+      "Autoimmunity",
+      "Infectious diseases",
+      "Cancer immunotherapy",
+      "Immune cell subsets",
+      "Cytokine profiling",
+      "Immunophenotyping",
+      "Immune biomarkers",
+      "Immune profiling",
+      "Immune signaling",
+      "Immune activation",
+      "T cell subsets",
+      "B cell subsets",
+      "Natural killer cells",
+      "Monocytes",
+      "Dendritic cells",
+      "Macrophages",
+      "Neutrophils",
+      "Plasma cells",
+      "Epitope mapping",
+      "High-throughput sequencing",
+      "Mass cytometry",
+      "Serology",
+      "Clinical study",
+      "Cohort study",
+      "Observational study",
+      "Experimental study",
+      "Vaccination study",
+      "Challenge study",
+      "Pathogen exposure",
+      "Immune kinetics",
+      "Host response",
+      "Systems immunology",
+      "Immunogenomics",
+      "Immunoproteomics",
+      "Immunometabolomics",
+      "Longitudinal study",
+      "Time-course study",
+      "Transcriptomic profiling",
+      "Single-cell profiling",
+      "Assay data",
+      "Omics dataset",
+      "Historic",
+      "Current",
+      "Present",
+      "2008-2025"
+    ],
+    "additionalInfo":"<p>ImmuneSpace is a data portal developed by the Human Immunology Project Consortium (HIPC) and supported by the National Institutes of Health (NIH). It integrates and visualizes multi-omic datasets from various studies to facilitate research in human immunology. <\/p><h4>Host Organization<\/h4><ul><li>Human Immunology Project Consortium (HIPC)<\/li><li>National Institutes of Health (NIH)<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is primarily available in CSV, Excel, FASTA\/FASTQ, JSON\/XML, API Access, Flow Cytometry Standard (FCS)<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>2008 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<em>-<\/em>Some datasets include controlled-access data requiring authentication.<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Visit Immune Space’s <a href=\"https:\/\/immunespace.org\/about-us\/\">About Page<\/a> and scroll down to the <strong>Citing Immune Space<\/strong> heading<\/li><li>Human Immunology Project Consortium. (n.d.). <em>ImmuneSpace<\/em>. Retrieved September 23, 2025, from <a href=\"https:\/\/immunespace.org\/query\/filters\">https:\/\/immunespace.org\/query\/filters<\/a><\/li><\/ul>"
+  },
+  {
+    "id":"34",
+    "name":"Vaccine Adjuvant Compendium (VAC)",
+    "description":"VAC is a NIAID-hosted resource cataloging adjuvants to support vaccine development and immunotherapy",
+    "url":"https:\/\/vac.niaid.nih.gov\/",
+    "categories":[
+      "People"
+    ],
+    "source":"database",
+    "region":[
+      "United States"
+    ],
+    "type":"",
+    "yearStart":"2021",
+    "yearEnd":"2025",
+    "tags":[
+      "Public Health",
+      "United States"
+    ],
+    "invisibleTags":[
+      "Vaccine",
+      "Immunology",
+      "Immunotherapy",
+      "Immune response",
+      "Innate immunity",
+      "Adaptive immunity",
+      "Humoral immunity",
+      "Cellular immunity",
+      "Cytokine",
+      "T cell",
+      "B cell",
+      "Dendritic cell",
+      "Macrophage",
+      "Natural killer cell",
+      "Monocyte",
+      "Neutrophil",
+      "Viral vaccine",
+      "Bacterial vaccine",
+      "Protein subunit vaccine",
+      "mRNA vaccine",
+      "DNA vaccine",
+      "Viral vector vaccine",
+      "Inactivated vaccine",
+      "Live attenuated vaccine",
+      "Vaccine formulation",
+      "Vaccine delivery",
+      "Vaccine safety",
+      "Vaccine efficacy",
+      "Vaccine immunogenicity",
+      "Vaccine clinical trial",
+      "Vaccine preclinical study",
+      "Vaccine regulatory",
+      "Vaccine platform",
+      "Vaccine development",
+      "Vaccine study",
+      "Host response",
+      "Immune profiling",
+      "Immune biomarkers",
+      "Immunogen",
+      "Immune kinetics",
+      "Immune signaling",
+      "Immune modulation",
+      "Vaccine research",
+      "Vaccine evaluation",
+      "Clinical study",
+      "Preclinical study",
+      "Animal model",
+      "Human trial",
+      "Infectious disease",
+      "Autoimmunity",
+      "Cancer vaccine",
+      "Immunization",
+      "Immunological assay",
+      "Flow cytometry",
+      "ELISA",
+      "ELISPOT",
+      "Mass spectrometry",
+      "High-throughput sequencing",
+      "Systems immunology",
+      "Immunogenomics",
+      "Immunoproteomics",
+      "Historic",
+      "Current",
+      "Present",
+      "2021-2025"
+    ],
+    "additionalInfo":"<p>The Vaccine Adjuvant Compendium (VAC) is a curated database developed by the NIAID Division of Allergy, Immunology, and Transplantation (DAIT). It provides detailed information on adjuvants used in vaccine development, aiming to facilitate the identification and evaluation of adjuvants to enhance vaccine efficacy and safety.<\/p><h4>Host Organization<\/h4><ul><li>National Institute for Health<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is primarily available in CSV, Excel, PDF, JSON\/XML, API access<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>2021 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<em>-<\/em>Some datasets may require permission for human subject-related details.<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Follow the instructions on the <a href=\"https:\/\/www.niaid.nih.gov\/global\/copyright-and-reuse\">NIH’s Copyright and Reuse of Graphics and Text<\/a> page<\/li><li>National Institute of Allergy and Infectious Diseases. (n.d.). <em>Vaccine Adjuvant Compendium (VAC)<\/em>. Retrieved September 23, 2025, from <a href=\"https:\/\/vac.niaid.nih.gov\/\">https:\/\/vac.niaid.nih.gov\/<\/a><\/li><\/ul>"
+  },
+  {
+    "id":"35",
+    "name":"Immunological Genome Project\n",
+    "description":"ImmGen is a collaborative project providing comprehensive gene expression data across mouse immune cells.",
+    "url":"https:\/\/www.immgen.org\/",
+    "categories":[
+      "People"
+    ],
+    "source":"database",
+    "region":[
+      "United States"
+    ],
+    "type":"",
+    "yearStart":"2012",
+    "yearEnd":"2025",
+    "tags":[
+      "Population Health",
+      "Public Health",
+      "United States"
+    ],
+    "invisibleTags":[
+      "ImmGen",
+      "gene expression",
+      "mouse immune cells",
+      "RNA-seq",
+      "microarray",
+      "transcriptomics",
+      "hematopoiesis",
+      "T cells",
+      "B cells",
+      "NK cells",
+      "dendritic cells",
+      "macrophages",
+      "neutrophils",
+      "monocytes",
+      "plasma cells",
+      "immune cell subsets",
+      "cell differentiation",
+      "activation states",
+      "immune signaling",
+      "cytokine profiling",
+      "immune responses",
+      "gene regulatory networks",
+      "systems immunology",
+      "cell lineage",
+      "cell development",
+      "cell function",
+      "immune profiling",
+      "data repository",
+      "public dataset",
+      "data visualization",
+      "bioinformatics",
+      "standardized protocols",
+      "high-throughput sequencing",
+      "single-cell RNA-seq",
+      "bulk RNA-seq",
+      "chromatin accessibility",
+      "epigenomics",
+      "transcription factors",
+      "co-expression networks",
+      "signaling pathways",
+      "immunogenomics",
+      "immune cell activation markers",
+      "lineage tracing",
+      "immune system ontogeny",
+      "cellular heterogeneity",
+      "comparative immunology",
+      "gene expression atlas",
+      "immunophenotyping",
+      "functional genomics",
+      "immune cell plasticity",
+      "Historic",
+      "Current",
+      "Present",
+      "2012-2025"
+    ],
+    "additionalInfo":"<p>The Immunological Genome Project (ImmGen) is a collaborative effort that profiles gene expression across a wide array of mouse immune cell types. By employing standardized protocols and advanced sequencing technologies, ImmGen provides a detailed atlas of immune cell gene expression, facilitating insights into immune system function and regulation.<\/p><h4>Host Organization<\/h4><ul><li>Cancer Research Group<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is primarily available in CSV, TSV, CEL (microarray files), FASTQ (RNA-seq raw reads), BAM (RNA-seq aligned reads), RData, HDF5, JSON, Metadata files, Programmatic access via FTP or website<\/li><\/ul><h4>How to access data of interest<\/h4><h4>Database Time Range<\/h4><ul><li>2012 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Follow the instructions found at <a href=\"https:\/\/www.immgen.org\/ImmGenData.html\">ImmGen’s Dataset Requests and Suggestions<\/a> page<\/li><li>Heng, T. S. P., Painter, M. W., &amp; Immunological Genome Project Consortium. (n.d.). <em>Immunological Genome Project (ImmGen)<\/em>. Retrieved September 23, 2025, from <a href=\"https:\/\/www.immgen.org\/\">https:\/\/www.immgen.org\/<\/a><\/li><\/ul>"
+  },
+  {
+    "id":"36",
+    "name":"Pharos",
+    "description":"PHAROS is an open-access platform for sharing wildlife pathogen surveillance data globally.",
+    "url":"https:\/\/pharos.viralemergence.org\/data\/#map",
+    "categories":[
+      "Animals"
+    ],
+    "source":"database",
+    "region":[
+      "Global"
+    ],
+    "type":"",
+    "yearStart":"2010",
+    "yearEnd":"2025",
+    "tags":[
+      "Agriculture",
+      "Animal Health",
+      "Disease Surveillance",
+      "Global",
+      "Infectious Disease Monitoring",
+      "Wildlife"
+    ],
+    "invisibleTags":[
+      "PHAROS",
+      "wildlife pathogens",
+      "zoonotic diseases",
+      "pathogen surveillance",
+      "wildlife disease monitoring",
+      "pathogen testing",
+      "parasite sampling",
+      "wildlife health",
+      "geospatial metadata",
+      "host-pathogen interactions",
+      "disease emergence",
+      "wildlife epidemiology",
+      "pathogen distribution",
+      "disease ecology",
+      "wildlife conservation",
+      "pathogen detection",
+      "wildlife sampling",
+      "disease mapping",
+      "global health",
+      "environmental health",
+      "pathogen genomics",
+      "biodiversity",
+      "public health",
+      "disease prevention",
+      "wildlife research",
+      "pathogen data sharing",
+      "wildlife monitoring",
+      "disease outbreaks",
+      "pathogen diversity",
+      "wildlife pathogens database",
+      "wildlife disease atlas",
+      "pathogen harmonization",
+      "wildlife disease surveillance",
+      "pathogen sharing platform",
+      "wildlife health data",
+      "disease risk assessment",
+      "wildlife epidemiology network",
+      "pathogen monitoring",
+      "wildlife disease research",
+      "zoonotic pathogen tracking",
+      "wildlife disease database",
+      "pathogen surveillance network",
+      "wildlife disease mapping",
+      "pathogen data access",
+      "wildlife health monitoring",
+      "disease emergence research",
+      "wildlife pathogen distribution",
+      "pathogen data sharing platform",
+      "wildlife disease research network",
+      "pathogen detection technologies",
+      "wildlife disease prevention",
+      "pathogen monitoring tools",
+      "Historic",
+      "Current",
+      "Present",
+      "2010-2025"
+    ],
+    "additionalInfo":"<p>The Pathogen Harmonized Observatory (PHAROS) is a collaborative initiative designed to collect and share standardized wildlife pathogen surveillance data. By providing a unified platform, PHAROS aims to support early detection and monitoring of zoonotic diseases, facilitating global research and response efforts.<\/p><h4>Host Organization<\/h4><ul><li>Viral Emergence Research Initiative (Verena)<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is primarily available in CSV, TSV, Excel (XLSX), JSON, API access, FTP download<\/li><\/ul><h4>How to access data of interest<\/h4><ul><li>Select <strong>View map<\/strong><\/li><li>Select <strong>Table<\/strong><\/li><li>Select <strong>Filters<\/strong> and search for information of interest<\/li><li>Once you’ve selected the files you would like to download select <strong>Download data button<\/strong><\/li><\/ul><h4>Database Time Range<\/h4><ul><li>2010 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Private<em>-<\/em>Must make an account to download data (but only an email is required)<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Please follow the instructions on Pharos’ <a href=\"https:\/\/pharos.viralemergence.org\/research-with-pharos\/attribution\/\">Attribution Requirment<\/a> page<\/li><li>Carlson, C. J., &amp; Verena Program. (2023). <em>Pathogen Harmonized Observatory (PHAROS)<\/em>. Georgetown University Medical Center. Retrieved September 23, 2025, from <a href=\"https:\/\/pharos.viralemergence.org\/\">https:\/\/pharos.viralemergence.org\/<\/a><\/li><\/ul>"
+  },
+  {
+    "id":"37",
+    "name":"Earth Observing Laboratory Field Data Archive",
+    "description":"EOL Field Data Archive hosts over 15,000 datasets from atmospheric research campaigns since 1967.",
+    "url":"https:\/\/data.eol.ucar.edu\/dataset\/list?max=50&offset=0&order=asc&sort=title",
+    "categories":[
+      "Ecosystems"
+    ],
+    "source":"database",
+    "region":[
+      "Global",
+      "United States"
+    ],
+    "type":"",
+    "yearStart":"1967",
+    "yearEnd":"2025",
+    "tags":[
+      "Long Term Weather Trends",
+      "Ecosystem Data",
+      "Energy",
+      "Global",
+      "Land Management",
+      "Ocean",
+      "United States",
+      "Weather"
+    ],
+    "invisibleTags":[
+      "EOL",
+      "Field Data Archive",
+      "atmospheric research",
+      "radar data",
+      "lidar data",
+      "soundings",
+      "surface meteorology",
+      "field campaigns",
+      "NSF",
+      "NCAR",
+      "airborne instrumentation",
+      "weather observations",
+      "climate research",
+      "atmospheric science",
+      "geospatial data",
+      "environmental monitoring",
+      "data stewardship",
+      "public datasets",
+      "scientific collaboration",
+      "data visualization",
+      "data access",
+      "metadata",
+      "observational data",
+      "remote sensing",
+      "climate modeling",
+      "data sharing",
+      "research infrastructure",
+      "data analysis",
+      "scientific instrumentation",
+      "environmental data",
+      "data archiving",
+      "long-term storage",
+      "scientific publications",
+      "data citation",
+      "data discovery",
+      "data interoperability",
+      "data standards",
+      "data formats",
+      "scientific repositories",
+      "data quality",
+      "data processing",
+      "data integration",
+      "model output",
+      "reanalysis data",
+      "in-situ measurements",
+      "flux measurements",
+      "atmospheric profiles",
+      "vertical soundings",
+      "aerosol measurements",
+      "greenhouse gas monitoring",
+      "precipitation data",
+      "wind observations",
+      "temperature measurements",
+      "humidity measurements",
+      "cloud observations",
+      "solar radiation",
+      "atmospheric chemistry",
+      "boundary layer studies",
+      "turbulence measurements",
+      "instrument calibration",
+      "campaign metadata",
+      "field logistics",
+      "Historic",
+      "Current",
+      "Present",
+      "1967-2025"
+    ],
+    "additionalInfo":"<p>The Earth Observing Laboratory (EOL) Field Data Archive provides publicly accessible datasets from atmospheric research campaigns conducted by the National Science Foundation (NSF) and other agencies since 1967. These datasets encompass a wide range of atmospheric observations, including radar, lidar, soundings, and surface meteorology, supporting research in atmospheric science and related fields.<\/p><h4>Host Organization<\/h4><ul><li>National Science Foundation: National Center for Atmospheric Research<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is primarily available in CSV, TSV, NetCDF, HDF5, GRIB, Excel (XLSX), XML, JSON, FTP download, API access<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1967 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>National Center for Atmospheric Research. (n.d.). <em>Earth Observing Laboratory Field Data Archive<\/em>. Retrieved September 23, 2025, from <a href=\"https:\/\/data.eol.ucar.edu\/\">https:\/\/data.eol.ucar.edu\/<\/a><\/li><\/ul>"
+  },
+  {
+    "id":"38",
+    "name":"Earth Explorer",
+    "description":"USGS EarthExplorer provides access to over 120 geospatial datasets, including satellite imagery and elevation data.",
+    "url":"https:\/\/earthexplorer.usgs.gov\/",
+    "categories":[
+      "Ecosystems"
+    ],
+    "source":"database",
+    "region":[
+      "United States",
+      "Global"
+    ],
+    "type":"",
+    "yearStart":"1960",
+    "yearEnd":"2025",
+    "tags":[
+      "Agriculture",
+      "Long Term Weather Trends",
+      "Ecosystem Data",
+      "Energy",
+      "Global",
+      "Land Management",
+      "Ocean",
+      "United States",
+      "Weather"
+    ],
+    "invisibleTags":[
+      "EarthExplorer",
+      "USGS",
+      "satellite imagery",
+      "aerial photography",
+      "remote sensing",
+      "geospatial data",
+      "Landsat",
+      "Sentinel",
+      "MODIS",
+      "ASTER",
+      "NAIP",
+      "SRTM",
+      "DEM",
+      "digital elevation model",
+      "land cover",
+      "cartographic products",
+      "Digital Line Graphs",
+      "DLG",
+      "environmental monitoring",
+      "land use",
+      "land cover mapping",
+      "disaster response",
+      "scientific research",
+      "geospatial analysis",
+      "GIS",
+      "geographic information system",
+      "spatial data",
+      "temporal analysis",
+      "multispectral imagery",
+      "hyperspectral imagery",
+      "vegetation index",
+      "NDVI",
+      "urban mapping",
+      "agriculture monitoring",
+      "forestry",
+      "water resources",
+      "climate change",
+      "coastal studies",
+      "habitat mapping",
+      "biodiversity",
+      "ecosystem services",
+      "flood modeling",
+      "wildfire monitoring",
+      "infrastructure planning",
+      "urban development",
+      "historical imagery",
+      "time series analysis",
+      "remote sensing applications",
+      "data visualization",
+      "data access",
+      "metadata",
+      "data stewardship",
+      "public datasets",
+      "scientific collaboration",
+      "data sharing",
+      "data discovery",
+      "data interoperability",
+      "data standards",
+      "data formats",
+      "data processing",
+      "data integration",
+      "data quality",
+      "data analysis",
+      "data archiving",
+      "long-term storage",
+      "scientific publications",
+      "data citation",
+      "data access methods",
+      "API",
+      "FTP",
+      "bulk download",
+      "web interface",
+      "EarthExplorer account",
+      "Historic",
+      "Current",
+      "Present",
+      "1960-2025"
+    ],
+    "additionalInfo":"<p>USGS EarthExplorer is a web-based application developed by the U.S. Geological Survey's Earth Resources Observation and Science (EROS) Center. It offers users the ability to search, preview, and download a vast array of geospatial datasets, including satellite imagery, aerial photographs, and digital elevation models, supporting various applications in environmental monitoring, research, and analysis.<\/p><h4>Host Organization<\/h4><ul><li>United States Geological Survey<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is primarily available in GeoTIFF, JPEG, PNG, HDF, NetCDF, GeoJSON, KML, Shapefile, ASCII, CSV, BMP, TIFF, DBF, TXT, WMS, WFS, Web Map Service, Web Feature Service<\/li><\/ul><h4>How to access data of interest<\/h4><ul><li>Select Dataset of interest<\/li><li>In popup window scroll to the bottom and select <strong>Open in New Window<\/strong><\/li><li>Scroll to the bottom and select <strong>Download<\/strong><\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1960 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Private<em>-<\/em> Must create USGS account (only requires you to select a username and password)<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Follow the instructions given on the <a href=\"https:\/\/www.usgs.gov\/centers\/eros\/data-citation\">USGS’ Data Citation<\/a> page<\/li><li>U.S. Geological Survey. (n.d.). <em>EarthExplorer<\/em>. Retrieved September 23, 2025, from <a href=\"https:\/\/earthexplorer.usgs.gov\/\">https:\/\/earthexplorer.usgs.gov\/<\/a><\/li><\/ul>"
+  },
+  {
+    "id":"39",
+    "name":"CDC WONDER",
+    "description":"CDC WONDER offers public health data access via customizable queries, supporting various formats.",
+    "url":"https:\/\/wonder.cdc.gov\/",
+    "categories":[
+      "People"
+    ],
+    "source":"database",
+    "region":[
+      "United States"
+    ],
+    "type":"",
+    "yearStart":"1900",
+    "yearEnd":"2025",
+    "tags":[
+      "Disease Surveillance",
+      "Infectious Disease Monitoring",
+      "Population Health",
+      "Public Health",
+      "United States"
+    ],
+    "invisibleTags":[
+      "CDC WONDER",
+      "public health data",
+      "mortality statistics",
+      "natality statistics",
+      "cancer statistics",
+      "disease surveillance",
+      "epidemiology",
+      "public health research",
+      "data query system",
+      "public-use data sets",
+      "health indicators",
+      "chronic disease data",
+      "infectious disease data",
+      "environmental health data",
+      "health disparities",
+      "demographic data",
+      "health outcomes",
+      "vital statistics",
+      "birth data",
+      "death data",
+      "population data",
+      "health risk factors",
+      "health behavior data",
+      "health promotion",
+      "disease prevention",
+      "health policy",
+      "public health surveillance",
+      "health equity",
+      "health statistics",
+      "data visualization",
+      "data analysis",
+      "data export",
+      "tab-delimited files",
+      "ASCII files",
+      "HTML reports",
+      "data tables",
+      "data charts",
+      "data maps",
+      "data access",
+      "data download",
+      "data sharing",
+      "data interoperability",
+      "data standards",
+      "data formats",
+      "data processing",
+      "data integration",
+      "data quality",
+      "data stewardship",
+      "data archiving",
+      "long-term storage",
+      "scientific publications",
+      "data citation",
+      "data discovery",
+      "data access methods",
+      "API",
+      "FTP",
+      "bulk download",
+      "web interface",
+      "data export options",
+      "Historic",
+      "Current",
+      "Present",
+      "1900-2025"
+    ],
+    "additionalInfo":"<p>CDC WONDER (Wide-ranging Online Data for Epidemiologic Research) is a public health data query system provided by the Centers for Disease Control and Prevention (CDC). It allows users to access and analyze a wide range of public health data, including mortality, natality, cancer, and disease statistics, through customizable queries and downloadable reports.<\/p><h4>Host Organization<\/h4><ul><li>Centers for Disease Control<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is primarily available in Tab-delimited text, ASCII, HTML, CSV, Excel, Bitmap images, Charts, Maps, XML, API access, Web Map Service (WMS), Web Feature Service (WFS)<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1900 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Follow the instructions on the <a href=\"https:\/\/www.cdc.gov\/nchs\/products\/citations.htm\">Citations for National Center for Health Statistics<\/a><\/li><li>Centers for Disease Control and Prevention. (n.d.). <em>CDC WONDER<\/em>. Retrieved September 23, 2025, from <a href=\"https:\/\/wonder.cdc.gov\/\">https:\/\/wonder.cdc.gov\/<\/a><\/li><\/ul>"
+  },
+  {
+    "id":"40",
+    "name":"USGS WHISPers",
+    "description":"WHISPers is a web-based platform for reporting and accessing wildlife disease events across North America.",
+    "url":"https:\/\/whispers.usgs.gov\/home",
+    "categories":[
+      "Animals"
+    ],
+    "source":"database",
+    "region":[
+      "United States"
+    ],
+    "type":"",
+    "yearStart":"1910",
+    "yearEnd":"2025",
+    "tags":[
+      "Agriculture",
+      "Animal Health",
+      "Disease Surveillance",
+      "Infectious Disease Monitoring",
+      "Public Health",
+      "United States",
+      "Wildlife"
+    ],
+    "invisibleTags":[
+      "WHISPers",
+      "USGS",
+      "wildlife health",
+      "disease surveillance",
+      "morbidity",
+      "mortality",
+      "wildlife disease events",
+      "zoonotic diseases",
+      "epidemiology",
+      "wildlife management",
+      "public health",
+      "data sharing",
+      "diagnostic services",
+      "National Wildlife Health Center",
+      "wildlife monitoring",
+      "disease mapping",
+      "event reporting",
+      "wildlife species",
+      "disease outbreaks",
+      "wildlife conservation",
+      "data visualization",
+      "data access",
+      "metadata",
+      "observational data",
+      "remote sensing",
+      "climate modeling",
+      "data sharing",
+      "research infrastructure",
+      "data analysis",
+      "scientific instrumentation",
+      "environmental data",
+      "data archiving",
+      "long-term storage",
+      "scientific publications",
+      "data citation",
+      "data discovery",
+      "data interoperability",
+      "data standards",
+      "data formats",
+      "scientific repositories",
+      "data quality",
+      "data processing",
+      "data integration",
+      "wildlife epidemiology",
+      "disease risk assessment",
+      "wildlife disease research",
+      "pathogen detection",
+      "wildlife health monitoring",
+      "disease emergence research",
+      "wildlife pathogen distribution",
+      "pathogen data sharing platform",
+      "wildlife disease research network",
+      "pathogen detection technologies",
+      "wildlife disease prevention",
+      "pathogen monitoring tools",
+      "Historic",
+      "Current",
+      "Present",
+      "1910-2025"
+    ],
+    "additionalInfo":"<p>USGS WHISPers (Wildlife Health Information Sharing Partnership) is a collaborative, web-based system developed by the U.S. Geological Survey's National Wildlife Health Center (NWHC). It serves as a repository for wildlife morbidity and mortality data, enabling natural resource managers and the public to report, access, and analyze wildlife disease events, thereby enhancing situational awareness and informing management decisions. <\/p><h4>Host Organization<\/h4><ul><li>United States Geological Survey<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is primarily available in CSV, Excel, PDF, JSON, XML, GeoJSON, KML, Shapefile, NetCDF, HDF5, API access, Web Map Service (WMS), Web Feature Service (WFS)<\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1910 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Follow the instructions on the <a href=\"https:\/\/whispers.usgs.gov\/about\">USGS’ About Page<\/a>, specifically referring to the <strong>How do I cite this information?<\/strong> section.<\/li><li>Richards, B.J., Kimberli, J.M., &amp; White, C. L. (2022). WHISPers—Providing situational awareness of wildlife disease threats to the Nation—A fact sheet for the biosurveillance community. <em>U.S. Geological Survey Fact Sheet 2022–3022<\/em>. <a href=\"https:\/\/doi.org\/10.3133\/fs20223022\">https:\/\/doi.org\/10.3133\/fs20223022<\/a><\/li><\/ul>"
+  },
+  {
+    "id":"41",
+    "name":"National Center for Health Statistics ",
+    "description":"CDC NCHS provides vital health statistics through surveys, data tools, and public-use datasets.",
+    "url":"https:\/\/www.cdc.gov\/nchs\/index.html",
+    "categories":[
+      "People"
+    ],
+    "source":"database",
+    "region":[
+      "United States"
+    ],
+    "type":"",
+    "yearStart":"1900",
+    "yearEnd":"2025",
+    "tags":[
+      "Disease Surveillance",
+      "Population Health",
+      "Public Health",
+      "United States"
+    ],
+    "invisibleTags":[
+      "NCHS",
+      "CDC",
+      "health statistics",
+      "vital statistics",
+      "mortality data",
+      "natality data",
+      "public health data",
+      "National Health Interview Survey",
+      "NHANES",
+      "National Health and Nutrition Examination Survey",
+      "Linked Mortality Files",
+      "data query system",
+      "public-use datasets",
+      "restricted-use datasets",
+      "health surveys",
+      "health indicators",
+      "epidemiology",
+      "health policy",
+      "chronic disease data",
+      "infectious disease data",
+      "health disparities",
+      "population health",
+      "survey methodology",
+      "data analysis tools",
+      "data visualization",
+      "data access",
+      "metadata",
+      "data sharing",
+      "data standards",
+      "data formats",
+      "data processing",
+      "data integration",
+      "data archiving",
+      "data quality",
+      "data stewardship",
+      "scientific publications",
+      "data citation",
+      "survey documentation",
+      "data dictionaries",
+      "dataset download",
+      "data dashboards",
+      "statistical tables",
+      "microdata",
+      "geographic data",
+      "health outcomes",
+      "behavioral health",
+      "demographic data",
+      "environmental health",
+      "health risk factors",
+      "data exploration",
+      "Historic",
+      "Current",
+      "Present",
+      "1900-2025"
+    ],
+    "additionalInfo":"<p>The National Center for Health Statistics (NCHS), a branch of the CDC, is the principal health statistics agency in the United States. It collects, analyzes, and disseminates health data to inform public health policy and programs, offering access to a wide range of datasets through various tools and platforms.<\/p><h4>Host Organization<\/h4><ul><li>Centers for Disease Control<\/li><\/ul><h4>Data Format<\/h4><ul><li>Data is primarily available in CSV, Excel, SAS, SPSS, Stata, ASCII, XML, JSON, PDF, HTML, API access<\/li><\/ul><h4>How to access data of interest<\/h4><ul><li>Once data of interest has been found select <strong>View data on data.cdc.gov<\/strong><\/li><\/ul><h4>Database Time Range<\/h4><ul><li>1900 - 2025<\/li><\/ul><h4>Access Type<\/h4><ul><li>Public<\/li><\/ul><h4>Citation Information<\/h4><ul><li>Follow the instructions on the <a href=\"https:\/\/www.cdc.gov\/nchs\/products\/citations.htm\">Citations for National Center for Health Statistics<\/a><\/li><li>Centers for Disease Control and Prevention. (n.d.). <em>National Center for Health Statistics (NCHS)<\/em>. Retrieved September 23, 2025, from <a href=\"https:\/\/www.cdc.gov\/nchs\/index.html\">https:\/\/www.cdc.gov\/nchs\/index.html<\/a><\/li><\/ul>"
   }
 ];
 window.DATASETS = DATASETS;
