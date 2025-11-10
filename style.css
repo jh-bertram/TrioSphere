@@ -158,6 +158,47 @@ a:hover{ text-decoration:underline; }
     color: var(--clr-primary-dark);
 }
 
+.results-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* View Toggle Buttons */
+.view-toggle {
+    display: flex;
+    gap: 0;
+    border: 2px solid var(--csu-green);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.view-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 0.75rem;
+    background: var(--clr-surface);
+    color: var(--csu-green);
+    border: none;
+    cursor: pointer;
+    transition: background var(--transition), color var(--transition);
+    font-size: 1rem;
+}
+
+.view-toggle-btn:first-child {
+    border-right: 1px solid var(--csu-green);
+}
+
+.view-toggle-btn:hover {
+    background: rgba(30, 77, 43, 0.1);
+}
+
+.view-toggle-btn.active {
+    background: var(--csu-green);
+    color: #fff;
+}
+
 .export-btn {
     display: flex;
     align-items: center;
@@ -325,8 +366,69 @@ main{
     grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
     grid-auto-rows: auto;    /* ← this forces every row to be equal height */
     gap:1rem;
-
 }
+
+/* LIST VIEW */
+#datasetGrid.list-view {
+    grid-template-columns: 1fr;  /* Single column for list view */
+    gap: 0.75rem;
+}
+
+#datasetGrid.list-view .card {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas:
+        "badge title button"
+        "badge description button"
+        "badge tags button";
+    align-items: start;
+    gap: 0.5rem 1rem;
+    padding: 1rem 1.25rem;
+    border-left-width: 4px;
+}
+
+#datasetGrid.list-view .recently-added-badge {
+    position: static;
+    grid-area: badge;
+    margin-top: 0.25rem;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 0.3rem;
+}
+
+#datasetGrid.list-view .card h3 {
+    grid-area: title;
+    margin: 0;
+    font-size: 1.15rem;
+}
+
+#datasetGrid.list-view .card p {
+    grid-area: description;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+#datasetGrid.list-view .taglist {
+    grid-area: tags;
+    margin: 0;
+}
+
+#datasetGrid.list-view .card .btn {
+    grid-area: button;
+    margin: 0;
+    align-self: center;
+    white-space: nowrap;
+}
+
+#datasetGrid.list-view .card:hover {
+    transform: translateX(4px);
+}
+
+
 .card{
     background:var(--clr-surface);
     border-radius:var(--radius);

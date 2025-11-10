@@ -97,6 +97,8 @@ async function initializeApp() {
   const filterToggleBtn = document.getElementById("filterToggleBtn");
   const filterPanel = document.getElementById("filterPanel");
   const filterOverlay = document.getElementById("filterOverlay");
+  const viewToggleCard = document.getElementById("viewToggleCard");
+  const viewToggleList = document.getElementById("viewToggleList");
 
   // Info Modal elements
   const modal         = document.getElementById("infoModal");
@@ -118,6 +120,7 @@ async function initializeApp() {
   let activeDateFrom  = null;
   let activeDateTo    = null;
   let selectedPills   = new Set();
+  let currentView     = localStorage.getItem('triosphere-view') || 'card';  // Load saved view preference
 
   // --- DYNAMICALLY GENERATE TAG FILTERS ---
   const tagFiltersContainer = document.getElementById("tagFiltersContainer");
@@ -383,6 +386,37 @@ async function initializeApp() {
 
   if (exportCsvBtn) {
     exportCsvBtn.addEventListener("click", exportToCSV);
+  }
+
+  // --- VIEW TOGGLE FUNCTIONALITY ---
+  function setView(viewType) {
+    currentView = viewType;
+    localStorage.setItem('triosphere-view', viewType);
+
+    if (viewType === 'list') {
+      grid.classList.add('list-view');
+      viewToggleList.classList.add('active');
+      viewToggleCard.classList.remove('active');
+      viewToggleList.setAttribute('aria-pressed', 'true');
+      viewToggleCard.setAttribute('aria-pressed', 'false');
+    } else {
+      grid.classList.remove('list-view');
+      viewToggleCard.classList.add('active');
+      viewToggleList.classList.remove('active');
+      viewToggleCard.setAttribute('aria-pressed', 'true');
+      viewToggleList.setAttribute('aria-pressed', 'false');
+    }
+  }
+
+  // Set initial view based on saved preference
+  setView(currentView);
+
+  if (viewToggleCard) {
+    viewToggleCard.addEventListener('click', () => setView('card'));
+  }
+
+  if (viewToggleList) {
+    viewToggleList.addEventListener('click', () => setView('list'));
   }
 
   // Initial draw

@@ -67,9 +67,19 @@
     <span id="resultCounter" class="result-count">
       <i class="fas fa-spinner fa-spin"></i> Loading datasets from Excel...
     </span>
-    <button id="exportCsvBtn" class="export-btn" title="Export filtered results to CSV">
-      <i class="fas fa-download"></i> Export to CSV
-    </button>
+    <div class="results-actions">
+      <div class="view-toggle" role="group" aria-label="View mode">
+        <button id="viewToggleCard" class="view-toggle-btn active" title="Card view" aria-pressed="true">
+          <i class="fas fa-th"></i>
+        </button>
+        <button id="viewToggleList" class="view-toggle-btn" title="List view" aria-pressed="false">
+          <i class="fas fa-list"></i>
+        </button>
+      </div>
+      <button id="exportCsvBtn" class="export-btn" title="Export filtered results to CSV">
+        <i class="fas fa-download"></i> Export to CSV
+      </button>
+    </div>
   </div>
 </div>
 
