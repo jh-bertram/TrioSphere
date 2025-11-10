@@ -1,5 +1,91 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const DATASETS      = window.DATASETS;
+// =======================
+// EXCEL LOADING & PROCESSING
+// =======================
+
+let DATASETS = [];
+
+// Helper function to split semicolon-separated strings
+function splitSemicolon(str) {
+  if (!str || str === '') return [];
+  return str.split(';').map(s => s.trim()).filter(s => s.length > 0);
+}
+
+// Load and process Excel file
+async function loadExcelData() {
+  try {
+    const response = await fetch('datasets.xlsx');
+    const arrayBuffer = await response.arrayBuffer();
+    const workbook = XLSX.read(arrayBuffer, { type: 'array' });
+
+    // Get first sheet
+    const sheetName = workbook.SheetNames[0];
+    const worksheet = workbook.Sheets[sheetName];
+
+    // Convert to JSON
+    const rawData = XLSX.utils.sheet_to_json(worksheet, { defval: '' });
+
+    // Process each row
+    DATASETS = rawData.map(row => {
+      // Split semicolon-separated fields into arrays
+      const categories = splitSemicolon(row.categories);
+      const region = splitSemicolon(row.region);
+      const tags = splitSemicolon(row.tags);
+      const invisibleTags = splitSemicolon(row.invisibleTags);
+
+      // Convert Markdown to HTML in additionalInfo
+      let additionalInfo = row.additionalInfo || '';
+      if (additionalInfo) {
+        additionalInfo = marked.parse(additionalInfo);
+        // Remove newlines for consistency
+        additionalInfo = additionalInfo.replace(/\n/g, '');
+      }
+
+      return {
+        id: String(row.id || ''),
+        name: String(row.name || ''),
+        description: String(row.description || ''),
+        url: String(row.url || ''),
+        categories: categories,
+        source: String(row.source || ''),
+        region: region,
+        type: String(row.type || ''),
+        yearStart: String(row.yearStart || ''),
+        yearEnd: String(row.yearEnd || ''),
+        tags: tags,
+        invisibleTags: invisibleTags,
+        additionalInfo: additionalInfo,
+        dateAdded: row.dateAdded ? String(row.dateAdded) : undefined
+      };
+    });
+
+    console.log(`Loaded ${DATASETS.length} datasets from Excel file`);
+    return DATASETS;
+
+  } catch (error) {
+    console.error('Error loading Excel file:', error);
+    const errorMsg = 'Unable to load datasets.xlsx. Please ensure the file is in the same directory as index.html.';
+    alert(errorMsg);
+    document.getElementById('resultCounter').innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error loading Excel file';
+    return [];
+  }
+}
+
+// =======================
+// MAIN APPLICATION
+// =======================
+
+async function initializeApp() {
+  // Load data first
+  await loadExcelData();
+
+  // If no data loaded, stop here
+  if (!DATASETS || DATASETS.length === 0) {
+    document.getElementById('resultCounter').innerHTML = '<i class="fas fa-exclamation-triangle"></i> No data loaded';
+    document.getElementById('datasetGrid').innerHTML = '<p style="padding: 2rem; text-align: center;">Unable to load datasets. Please check the browser console for errors.</p>';
+    return;
+  }
+
+  // Now initialize the app with loaded data
   const grid          = document.getElementById("datasetGrid");
   const searchEl      = document.getElementById("searchInput");
   const dateStartEl   = document.getElementById("dateStart");
@@ -354,5 +440,12 @@ document.addEventListener("DOMContentLoaded", () => {
   if (filterOverlay) {
     filterOverlay.addEventListener('click', closeFilterPanel);
   }
+}
 
+// =======================
+// START THE APP
+// =======================
+
+document.addEventListener("DOMContentLoaded", () => {
+  initializeApp();
 });

@@ -8,6 +8,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
+  <!-- SheetJS for Excel reading -->
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+
+  <!-- Marked.js for Markdown parsing -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js"></script>
+
 </head>
 <link rel="stylesheet" href="style.css">
 
@@ -58,7 +64,9 @@
 
 <div id="resultsBar">
   <div class="results-container">
-    <span id="resultCounter" class="result-count">Loading...</span>
+    <span id="resultCounter" class="result-count">
+      <i class="fas fa-spinner fa-spin"></i> Loading datasets from Excel...
+    </span>
     <button id="exportCsvBtn" class="export-btn" title="Export filtered results to CSV">
       <i class="fas fa-download"></i> Export to CSV
     </button>
@@ -136,7 +144,8 @@
     </div>
   </div>
 
-  <script src="data.js" defer></script>
+  <!-- Note: data.js is no longer needed - we load directly from Excel -->
+  <!-- <script src="data.js" defer></script> -->
 
 <script src="script.js" defer></script>
   </body>
