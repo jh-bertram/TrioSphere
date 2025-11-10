@@ -162,7 +162,7 @@ const DATASETS = [
   {
     "id":"2",
     "name":"National Notifiable Diseases Surveillance System",
-    "description":" NNDSS tracks and shares data on notifiable diseases to protect U.S. public health.",
+    "description":"NNDSS tracks and shares data on notifiable diseases to protect U.S. public health.",
     "url":"https:\/\/data.cdc.gov\/browse?category=NNDSS&sortBy=last_modified&pageSize=20&page=1",
     "categories":[
       "People"
@@ -1077,7 +1077,7 @@ const DATASETS = [
     "categories":[
       "People"
     ],
-    "source":"",
+    "source":"database",
     "region":[
       "Colorado"
     ],
@@ -1199,7 +1199,7 @@ const DATASETS = [
   {
     "id":"9",
     "name":"EMPRES-i",
-    "description":" EMPRES-i maps global animal disease events with data to support early warning and control strategies.",
+    "description":"EMPRES-i maps global animal disease events with data to support early warning and control strategies.",
     "url":"https:\/\/empres-i.apps.fao.org\/general",
     "categories":[
       "Animals"
@@ -1821,7 +1821,7 @@ const DATASETS = [
       "Animals",
       "Ecosystems"
     ],
-    "source":"",
+    "source":"database",
     "region":[
       "United States"
     ],
@@ -2174,7 +2174,7 @@ const DATASETS = [
       "Animals",
       "Ecosystems"
     ],
-    "source":"datasbase",
+    "source":"database",
     "region":[
       "Global"
     ],
@@ -2789,7 +2789,7 @@ const DATASETS = [
   {
     "id":"16",
     "name":"U.S. Fish and Wildlife Service Open Data",
-    "description":" FWS Open Data Portal provides geospatial data on refuges, amenities, offices, and conservation planning layers.",
+    "description":"FWS Open Data Portal provides geospatial data on refuges, amenities, offices, and conservation planning layers.",
     "url":"https:\/\/gis-fws.opendata.arcgis.com\/",
     "categories":[
       "Ecosystems",
@@ -3329,7 +3329,7 @@ const DATASETS = [
   {
     "id":"19",
     "name":"Census of Agriculture",
-    "description":" USDA Census of Agriculture surveys U.S. farms every five years, providing detailed data on land, operators, production, and finances.",
+    "description":"USDA Census of Agriculture surveys U.S. farms every five years, providing detailed data on land, operators, production, and finances.",
     "url":"https:\/\/www.nass.usda.gov\/AgCensus\/index.php",
     "categories":[
       "People",
@@ -4603,7 +4603,7 @@ const DATASETS = [
       "Ecosystems",
       "People"
     ],
-    "source":"",
+    "source":"database",
     "region":[
       "United States"
     ],
@@ -5302,17 +5302,25 @@ const DATASETS = [
     "description":"3D structures of biomolecules with tools for search, analysis, modeling, and data download.",
     "url":"https:\/\/www.rcsb.org\/",
     "categories":[
-      "Animals, People"
+      "Animals",
+      "People"
     ],
     "source":"database",
     "region":[
-      "United States, Global"
+      "United States",
+      "Global"
     ],
     "type":"",
     "yearStart":"1971",
     "yearEnd":"2025",
     "tags":[
-      "Biological Variability, Population Health, Public Health, Energy, Global, Infectious Disease Monitoring, United States"
+      "Biological Variability",
+      "Population Health",
+      "Public Health",
+      "Energy",
+      "Global",
+      "Infectious Disease Monitoring",
+      "United States"
     ],
     "invisibleTags":[
       "Protein Data Bank",
@@ -5528,7 +5536,7 @@ const DATASETS = [
   },
   {
     "id":"30",
-    "name":"NIAID Data Ecosystem\n",
+    "name":"NIAID Data Ecosystem",
     "description":"Search portal for datasets, tools, and resources in infectious and immune disease research.",
     "url":"https:\/\/data.niaid.nih.gov\/",
     "categories":[
@@ -5542,7 +5550,13 @@ const DATASETS = [
     "yearStart":"1975",
     "yearEnd":"2025",
     "tags":[
-      "Biological Variability, Disease Surveillance, Global, Infectious Disease Monitoring, Population Health, Public Health, United States"
+      "Biological Variability",
+      "Disease Surveillance",
+      "Global",
+      "Infectious Disease Monitoring",
+      "Population Health",
+      "Public Health",
+      "United States"
     ],
     "invisibleTags":[
       "Infectious disease",
@@ -5660,7 +5674,13 @@ const DATASETS = [
     "yearStart":"2012",
     "yearEnd":"2025",
     "tags":[
-      "Biological Variability, Disease Surveillance, Global, Infectious Disease Monitoring, Population Health, Public Health, United States"
+      "Biological Variability",
+      "Disease Surveillance",
+      "Global",
+      "Infectious Disease Monitoring",
+      "Population Health",
+      "Public Health",
+      "United States"
     ],
     "invisibleTags":[
       "Immunology",
@@ -5788,7 +5808,13 @@ const DATASETS = [
     "yearStart":"2004",
     "yearEnd":"2025",
     "tags":[
-      "Biological Variability, Disease Surveillance, Global, Infectious Disease Monitoring, Population Health, Public Health, United States"
+      "Biological Variability",
+      "Disease Surveillance",
+      "Global",
+      "Infectious Disease Monitoring",
+      "Population Health",
+      "Public Health",
+      "United States"
     ],
     "invisibleTags":[
       "Antibody",
@@ -5888,7 +5914,12 @@ const DATASETS = [
     "yearStart":"2008",
     "yearEnd":"2025",
     "tags":[
-      "Biological Variability, Disease Surveillance, Global, Population Health, Public Health, United States"
+      "Biological Variability",
+      "Disease Surveillance",
+      "Global",
+      "Population Health",
+      "Public Health",
+      "United States"
     ],
     "invisibleTags":[
       "Human immunology",
@@ -5964,7 +5995,8 @@ const DATASETS = [
     "yearStart":"2021",
     "yearEnd":"2025",
     "tags":[
-      "Public Health, United States"
+      "Public Health",
+      "United States"
     ],
     "invisibleTags":[
       "Vaccine",
@@ -6051,7 +6083,9 @@ const DATASETS = [
     "yearStart":"2012",
     "yearEnd":"2025",
     "tags":[
-      "Population Health, Public Health, United States"
+      "Population Health",
+      "Public Health",
+      "United States"
     ],
     "invisibleTags":[
       "ImmGen",
@@ -6127,7 +6161,12 @@ const DATASETS = [
     "yearStart":"2010",
     "yearEnd":"2025",
     "tags":[
-      "Agriculture, Animal Health, Disease Surveillance, Global, Infectious Disease Monitoring, Wildlife"
+      "Agriculture",
+      "Animal Health",
+      "Disease Surveillance",
+      "Global",
+      "Infectious Disease Monitoring",
+      "Wildlife"
     ],
     "invisibleTags":[
       "PHAROS",
@@ -6199,13 +6238,21 @@ const DATASETS = [
     ],
     "source":"database",
     "region":[
-      "Global, United States"
+      "Global",
+      "United States"
     ],
     "type":"",
     "yearStart":"1967",
     "yearEnd":"2025",
     "tags":[
-      "Long Term Weather Trends, Ecosystem Data, Energy, Global, Land Management, Ocean, United States, Weather"
+      "Long Term Weather Trends",
+      "Ecosystem Data",
+      "Energy",
+      "Global",
+      "Land Management",
+      "Ocean",
+      "United States",
+      "Weather"
     ],
     "invisibleTags":[
       "EOL",
@@ -6287,13 +6334,22 @@ const DATASETS = [
     ],
     "source":"database",
     "region":[
-      "United States, Global"
+      "United States",
+      "Global"
     ],
     "type":"",
     "yearStart":"1960",
     "yearEnd":"2025",
     "tags":[
-      "Agriculture, Long Term Weather Trends, Ecosystem Data, Energy, Global, Land Management, Ocean, United States, Weather"
+      "Agriculture",
+      "Long Term Weather Trends",
+      "Ecosystem Data",
+      "Energy",
+      "Global",
+      "Land Management",
+      "Ocean",
+      "United States",
+      "Weather"
     ],
     "invisibleTags":[
       "EarthExplorer",
@@ -6392,7 +6448,11 @@ const DATASETS = [
     "yearStart":"1900",
     "yearEnd":"2025",
     "tags":[
-      "Disease Surveillance, Infectious Disease Monitoring, Population Health, Public Health, United States"
+      "Disease Surveillance",
+      "Infectious Disease Monitoring",
+      "Population Health",
+      "Public Health",
+      "United States"
     ],
     "invisibleTags":[
       "CDC WONDER",
@@ -6477,7 +6537,13 @@ const DATASETS = [
     "yearStart":"1910",
     "yearEnd":"2025",
     "tags":[
-      "Agriculture, Animal Health, Disease Surveillance, Infectious Disease Monitoring, Public Health, United States, Wildlife"
+      "Agriculture",
+      "Animal Health",
+      "Disease Surveillance",
+      "Infectious Disease Monitoring",
+      "Public Health",
+      "United States",
+      "Wildlife"
     ],
     "invisibleTags":[
       "WHISPers",
@@ -6558,7 +6624,10 @@ const DATASETS = [
     "yearStart":"1900",
     "yearEnd":"2025",
     "tags":[
-      "Disease Surveillance, Population Health, Public Health, United States"
+      "Disease Surveillance",
+      "Population Health",
+      "Public Health",
+      "United States"
     ],
     "invisibleTags":[
       "NCHS",
