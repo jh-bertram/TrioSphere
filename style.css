@@ -43,9 +43,9 @@
   display: inline-block;
   font-weight: 500;
   cursor: pointer;
-  color: #006400;
+  color: #1E4d2b;
   background: #f0f0f0;
-  border: 2px solid #006400;
+  border: 2px solid #1E4d2b;
   transition: background-color var(--transition), transform var(--transition);
   flex-grow: 1;
   text-align: center;
@@ -54,9 +54,9 @@
   transform: translateY(-2px);
 }
 .pill.active {
-  background: #FFF9C4;
+  background: #C8C372;
   color: #000;
-  border-color: #FFC72C;
+  border-color: #1E4d2b;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
@@ -321,7 +321,7 @@ main{
     display:flex; flex-direction:column; gap:.85rem;
     transition: transform var(--transition), box-shadow var(--transition);
     flex-direction: column; /* This is important for the next step */
-    border-left: 4px solid #27ae60; /* A distinct purple accent border */
+    border-left: 4px solid #1E4d2b; /* Unified accent color */
     position: relative;
 }
 
@@ -352,7 +352,7 @@ main{
     }
 }
 .card.card-database {
-  border-left: 4px solid #8e44ad; /* A distinct purple accent border */
+  border-left: 4px solid #1E4d2b; /* Same unified accent color */
 }
 .card:hover{
     transform:translateY(-4px);
@@ -367,8 +367,8 @@ main{
     border-radius:999px;
 }
 .card.card-database .tag {
-    background-color: #cf92ea; /* Sets the new background color */
-    color: #fff; /* Changes text to dark for better readability */
+    background-color: #1E4d2b; /* Match unified accent color */
+    color: #fff;
 }
 .card .more-info {
     margin-top: auto;
@@ -387,13 +387,13 @@ main{
     transition: background var(--transition), transform var(--transition);
 }
 .card.card-database .btn {
-    background: #8e44ad; /* Sets the new background color */
-    color: #fff; /* Changes text to dark for readability */
+    background: #1E4d2b; /* Match unified accent color */
+    color: #fff;
 }
 
 /* --- (Optional but Recommended) ADD A HOVER EFFECT --- */
 .card.card-database .btn:hover {
-    background: #cf92ea; /* A slightly darker shade for hover */
+    background: #2a6b3f; /* Slightly lighter shade for hover */
 }
 .download:hover{ transform:translateY(-2px); }
 .download:active{ transform:translateY(0); }
