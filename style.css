@@ -66,6 +66,7 @@
   display: flex;
   gap: 0.5rem;
   flex-wrap: nowrap;  /* Keep pills in one row */
+  align-items: center;
 }
 .search-category-container #categoryPills {
   margin: 0; /* Removes extra margin when in the header */
@@ -76,6 +77,11 @@
   border-width: 2px;
   border-radius: 0.45rem;  /* Match base pill radius */
   white-space: nowrap;  /* Prevent text wrapping */
+  height: 44px;  /* Match search input height */
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 
@@ -671,7 +677,7 @@ main{
 .header-controls {
   display: flex;
   flex-direction: row;  /* Horizontal alignment */
-  align-items: center;
+  align-items: stretch;  /* Changed from center to stretch for better alignment */
   gap: 1rem;
   width: 100%;
   max-width: 900px;  /* Increased to accommodate both elements */
@@ -729,6 +735,8 @@ main{
     position:relative;
     width: 100%;
     flex-grow: 1;
+    display: flex;
+    align-items: center;
 }
 #searchInput{
     width:100%;
@@ -737,6 +745,8 @@ main{
     border-radius:var(--radius);
     font-size:1rem;
     outline:none;
+    height: 44px;  /* Fixed height to match pills */
+    box-sizing: border-box;
 }
 #searchBar svg{
     position:absolute; top:50%; left:.9rem;
@@ -750,12 +760,13 @@ main{
 /* This rule overrides the original to make it work in the new layout */
 .search-category-container {
   display: flex;
+  align-items: center;  /* Vertically center pills */
   position: sticky;
   top: 57px; /* Offset by navbar height */
   background: var(--clr-bg);
   z-index: 999;
-  padding: 0.75rem 0;
-  margin: -0.75rem 0 0.75rem 0;
+  padding: 0;  /* Remove padding that was causing misalignment */
+  margin: 0;
   border-radius: var(--radius);
   flex-shrink: 0;  /* Prevent shrinking */
 }
