@@ -850,7 +850,7 @@
 // CONFIGURATION - UPDATE THIS URL!
 // ============================================
 // Replace this with your WordPress Media Library URL for datasets.xlsx
-const EXCEL_FILE_URL = 'YOUR_MEDIA_LIBRARY_URL_HERE';
+const EXCEL_FILE_URL = 'https://triosphere3.wordpress.com/wp-content/uploads/2025/11/datasets.xlsx';
 // Example: const EXCEL_FILE_URL = 'https://yoursite.com/wp-content/uploads/2025/01/datasets.xlsx';
 // ============================================
 

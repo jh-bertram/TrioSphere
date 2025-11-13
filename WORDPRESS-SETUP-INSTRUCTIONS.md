@@ -32,6 +32,7 @@ You'll be doing 3 main steps:
    - Copy this URL - it should look something like:
      ```
      https://yoursite.com/wp-content/uploads/2025/01/datasets.xlsx
+     https://onehealth.colostate.edu/wp-content/uploads/sites/4/2025/11/datasets.xlsx
      ```
    - **Save this URL** - you'll need it in the next step!
 
