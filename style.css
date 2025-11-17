@@ -572,10 +572,25 @@ main{
     color:#fff; font-size:.75rem;
     padding:.15rem .55rem;
     border-radius:999px;
+    cursor: pointer;  /* Show it's clickable */
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    user-select: none;  /* Prevent text selection on click */
+}
+.tag:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    background: #e58525;  /* Slightly lighter orange on hover */
+}
+.tag:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
 }
 .card.card-database .tag {
     background-color: var(--csu-orange); /* Same CSU orange for database tags */
     color: #fff;
+}
+.card.card-database .tag:hover {
+    background: #e58525;  /* Same hover effect for database tags */
 }
 .card .more-info {
     margin-top: auto;

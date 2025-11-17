@@ -240,14 +240,47 @@ async function initializeApp() {
         <h3>${ds.name}</h3>
         <p>${ds.description}</p>
         <div class="taglist">
-          ${ds.tags.map(t => `<span class="tag">${t}</span>`).join("")}
+          ${ds.tags.map(t => `<span class="tag" data-tag="${t}">${t}</span>`).join("")}
         </div>
         <button type="button" class="btn more-info">More Info</button>
       `;
     }
 
+    // Add click handler for "More Info" button
     el.querySelector(".more-info")
       .addEventListener("click", () => showModal(ds));
+
+    // Add click handlers for tag pills to filter by that tag
+    el.querySelectorAll(".tag").forEach(tagEl => {
+      tagEl.addEventListener("click", (e) => {
+        e.stopPropagation(); // Prevent card click if any
+        const tagValue = tagEl.dataset.tag;
+
+        // Find the corresponding checkbox in the sidebar
+        const checkbox = document.querySelector(
+          `.filter-checkbox[data-filter-group="tags"][value="${tagValue}"]`
+        );
+
+        if (checkbox) {
+          // Toggle the checkbox
+          checkbox.checked = !checkbox.checked;
+
+          // Update the active filters
+          if (checkbox.checked) {
+            activeFilters.tags.add(tagValue);
+          } else {
+            activeFilters.tags.delete(tagValue);
+          }
+
+          // Re-render to show filtered results
+          render();
+
+          // Optional: Scroll to top to see results
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+    });
+
     return el;
   }
 
