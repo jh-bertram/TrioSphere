@@ -13,7 +13,9 @@ function splitSemicolon(str) {
 // Load and process Excel file
 async function loadExcelData() {
   try {
-    const response = await fetch('datasets.xlsx');
+    // Add cache-busting parameter to force fresh load
+    const cacheBuster = `?v=${new Date().getTime()}`;
+    const response = await fetch(`datasets.xlsx${cacheBuster}`);
     const arrayBuffer = await response.arrayBuffer();
     const workbook = XLSX.read(arrayBuffer, { type: 'array' });
 
