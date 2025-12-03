@@ -233,7 +233,8 @@
 
   <section class="hero container">
     <div>
-      <div id="hero-content"></div>
+      <h1>Explore the<br>connections<br>between<br><span class="highlight">Animals,<br>People, and<br>Ecosystems</span>.</h1>
+      <p>This hub gathers high-quality data resources related to One Health, recognizing the vital interconnections between life and our shared environment. Spend less time hunting for data and more time tackling the planet's biggest challenges.</p>
       <div class="hero-cta">
         <a class="cta-btn" href="index.html">Browse All Data</a>
         <a class="secondary-btn" href="about.html">Learn About One Health</a>
@@ -292,8 +293,6 @@
     <p class="copyright">&copy; 2025 TrioSphere. All rights reserved.</p>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
   <script>
     // bold the current nav link
     document.querySelectorAll('.menu a').forEach(a => {
@@ -302,20 +301,6 @@
         a.style.fontWeight = '700';
         a.style.color = 'var(--csu-gold)';  // CSU gold for active page
       }
-    });
-
-    // NEW: Fetch and render markdown content for the hero section
-    document.addEventListener('DOMContentLoaded', () => {
-        const contentArea = document.getElementById('hero-content');
-        fetch('home_content.md')
-            .then(response => response.ok ? response.text() : Promise.reject('File not found'))
-            .then(markdown => {
-                contentArea.innerHTML = marked.parse(markdown);
-            })
-            .catch(error => {
-                console.error('Error fetching home content:', error);
-                contentArea.innerHTML = '<p>Error loading content.</p>';
-            });
     });
   </script>
 </body>
