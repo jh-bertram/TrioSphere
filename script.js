@@ -170,7 +170,8 @@ async function initializeApp() {
       if (!ds.categories?.some(c => selectedPills.has(c))) return false;
     }
     if (activeFilters.tags.size) {
-      if (!ds.tags.some(t => activeFilters.tags.has(t))) return false;
+      // Check if dataset has ALL selected tags (AND logic, not OR)
+      if (![...activeFilters.tags].every(t => ds.tags.includes(t))) return false;
     }
     if (activeFilters.type.size) {
       const isDatabase = ds.source?.toLowerCase().includes('database');
