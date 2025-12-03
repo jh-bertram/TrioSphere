@@ -1045,5 +1045,143 @@ main{
   background: #b0ad5f;  /* Slightly darker gold on hover */
 }
 
+/* ==================================================== */
+/* CSU HEADER & FOOTER STYLES */
+/* ==================================================== */
+
+/* CSU Header */
+#csu-header {
+  background-color: white;
+  border-bottom: 1px solid #ddd;
+}
+
+#BrandLogo {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 20px;
+}
+
+#BrandLogo h1 {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+#BrandLogo h2 {
+  margin: 5px 0 0 0;
+  font-size: 1em;
+  font-weight: normal;
+}
+
+#BrandLogo a {
+  color: #1E4D2B; /* CSU Green */
+  text-decoration: none;
+}
+
+#BrandLogo a:hover {
+  text-decoration: underline;
+}
+
+/* CSU Footer */
+#csu-footer {
+  background-color: #1E4D2B; /* CSU Green */
+  color: white;
+  padding: 20px 0;
+}
+
+.footer-social {
+  background-color: #59B359; /* Light green */
+  text-align: center;
+  padding: 20px;
+}
+
+.footer-social a {
+  margin: 0 10px;
+}
+
+.footer-social img {
+  height: 30px;
+  width: auto;
+}
+
+.footer-info {
+  text-align: center;
+  padding: 20px;
+  background-color: #1E4D2B;
+}
+
+.footer-info a {
+  color: white;
+  text-decoration: none;
+  font-size: 1em;
+}
+
+.footer-info a:hover {
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  background-color: #164030; /* Darker green */
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: center;
+}
+
+.footer-links-csu {
+  font-size: 0.8em;
+  text-align: left;
+}
+
+.footer-links-csu a {
+  color: white;
+  text-decoration: none;
+  padding: 0 5px;
+}
+
+.footer-links-csu a:hover {
+  text-decoration: underline;
+}
+
+.footer-copyright {
+  font-size: 0.8em;
+  margin: 10px 0 0 0;
+  grid-column: 1;
+}
+
+.footer-logo {
+  text-align: right;
+  grid-column: 2;
+  grid-row: 1 / 3;
+}
+
+.footer-logo img {
+  height: 40px;
+  width: auto;
+}
+
+@media (max-width: 768px) {
+  .footer-bottom {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .footer-links-csu,
+  .footer-copyright,
+  .footer-logo {
+    text-align: center;
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .footer-logo img {
+    margin-top: 20px;
+  }
+}
+
+/* ==================================================== */
+
 
 /* </style> */
