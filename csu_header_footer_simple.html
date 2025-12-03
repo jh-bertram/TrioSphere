@@ -1,0 +1,246 @@
+<!-- ========================================== -->
+<!-- SIMPLIFIED CSU HEADER BANNER -->
+<!-- Minimal version without Elementor classes -->
+<!-- ========================================== -->
+
+<header id="csu-header" class="site-header" role="banner">
+    <section id="BrandLogo">
+        <h1>
+            <a href="http://colostate.edu">Colorado State University</a>
+        </h1>
+        <h2>
+            <a href="https://www.research.colostate.edu/">Vice President for Research</a>
+        </h2>
+        <script src="//static.colostate.edu/logo/reslogo/logo.min.js" async defer></script>
+        <script>
+        var logosettings = {
+            screenSM: 400,
+            screenMD: 600,
+            screenLG: 800,
+            baseSize: 380,
+            fontSize: 'small'
+        };
+        </script>
+    </section>
+</header>
+
+
+<!-- ========================================== -->
+<!-- SIMPLIFIED CSU FOOTER -->
+<!-- Minimal version without Elementor classes -->
+<!-- ========================================== -->
+
+<footer id="csu-footer" class="site-footer">
+    
+    <!-- Social Media Section -->
+    <div class="footer-social">
+        <a href="https://www.facebook.com/onehealth.csu" target="_blank" rel="noopener">
+            <img src="https://www.research.colostate.edu/wp-content/uploads/2018/07/facebook-1.png" alt="Facebook">
+        </a>
+        <a href="https://twitter.com/onehealth_csu" target="_blank" rel="noopener">
+            <img src="https://www.research.colostate.edu/wp-content/uploads/2018/07/twitter-1.png" alt="Twitter">
+        </a>
+        <a href="https://www.linkedin.com/company/onehealthinstitutecsu" target="_blank" rel="noopener">
+            <img src="https://onehealth.colostate.edu/wp-content/uploads/sites/4/2019/03/white-linkedin.png" alt="LinkedIn">
+        </a>
+    </div>
+    
+    <!-- OVPR Office Information -->
+    <div class="footer-info">
+        <a href="https://www.research.colostate.edu/office-information/">OVPR Office Information</a>
+    </div>
+    
+    <!-- Bottom Footer -->
+    <div class="footer-bottom">
+        <div class="footer-links">
+            <a href="http://admissions.colostate.edu/">Apply to CSU</a> |
+            <a href="https://www.colostate.edu/contact/">Contact CSU</a> |
+            <a href="http://www.colostate.edu/disclaimer/">Disclaimer</a> |
+            <a href="http://www.colostate.edu/equal-opportunity/">Equal Opportunity</a> |
+            <a href="http://www.colostate.edu/privacy/">Privacy Statement</a>
+        </div>
+        <p class="footer-copyright">© 2021 Colorado State University</p>
+        <div class="footer-logo">
+            <img src="https://onehealth.colostate.edu/wp-content/uploads/sites/4/2019/03/signature-oneline.svg" 
+                 alt="CSU logo" 
+                 loading="lazy">
+        </div>
+    </div>
+</footer>
+
+
+<!-- ========================================== -->
+<!-- SUGGESTED CSS FOR SIMPLIFIED VERSION -->
+<!-- ========================================== -->
+
+<style>
+/* CSU Header */
+#csu-header {
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+}
+
+#BrandLogo {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 20px;
+}
+
+#BrandLogo h1 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+#BrandLogo h2 {
+    margin: 5px 0 0 0;
+    font-size: 1em;
+    font-weight: normal;
+}
+
+#BrandLogo a {
+    color: #1E4D2B; /* CSU Green */
+    text-decoration: none;
+}
+
+#BrandLogo a:hover {
+    text-decoration: underline;
+}
+
+/* CSU Footer */
+#csu-footer {
+    background-color: #1E4D2B; /* CSU Green */
+    color: white;
+    padding: 20px 0;
+}
+
+.footer-social {
+    background-color: #59B359; /* Light green */
+    text-align: center;
+    padding: 20px;
+}
+
+.footer-social a {
+    margin: 0 10px;
+}
+
+.footer-social img {
+    height: 30px;
+    width: auto;
+}
+
+.footer-info {
+    text-align: center;
+    padding: 20px;
+    background-color: #1E4D2B;
+}
+
+.footer-info a {
+    color: white;
+    text-decoration: none;
+    font-size: 1em;
+}
+
+.footer-info a:hover {
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    background-color: #164030; /* Darker green */
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: center;
+}
+
+.footer-links {
+    font-size: 0.8em;
+    text-align: left;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    padding: 0 5px;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.footer-copyright {
+    font-size: 0.8em;
+    margin: 10px 0 0 0;
+    grid-column: 1;
+}
+
+.footer-logo {
+    text-align: right;
+    grid-column: 2;
+    grid-row: 1 / 3;
+}
+
+.footer-logo img {
+    height: 40px;
+    width: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-bottom {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .footer-links,
+    .footer-copyright,
+    .footer-logo {
+        text-align: center;
+        grid-column: 1;
+        grid-row: auto;
+    }
+    
+    .footer-logo img {
+        margin-top: 20px;
+    }
+}
+</style>
+
+
+<!-- ========================================== -->
+<!-- USAGE NOTES -->
+<!-- ========================================== -->
+
+<!--
+TO USE THIS IN YOUR PROJECT:
+
+1. Copy the header HTML into your page template (typically just before your main content)
+
+2. Copy the footer HTML into your page template (typically just before </body>)
+
+3. Include the CSS in your stylesheet or <style> tag
+
+4. Customize:
+   - Update social media links to your project's accounts
+   - Change "Vice President for Research" to your institute name if needed
+   - Adjust colors in CSS to match your site (CSU Green #1E4D2B is the base)
+
+5. The CSU logo script (logo.min.js) will automatically:
+   - Load the official CSU logo
+   - Handle responsive sizing
+   - Apply proper CSU branding
+
+SIMPLIFICATION BENEFITS:
+- No Elementor dependencies
+- Cleaner, more maintainable code
+- Easier to customize
+- Better semantic HTML structure
+- Included responsive CSS
+
+CSU BRAND COLORS:
+- CSU Green: #1E4D2B (primary)
+- CSU Gold: #C8C372 (accent)
+- Light Green: #59B359 (for social media section)
+-->
