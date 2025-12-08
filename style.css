@@ -1051,29 +1051,34 @@ main{
 
 /* CSU Header */
 #csu-header {
-  background-color: white;
-  border-bottom: 1px solid #ddd;
+  background-color: #1E4D2B; /* CSU Green background */
+  border-bottom: none;
 }
 
 #BrandLogo {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 10px 20px;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #BrandLogo h1 {
   margin: 0;
   font-size: 1.2em;
+  color: white; /* White text on green background */
 }
 
 #BrandLogo h2 {
-  margin: 5px 0 0 0;
+  margin: 0;
   font-size: 1em;
   font-weight: normal;
+  color: white; /* White text on green background */
 }
 
 #BrandLogo a {
-  color: #1E4D2B; /* CSU Green */
+  color: white; /* White links */
   text-decoration: none;
 }
 
@@ -1092,10 +1097,14 @@ main{
   background-color: #59B359; /* Light green */
   text-align: center;
   padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
 .footer-social a {
-  margin: 0 10px;
+  display: inline-block;
 }
 
 .footer-social img {
@@ -1104,9 +1113,10 @@ main{
 }
 
 .footer-info {
-  text-align: center;
-  padding: 20px;
+  text-align: left;
+  padding: 20px 60px;
   background-color: #1E4D2B;
+  border-top: 3px solid #C8C372; /* CSU Gold separator line */
 }
 
 .footer-info a {
