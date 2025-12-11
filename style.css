@@ -678,7 +678,7 @@ main{
 }
 .dsri-text {
     font-family: "Factoria Light", "Factoria", sans-serif;
-    font-weight: 400;  /* Not bold */
+    font-weight: 700;  /* Bold */
 }
 
 /* SUB-NAVIGATION */
