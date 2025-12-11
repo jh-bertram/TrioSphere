@@ -31,7 +31,7 @@ The header contains:
 ```html
 <header id="csu-header">
     <section id="BrandLogo">
-        <h1><a href="http://colostate.edu">Colorado State University</a></h1>
+        <h1><a href="https://www.colostate.edu">Colorado State University</a></h1>
         <h2><a href="https://www.research.colostate.edu/">Vice President for Research</a></h2>
         <!-- CSU official logo script -->
     </section>

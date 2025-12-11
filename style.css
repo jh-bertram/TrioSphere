@@ -103,11 +103,12 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
     /* CSU Brand Colors */
-    --csu-green:        #1E4d2b;  /* CSU Primary Brand green */
+      --csu-green:        #1e4d2b;  /* CSU Primary Brand green */
     --csu-gold:         #C8C372;  /* CSU Primary Brand light gold */
     --csu-orange:       #D9782D;  /* CSU Primary Brand orange */
     --csu-grey:         #CCCCCC;  /* CSU Neutral grey */
     --csu-dark-grey:    #59595B;  /* CSU Primary Brand dark grey */
+      --csu-green-dark:   #033514;  /* Darker CSU green (One Health match) */
 
     /* Application Colors (using CSU colors) */
     --clr-bg:           var(--csu-grey);
@@ -121,6 +122,7 @@
     --radius:           .65rem;
     --shadow:           0 6px 14px rgba(0,0,0,.08);
     --transition:       .25s ease;
+  --clr-primary-dark: var(--csu-green-dark);
 }
 
 html,body{
@@ -237,6 +239,7 @@ header {
     margin-inline: auto;
     align-items: center;  /* Center content */
     text-align: center;   /* Center text */
+    background-color: var(--csu-green);
 }
 
 header h1 {
@@ -636,19 +639,81 @@ main{
 
 /* ──────────────────  NAVBAR  ────────────────── */
 .navbar{
-    background:var(--csu-green);  /* CSU brand green background */
+  background:var(--csu-green-dark);  /* Dark CSU green background */
     position:sticky; top:0; z-index:1000;
     box-shadow:0 1px 2px rgba(0,0,0,.06);
 }
 .navbar .container{
     max-width:1200px; margin:0 auto;
     display:flex; align-items:center; justify-content:space-between;
-    padding:.85rem 1rem;
+    padding:.85rem 1.25rem;
+}
+.navbar-left, .navbar-center, .navbar-right {
+    display:flex; align-items:center;
+}
+.navbar-center {
+    flex:1; justify-content:center;
 }
 .navbar .brand{
     font-weight:700; font-size:1.25rem;
     color:var(--csu-gold);  /* CSU gold for brand name */
 }
+.navbar-partner-link {
+    display:flex; align-items:center; gap:0.5rem;
+    text-decoration:none; color:#ffffff;
+    transition:opacity 0.2s ease;
+}
+.navbar-partner-link:hover {
+    opacity:0.8;
+}
+.partner-logo {
+    height:40px; width:auto;
+}
+.partner-text {
+    font-size:0.95rem; color:#ffffff;
+}
+.ohi-text {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;  /* Bold */
+}
+.dsri-text {
+    font-family: "Factoria Light", "Factoria", sans-serif;
+    font-weight: 400;  /* Not bold */
+}
+
+/* SUB-NAVIGATION */
+.subnav {
+    background-color:var(--csu-grey); /* Light gray background */
+    border-top:1px solid #aaa;
+    padding:0;
+}
+.subnav .container {
+    max-width:1200px; margin:0 auto;
+    padding:0;
+}
+.subnav-menu {
+    list-style:none; margin:0; padding:0;
+    display:flex; align-items:center;
+}
+.subnav-menu li {
+    margin:0;
+}
+.subnav-menu a {
+    display:block; padding:0.75rem 1.25rem;
+    text-decoration:none; color:var(--csu-dark-grey);
+    font-size:0.95rem; font-weight:500;
+    border-bottom:3px solid transparent;
+    transition:all 0.2s ease;
+}
+.subnav-menu a:hover {
+    background-color:rgba(0,0,0,0.05);
+}
+.subnav-menu a.active {
+    border-bottom-color:var(--csu-green-dark);
+    color:var(--csu-green-dark);
+    font-weight:600;
+}
+
 .navbar .menu{
     display:flex; gap:1.5rem; font-weight:500;
 }
@@ -668,6 +733,7 @@ main{
     transition:var(--transition);
 }
 .navbar .cta-btn:hover{background:var(--clr-primary-dark);}
+
 
 
 
@@ -886,6 +952,12 @@ main{
   margin-bottom: 1rem;
 }
 
+/* Ensure intro title and paragraph are white (override other header rules) */
+header .header-intro h1,
+header .header-intro p {
+  color: #ffffff !important;
+}
+
 /* Creates the main row for stats and search controls */
 .header-controls {
   display: flex;
@@ -976,7 +1048,7 @@ main{
   align-items: center;  /* Vertically center pills */
   position: sticky;
   top: 57px; /* Offset by navbar height */
-  background: var(--clr-bg);
+  background: var(--csu-green); /* Use CSU green behind pills */
   z-index: 999;
   padding: 0;  /* Remove padding that was causing misalignment */
   margin: 0;
@@ -1071,36 +1143,74 @@ main{
 #csu-header {
   background-color: #1E4D2B; /* CSU Green background */
   border-bottom: none;
+  /* Reduced vertical padding to minimize header height */
+  padding: 8px 20px;
+  width: 100%;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  text-align: left !important;
+  max-width: none !important;
+  margin: 0 !important;
 }
 
-#BrandLogo {
+#csu-header .csu-header-container {
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 15px 40px;
+  margin: 0;
+  padding: 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
+  gap: 1rem;
 }
 
-#BrandLogo h1 {
-  margin: 0;
-  font-size: 1.2em;
-  color: white; /* White text on green background */
+.csu-logo-section {
+  flex-shrink: 0;
 }
 
-#BrandLogo h2 {
-  margin: 0;
-  font-size: 1em;
-  font-weight: normal;
-  color: white; /* White text on green background */
-}
-
-#BrandLogo a {
-  color: white; /* White links */
+.csu-logo-link {
+  display: inline-block;
   text-decoration: none;
 }
 
-#BrandLogo a:hover {
+.csu-signature-logo {
+  height: 56px; /* slightly smaller to reduce header height without changing logo prominence */
+  width: auto;
+  display: block;
+  transition: opacity 0.2s ease;
+}
+
+.csu-logo-link:hover .csu-signature-logo {
+  opacity: 0.8;
+}
+
+.csu-separator {
+  color: white;
+  font-size: 1.5em;
+  line-height: 56px;
+  flex-shrink: 0;
+}
+
+.csu-text-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.csu-text-section h2 {
+  margin: 0;
+  font-size: 1em;
+  font-weight: normal;
+  color: white;
+}
+
+.csu-text-section a {
+  color: white;
+  text-decoration: none;
+}
+
+.csu-text-section a:hover {
   text-decoration: underline;
 }
 
@@ -1112,7 +1222,7 @@ main{
 }
 
 .footer-social {
-  background-color: #59B359; /* Light green */
+  background-color: var(--csu-green-dark); /* Darker green */
   text-align: center;
   padding: 20px;
   display: flex;
@@ -1148,7 +1258,7 @@ main{
 }
 
 .footer-bottom {
-  background-color: #164030; /* Darker green */
+  background-color: var(--csu-green-dark); /* Darker green */
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;

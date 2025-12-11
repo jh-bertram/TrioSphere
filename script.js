@@ -469,25 +469,17 @@ async function initializeApp() {
     // Remove active state from all buttons
     viewToggleCard.classList.remove('active');
     viewToggleList.classList.remove('active');
-    viewTogglePreview.classList.remove('active');
 
     viewToggleCard.setAttribute('aria-pressed', 'false');
     viewToggleList.setAttribute('aria-pressed', 'false');
-    viewTogglePreview.setAttribute('aria-pressed', 'false');
 
     // Apply the selected view
     if (viewType === 'list') {
       grid.classList.add('list-view');
       viewToggleList.classList.add('active');
       viewToggleList.setAttribute('aria-pressed', 'true');
-    } else if (viewType === 'preview') {
-      grid.classList.add('preview-view');
-      viewTogglePreview.classList.add('active');
-      viewTogglePreview.setAttribute('aria-pressed', 'true');
-      // Re-render to build preview cards
-      render();
     } else {
-      // Card view (default)
+      // Card view (default) - preview disabled
       viewToggleCard.classList.add('active');
       viewToggleCard.setAttribute('aria-pressed', 'true');
     }
@@ -510,12 +502,8 @@ async function initializeApp() {
     });
   }
 
-  if (viewTogglePreview) {
-    viewTogglePreview.addEventListener('click', () => {
-      setView('preview');
-      // render() is called inside setView for preview
-    });
-  }
+  // Preview view button disabled pending PageSeeker service coordination
+  // If re-enabling in future: uncomment preview button in HTML and add listener here
 
   // Initial draw
   render();

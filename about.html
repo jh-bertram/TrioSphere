@@ -57,7 +57,7 @@
 
     /* = navbar =*/
     header {
-      background: var(--csu-green);  /* CSU green navbar */
+      background: #033514;  /* CSU dark green navbar */
       position: sticky;
       top: 0;
       z-index: 50;
@@ -69,11 +69,87 @@
       justify-content: space-between;
       padding: .85rem 1.25rem;
     }
+    .navbar-left, .navbar-center, .navbar-right {
+      display: flex;
+      align-items: center;
+    }
+    .navbar-center {
+      flex: 1;
+      justify-content: center;
+    }
     .brand {
       font-weight: 700;
       font-size: 1.25rem;
       color: var(--csu-gold);  /* CSU gold brand */
     }
+    .navbar-partner-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: #ffffff;
+      transition: opacity 0.2s ease;
+    }
+    .navbar-partner-link:hover {
+      opacity: 0.8;
+    }
+    .partner-logo {
+      height: 40px;
+      width: auto;
+    }
+    .partner-text {
+      font-size: 0.95rem;
+      color: #ffffff;
+    }
+    .ohi-text {
+      font-family: "Poppins", sans-serif;
+      font-weight: 700;  /* Bold */
+    }
+    .dsri-text {
+      font-family: "Factoria Light", "Factoria", sans-serif;
+      font-weight: 400;  /* Not bold */
+    }
+    
+    /* Sub-navigation */
+    .subnav {
+      background-color: var(--csu-grey);
+      border-top: 1px solid #aaa;
+      padding: 0;
+    }
+    .subnav .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0;
+    }
+    .subnav-menu {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+    }
+    .subnav-menu li {
+      margin: 0;
+    }
+    .subnav-menu a {
+      display: block;
+      padding: 0.75rem 1.25rem;
+      text-decoration: none;
+      color: var(--csu-dark-grey);
+      font-size: 0.95rem;
+      font-weight: 500;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s ease;
+    }
+    .subnav-menu a:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+    .subnav-menu a.active {
+      border-bottom-color: #033514;
+      color: #033514;
+      font-weight: 600;
+    }
+
     .menu {
       display: flex;
       gap: 1.5rem;
@@ -231,41 +307,70 @@
       * { transition: none!important; }
     }
 
-    /* CSU Header */
+    /* Override header styles to match style.css and Data page */
     #csu-header {
-      background-color: #1E4D2B; /* CSU Green background */
-      border-bottom: none;
+      background-color: #1E4D2B !important;
+      border-bottom: none !important;
+      padding: 8px 20px !important;
+      width: 100% !important;
+      display: flex !important;
+      flex-direction: row !important;
+      justify-content: flex-start !important;
+      align-items: center !important;
+      text-align: left !important;
+      max-width: none !important;
+      margin: 0 !important;
+      position: relative !important;
+      z-index: 50 !important;
     }
 
-    #BrandLogo {
+    #csu-header .csu-header-container {
       max-width: 1200px;
-      margin: 0 auto;
-      padding: 15px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    #BrandLogo h1 {
       margin: 0;
-      font-size: 1.2em;
-      color: white; /* White text on green background */
+      padding: 0;
+      display: flex !important;
+      justify-content: flex-start !important;
+      align-items: center !important;
+      gap: 1rem !important;
     }
 
-    #BrandLogo h2 {
-      margin: 0;
-      font-size: 1em;
-      font-weight: normal;
-      color: white; /* White text on green background */
+    .csu-logo-section {
+      flex-shrink: 0;
+      display: flex !important;
     }
 
-    #BrandLogo a {
-      color: white; /* White links */
-      text-decoration: none;
+    .csu-logo-link {
+      display: inline-block !important;
+      text-decoration: none !important;
     }
 
-    #BrandLogo a:hover {
-      text-decoration: underline;
+    .csu-signature-logo {
+      height: 56px !important;
+      width: auto !important;
+      display: block !important;
+    }
+
+    .csu-separator {
+      color: white !important;
+      font-size: 1.5em;
+      line-height: 56px !important;
+      flex-shrink: 0;
+    }
+
+    .csu-text-section h2 {
+      margin: 0 !important;
+      font-size: 1em !important;
+      font-weight: normal !important;
+      color: white !important;
+    }
+
+    .csu-text-section a {
+      color: white !important;
+      text-decoration: none !important;
+    }
+
+    .csu-text-section a:hover {
+      text-decoration: underline !important;
     }
 
     /* CSU Footer */
@@ -276,7 +381,7 @@
     }
 
     .footer-social {
-      background-color: #59B359;
+      background-color: #033514;
       text-align: center;
       padding: 20px;
       display: flex;
@@ -312,7 +417,7 @@
     }
 
     .footer-bottom {
-      background-color: #164030;
+      background-color: #033514;
       padding: 20px;
       max-width: 1200px;
       margin: 0 auto;
@@ -377,44 +482,50 @@
 <body>
   <!-- CSU Header Banner -->
   <header id="csu-header" class="site-header" role="banner">
-    <section id="BrandLogo">
-      <h1>
-        <a href="http://colostate.edu">Colorado State University</a>
-      </h1>
-      <h2>
-        <a href="https://www.research.colostate.edu/">Vice President for Research</a>
-      </h2>
-      <script src="//static.colostate.edu/logo/reslogo/logo.min.js" async defer></script>
-      <script>
-      var logosettings = {
-        screenSM: 400,
-        screenMD: 600,
-        screenLG: 800,
-        baseSize: 380,
-        fontSize: 'small'
-      };
-      </script>
-    </section>
+    <div class="csu-header-container">
+      <div class="csu-logo-section">
+        <a href="https://www.colostate.edu" class="csu-logo-link">
+          <img src="https://onehealth.colostate.edu/wp-content/uploads/sites/4/2019/03/signature-oneline.svg" alt="Colorado State University" class="csu-signature-logo">
+        </a>
+      </div>
+      <div class="csu-separator">|</div>
+      <div class="csu-text-section">
+        <h2><a href="https://www.research.colostate.edu/">VICE PRESIDENT FOR RESEARCH</a></h2>
+      </div>
+    </div>
   </header>
 
   <!-- TrioSphere Navigation -->
   <header>
     <nav class="nav container">
-      <a class="brand" href="home.html">TrioSphere</a>
-      <div class="menu">
-        <a href="home.html">Home</a>
-        <a href="index.html">Data</a>
-        <a href="about.html">About</a>
+      <div class="navbar-left">
+        <a href="https://onehealth.colostate.edu/" target="_blank" rel="noopener noreferrer" class="navbar-partner-link" title="CSU One Health Institute">
+          <img src="images/OHI-Rings.webp" alt="CSU One Health Institute" class="partner-logo">
+          <span class="partner-text ohi-text">One Health Institute</span>
+        </a>
       </div>
-      <div class="nav-buttons">
-        <a href="https://onehealth.colostate.edu/" target="_blank" rel="noopener noreferrer" class="cta-btn-small">CSU One Health</a>
-        <a href="https://dsri.colostate.edu/" target="_blank" rel="noopener noreferrer" class="cta-btn-small dsri-btn">
-          <img src="images/dsri_logo.png" alt="DSRI Logo" class="dsri-logo">
-          <span class="dsri-text">Data Science Research Institute</span>
+      <div class="navbar-center">
+        <a class="brand" href="home.html">TrioSphere</a>
+      </div>
+      <div class="navbar-right">
+        <a href="https://www.research.colostate.edu/dsri/" target="_blank" rel="noopener noreferrer" class="navbar-partner-link" title="CSU Data Science Research Institute">
+          <img src="images/dsri_logo.png" alt="DSRI Logo" class="partner-logo">
+          <span class="partner-text dsri-text">Data Science Research Institute</span>
         </a>
       </div>
     </nav>
   </header>
+
+  <!-- Sub-navigation -->
+  <nav class="subnav">
+    <div class="container">
+      <ul class="subnav-menu">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="index.html">Data</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+      </ul>
+    </div>
+  </nav>
   <section class="hero">
     <h1>About TrioSphere</h1>
     <p>This site is intended to gather data resources that relate to One Health with a current focus on Colorado. This site was spurred forward by conversations with a multitude of individuals and organizations have made it clear that there is need for a centralized site from which One Health related, or One Health adjacent data can be accessed.</p>
@@ -443,20 +554,23 @@
   <footer id="csu-footer" class="site-footer">
     <!-- Social Media Section -->
     <div class="footer-social">
-      <a href="https://www.facebook.com/onehealth.csu" target="_blank" rel="noopener">
-        <img src="https://www.research.colostate.edu/wp-content/uploads/2018/07/facebook-1.png" alt="Facebook">
+      <a href="https://bsky.app/profile/onehealthcsu.bsky.social" target="_blank" rel="noopener noreferrer" title="Bluesky">
+        <img src="https://cdn.simpleicons.org/bluesky/ffffff" alt="Bluesky" />
       </a>
-      <a href="https://twitter.com/onehealth_csu" target="_blank" rel="noopener">
-        <img src="https://www.research.colostate.edu/wp-content/uploads/2018/07/twitter-1.png" alt="Twitter">
+      <a href="https://linkedin.com/company/onehealthinstitutecsu/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+        <img src="https://onehealth.colostate.edu/wp-content/uploads/sites/4/2019/03/white-linkedin.png" alt="LinkedIn" />
       </a>
-      <a href="https://www.linkedin.com/company/onehealthinstitutecsu" target="_blank" rel="noopener">
-        <img src="https://onehealth.colostate.edu/wp-content/uploads/sites/4/2019/03/white-linkedin.png" alt="LinkedIn">
+      <a href="https://www.facebook.com/onehealth.csu/" target="_blank" rel="noopener noreferrer" title="Facebook">
+        <img src="https://cdn.simpleicons.org/facebook/ffffff" alt="Facebook" />
+      </a>
+      <a href="https://www.instagram.com/onehealthcsu/" target="_blank" rel="noopener noreferrer" title="Instagram">
+        <img src="https://cdn.simpleicons.org/instagram/ffffff" alt="Instagram" />
       </a>
     </div>
 
     <!-- OVPR Office Information -->
     <div class="footer-info">
-      <a href="https://www.research.colostate.edu/office-information/">OVPR Office Information</a>
+      <a href="https://www.research.colostate.edu/about-us/">OVPR Office Information</a>
     </div>
 
     <!-- Bottom Footer -->
