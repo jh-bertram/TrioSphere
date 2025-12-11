@@ -65,10 +65,64 @@
     display:flex;align-items:center;justify-content:space-between;
     padding:.85rem 1.25rem;
   }
+  .navbar-left, .navbar-center, .navbar-right {
+    display:flex; align-items:center;
+  }
+  .navbar-center {
+    flex:1; justify-content:center;
+  }
   .brand{
     font-weight:700;font-size:1.25rem;
     color:var(--csu-gold);  /* CSU gold brand */
   }
+  .navbar-partner-link {
+    display:flex; align-items:center; gap:0.5rem;
+    text-decoration:none; color:#ffffff;
+    transition:opacity 0.2s ease;
+  }
+  .navbar-partner-link:hover {
+    opacity:0.8;
+  }
+  .partner-logo {
+    height:40px; width:auto;
+  }
+  .partner-text {
+    font-size:0.95rem; font-weight:500; color:#ffffff;
+  }
+  
+  /* Sub-navigation */
+  .subnav {
+    background-color:var(--csu-grey);
+    border-top:1px solid #aaa;
+    padding:0;
+  }
+  .subnav .container {
+    max-width:var(--max-w); margin:0 auto;
+    padding:0;
+  }
+  .subnav-menu {
+    list-style:none; margin:0; padding:0;
+    display:flex; align-items:center;
+  }
+  .subnav-menu li {
+    margin:0;
+  }
+  .subnav-menu a {
+    display:block; padding:0.75rem 1.25rem;
+    text-decoration:none; color:var(--csu-dark-grey);
+    font-size:0.95rem; font-weight:500;
+    border-bottom:3px solid transparent;
+    transition:all 0.2s ease;
+  }
+  .subnav-menu a:hover {
+    background-color:rgba(0,0,0,0.05);
+  }
+  .subnav-menu a.active {
+    border-bottom-color:#033514;
+    color:#033514;
+    font-weight:600;
+  }
+
   .menu{display:flex;gap:1.5rem;font-weight:500;}
   .menu a{
     color:#ffffff;  /* White menu links */
@@ -460,18 +514,33 @@
   <!-- TrioSphere Navigation -->
   <header>
     <nav class="nav container">
-      <a class="brand" href="home.html">TrioSphere</a>
-      <div class="menu">
-        <a href="home.html">Home</a>
-        <a href="index.html">Data</a>
-        <a href="about.html">About</a>
+      <div class="navbar-left">
+        <a href="https://onehealth.colostate.edu/" target="_blank" rel="noopener noreferrer" class="navbar-partner-link" title="CSU One Health Institute">
+          <img src="https://onehealth.colostate.edu/wp-content/uploads/sites/4/2019/03/one-health-mark.png" alt="CSU One Health Institute" class="partner-logo">
+          <span class="partner-text">One Health Institute</span>
+        </a>
       </div>
-      <div class="nav-buttons">
-        <a href="https://onehealth.colostate.edu/" target="_blank" rel="noopener noreferrer" class="cta-btn-small">CSU One Health</a>
-        <a href="https://www.research.colostate.edu/dsri/" target="_blank" rel="noopener noreferrer" class="cta-btn-small">CSU DSRI</a>
+      <div class="navbar-center">
+        <a class="brand" href="home.html">TrioSphere</a>
+      </div>
+      <div class="navbar-right">
+        <a href="https://www.research.colostate.edu/dsri/" target="_blank" rel="noopener noreferrer" class="navbar-partner-link" title="CSU Data Science Research Institute">
+          <span class="partner-text">Data Science Research Institute</span>
+        </a>
       </div>
     </nav>
   </header>
+
+  <!-- Sub-navigation -->
+  <nav class="subnav">
+    <div class="container">
+      <ul class="subnav-menu">
+        <li><a href="home.html" class="active">Home</a></li>
+        <li><a href="index.html">Data</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+  </nav>
 
   <section class="hero container">
     <div>

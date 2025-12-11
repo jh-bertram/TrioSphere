@@ -648,10 +648,64 @@ main{
     display:flex; align-items:center; justify-content:space-between;
     padding:.85rem 1.25rem;
 }
+.navbar-left, .navbar-center, .navbar-right {
+    display:flex; align-items:center;
+}
+.navbar-center {
+    flex:1; justify-content:center;
+}
 .navbar .brand{
     font-weight:700; font-size:1.25rem;
     color:var(--csu-gold);  /* CSU gold for brand name */
 }
+.navbar-partner-link {
+    display:flex; align-items:center; gap:0.5rem;
+    text-decoration:none; color:#ffffff;
+    transition:opacity 0.2s ease;
+}
+.navbar-partner-link:hover {
+    opacity:0.8;
+}
+.partner-logo {
+    height:40px; width:auto;
+}
+.partner-text {
+    font-size:0.95rem; font-weight:500; color:#ffffff;
+}
+
+/* SUB-NAVIGATION */
+.subnav {
+    background-color:var(--csu-grey); /* Light gray background */
+    border-top:1px solid #aaa;
+    padding:0;
+}
+.subnav .container {
+    max-width:1200px; margin:0 auto;
+    padding:0;
+}
+.subnav-menu {
+    list-style:none; margin:0; padding:0;
+    display:flex; align-items:center;
+}
+.subnav-menu li {
+    margin:0;
+}
+.subnav-menu a {
+    display:block; padding:0.75rem 1.25rem;
+    text-decoration:none; color:var(--csu-dark-grey);
+    font-size:0.95rem; font-weight:500;
+    border-bottom:3px solid transparent;
+    transition:all 0.2s ease;
+}
+.subnav-menu a:hover {
+    background-color:rgba(0,0,0,0.05);
+}
+.subnav-menu a.active {
+    border-bottom-color:var(--csu-green-dark);
+    color:var(--csu-green-dark);
+    font-weight:600;
+}
+
 .navbar .menu{
     display:flex; gap:1.5rem; font-weight:500;
 }
@@ -671,6 +725,7 @@ main{
     transition:var(--transition);
 }
 .navbar .cta-btn:hover{background:var(--clr-primary-dark);}
+
 
 
 
