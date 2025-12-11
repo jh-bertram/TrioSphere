@@ -670,7 +670,15 @@ main{
     height:40px; width:auto;
 }
 .partner-text {
-    font-size:0.95rem; font-weight:500; color:#ffffff;
+    font-size:0.95rem; color:#ffffff;
+}
+.ohi-text {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;  /* Bold */
+}
+.dsri-text {
+    font-family: "Factoria Light", "Factoria", sans-serif;
+    font-weight: 400;  /* Not bold */
 }
 
 /* SUB-NAVIGATION */
