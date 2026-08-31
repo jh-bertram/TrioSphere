@@ -10,12 +10,25 @@ function splitSemicolon(str) {
   return str.split(';').map(s => s.trim()).filter(s => s.length > 0);
 }
 
+// Escape a string for safe insertion into HTML (element content or quoted attributes)
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 // Load and process Excel file
 async function loadExcelData() {
   try {
     // Add cache-busting parameter to force fresh load
     const cacheBuster = `?v=${new Date().getTime()}`;
     const response = await fetch(`datasets.xlsx${cacheBuster}`);
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status} fetching datasets.xlsx`);
+    }
     const arrayBuffer = await response.arrayBuffer();
     const workbook = XLSX.read(arrayBuffer, { type: 'array' });
 
@@ -37,7 +50,9 @@ async function loadExcelData() {
       // Convert Markdown to HTML in additionalInfo
       let additionalInfo = row.additionalInfo || '';
       if (additionalInfo) {
-        additionalInfo = marked.parse(additionalInfo);
+        const parsedHtml = marked.parse(additionalInfo);
+        // Sanitize rendered markdown (defense-in-depth); degrade gracefully if CDN failed
+        additionalInfo = (typeof DOMPurify !== 'undefined') ? DOMPurify.sanitize(parsedHtml) : parsedHtml;
         // Remove newlines for consistency
         additionalInfo = additionalInfo.replace(/\n/g, '');
       }
@@ -65,9 +80,8 @@ async function loadExcelData() {
 
   } catch (error) {
     console.error('Error loading Excel file:', error);
-    const errorMsg = 'Unable to load datasets.xlsx. Please ensure the file is in the same directory as index.html.';
-    alert(errorMsg);
-    document.getElementById('resultCounter').innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error loading Excel file';
+    document.getElementById('resultCounter').innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error loading data';
+    document.getElementById('datasetGrid').innerHTML = '<p style="padding: 2rem; text-align: center;">Unable to load the data catalog right now. Please refresh the page to try again, or come back later.</p>';
     return [];
   }
 }
@@ -80,10 +94,8 @@ async function initializeApp() {
   // Load data first
   await loadExcelData();
 
-  // If no data loaded, stop here
+  // If no data loaded, stop here (loadExcelData has already rendered the error message)
   if (!DATASETS || DATASETS.length === 0) {
-    document.getElementById('resultCounter').innerHTML = '<i class="fas fa-exclamation-triangle"></i> No data loaded';
-    document.getElementById('datasetGrid').innerHTML = '<p style="padding: 2rem; text-align: center;">Unable to load datasets. Please check the browser console for errors.</p>';
     return;
   }
 
@@ -101,7 +113,6 @@ async function initializeApp() {
   const filterOverlay = document.getElementById("filterOverlay");
   const viewToggleCard = document.getElementById("viewToggleCard");
   const viewToggleList = document.getElementById("viewToggleList");
-  const viewTogglePreview = document.getElementById("viewTogglePreview");
 
   // Info Modal elements
   const modal         = document.getElementById("infoModal");
@@ -123,7 +134,13 @@ async function initializeApp() {
   let activeDateFrom  = null;
   let activeDateTo    = null;
   let selectedPills   = new Set();
-  let currentView     = localStorage.getItem('triosphere-view') || 'card';  // Load saved view preference
+  let currentView     = 'card';
+  try {
+    // localStorage can throw in private-browsing / blocked-storage modes
+    const savedView = localStorage.getItem('triosphere-view');
+    // Only accept known views ('preview' may linger from before that view was disabled)
+    if (savedView === 'card' || savedView === 'list') currentView = savedView;
+  } catch (e) { /* fall back to card view */ }
 
   // --- DYNAMICALLY GENERATE TAG FILTERS ---
   const tagFiltersContainer = document.getElementById("tagFiltersContainer");
@@ -133,7 +150,7 @@ async function initializeApp() {
   });
   const sortedTags = [...allTags].sort((a, b) => a.localeCompare(b));
   tagFiltersContainer.innerHTML = sortedTags.map(tag => `
-    <div><label><input type="checkbox" class="filter-checkbox" data-filter-group="tags" value="${tag}"> ${tag}</label></div>
+    <div><label><input type="checkbox" class="filter-checkbox" data-filter-group="tags" value="${escapeHtml(tag)}"> ${escapeHtml(tag)}</label></div>
   `).join('');
 
   // --- DYNAMICALLY GENERATE REGION (region) FILTERS ---
@@ -146,7 +163,7 @@ async function initializeApp() {
   });
   const sortedregions = [...allregions].sort((a, b) => a.localeCompare(b));
   regionFiltersContainer.innerHTML = sortedregions.map(loc => `
-    <div><label><input type="checkbox" class="filter-checkbox" data-filter-group="region" value="${loc}"> ${loc}</label></div>
+    <div><label><input type="checkbox" class="filter-checkbox" data-filter-group="region" value="${escapeHtml(loc)}"> ${escapeHtml(loc)}</label></div>
   `).join('');
 
   const filters = document.querySelectorAll(".filter-checkbox");
@@ -181,18 +198,18 @@ async function initializeApp() {
     if (activeFilters.region.size) {
       if (!ds.region || !ds.region.some(loc => activeFilters.region.has(loc))) return false;
     }
-    const start = Number(ds.yearStart), end = Number(ds.yearEnd);
-    if (activeDateFrom !== null && end < activeDateFrom) return false;
-    if (activeDateTo   !== null && start > activeDateTo)   return false;
+    if (activeDateFrom !== null || activeDateTo !== null) {
+      // Entries with no year data stay visible when year filters are set
+      // (noted in the Year Range disclosure). A missing bound is treated as open-ended.
+      const hasYearData = ds.yearStart !== '' || ds.yearEnd !== '';
+      if (hasYearData) {
+        const start = ds.yearStart === '' ? -Infinity : Number(ds.yearStart);
+        const end   = ds.yearEnd   === '' ?  Infinity : Number(ds.yearEnd);
+        if (activeDateFrom !== null && end < activeDateFrom) return false;
+        if (activeDateTo   !== null && start > activeDateTo)   return false;
+      }
+    }
     return true;
-  }
-
-  // Helper function to generate PagePeeker thumbnail URL
-  function getPreviewUrl(url) {
-    // PagePeeker API - free service, no API key needed
-    // Size options: s (small), m (medium), l (large), x (extra large)
-    const encodedUrl = encodeURIComponent(url);
-    return `https://free.pagepeeker.com/v2/thumbs.php?size=l&url=${encodedUrl}`;
   }
 
   function buildCard(ds) {
@@ -213,39 +230,16 @@ async function initializeApp() {
       }
     }
 
-    // Build different layouts based on current view
-    if (currentView === 'preview') {
-      const previewUrl = getPreviewUrl(ds.url);
+    // Card or list view
       el.innerHTML = `
         ${recentlyAddedBadge}
-        <div class="card-preview-thumbnail">
-          <div class="preview-loading"><i class="fas fa-spinner fa-spin"></i></div>
-          <img src="${previewUrl}" alt="Preview of ${ds.name}"
-               onerror="this.style.display='none'; this.parentElement.querySelector('.preview-error').style.display='block';"
-               onload="this.parentElement.querySelector('.preview-loading').style.display='none';">
-          <div class="preview-error" style="display: none;">
-            <i class="fas fa-image" style="font-size: 2rem; opacity: 0.3; display: block; margin-bottom: 0.5rem;"></i>
-            Preview unavailable
-          </div>
-        </div>
-        <div class="card-content">
-          <h3>${ds.name}</h3>
-          <p>${ds.description}</p>
-          <button type="button" class="btn more-info">View Details</button>
-        </div>
-      `;
-    } else {
-      // Regular card or list view
-      el.innerHTML = `
-        ${recentlyAddedBadge}
-        <h3>${ds.name}</h3>
-        <p>${ds.description}</p>
+        <h3>${escapeHtml(ds.name)}</h3>
+        <p>${escapeHtml(ds.description)}</p>
         <div class="taglist">
-          ${ds.tags.map(t => `<span class="tag" data-tag="${t}">${t}</span>`).join("")}
+          ${ds.tags.map(t => `<span class="tag" data-tag="${escapeHtml(t)}">${escapeHtml(t)}</span>`).join("")}
         </div>
         <button type="button" class="btn more-info">More Info</button>
       `;
-    }
 
     // Add click handler for "More Info" button
     el.querySelector(".more-info")
@@ -258,9 +252,9 @@ async function initializeApp() {
         const tagValue = tagEl.dataset.tag;
 
         // Find the corresponding checkbox in the sidebar
-        const checkbox = document.querySelector(
-          `.filter-checkbox[data-filter-group="tags"][value="${tagValue}"]`
-        );
+        // (matched in JS rather than an attribute selector so quotes/brackets in a tag can't break it)
+        const checkbox = [...document.querySelectorAll('.filter-checkbox[data-filter-group="tags"]')]
+          .find(cb => cb.value === tagValue);
 
         if (checkbox) {
           // Toggle the checkbox
@@ -285,21 +279,49 @@ async function initializeApp() {
     return el;
   }
 
+  let lastFocusedEl = null;
+
   function showModal(ds) {
     modalTitle.textContent = ds.name;
     modalBody.innerHTML    = ds.additionalInfo;
     modalDownload.onclick  = () => window.open(ds.url, "_blank");
+    lastFocusedEl = document.activeElement;
     modal.classList.remove("hidden");
+    modalClose.focus();
   }
 
   function hideModal() {
     modal.classList.add("hidden");
+    if (lastFocusedEl) lastFocusedEl.focus();
   }
 
   modalClose.addEventListener("click", hideModal);
   modal.addEventListener("click", e => {
     if (e.target === modal) hideModal();
   });
+
+  // Close whichever modal is open on Escape
+  document.addEventListener("keydown", e => {
+    if (e.key !== "Escape") return;
+    if (!modal.classList.contains("hidden")) hideModal();
+    if (suggestionModal && !suggestionModal.classList.contains("hidden")) hideSuggestionModal();
+  });
+
+  // Keep Tab focus inside an open modal (basic focus trap)
+  function trapFocus(modalEl) {
+    modalEl.addEventListener("keydown", e => {
+      if (e.key !== "Tab") return;
+      const focusables = [...modalEl.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      )].filter(el => el.offsetParent !== null);
+      if (!focusables.length) return;
+      const first = focusables[0], last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+  }
+  if (modal) trapFocus(modal);
+  if (suggestionModal) trapFocus(suggestionModal);
 
   function render() {
     const subset = DATASETS.filter(ds => passSearch(ds) && passFilters(ds));
@@ -374,11 +396,14 @@ async function initializeApp() {
 
   // --- NEW: SUGGESTION MODAL LOGIC ---
   function showSuggestionModal() {
+    lastFocusedEl = document.activeElement;
     suggestionModal.classList.remove("hidden");
+    suggestionText.focus();
   }
 
   function hideSuggestionModal() {
     suggestionModal.classList.add("hidden");
+    if (lastFocusedEl) lastFocusedEl.focus();
   }
 
   if (openSuggestionBtn) {
@@ -402,7 +427,10 @@ async function initializeApp() {
       e.preventDefault();
       const feedback = suggestionText.value.trim();
       if (feedback) {
-        alert("Thank you for your feedback!");
+        // Open the user's email app with the feedback pre-filled
+        const subject = encodeURIComponent("TrioSphere feedback");
+        const body = encodeURIComponent(feedback);
+        window.location.href = `mailto:jh.bertram@colostate.edu?subject=${subject}&body=${body}`;
         suggestionText.value = "";
         hideSuggestionModal();
       } else {
@@ -461,10 +489,12 @@ async function initializeApp() {
   // --- VIEW TOGGLE FUNCTIONALITY ---
   function setView(viewType) {
     currentView = viewType;
-    localStorage.setItem('triosphere-view', viewType);
+    try {
+      localStorage.setItem('triosphere-view', viewType);
+    } catch (e) { /* storage unavailable — view just won't persist */ }
 
     // Remove all view classes
-    grid.classList.remove('list-view', 'preview-view');
+    grid.classList.remove('list-view');
 
     // Remove active state from all buttons
     viewToggleCard.classList.remove('active');
@@ -479,7 +509,7 @@ async function initializeApp() {
       viewToggleList.classList.add('active');
       viewToggleList.setAttribute('aria-pressed', 'true');
     } else {
-      // Card view (default) - preview disabled
+      // Card view (default)
       viewToggleCard.classList.add('active');
       viewToggleCard.setAttribute('aria-pressed', 'true');
     }
@@ -502,19 +532,8 @@ async function initializeApp() {
     });
   }
 
-  // Preview view button disabled pending PageSeeker service coordination
-  // If re-enabling in future: uncomment preview button in HTML and add listener here
-
   // Initial draw
   render();
-
-  // --- HIGHLIGHT ACTIVE NAVIGATION LINK ---
-  document.querySelectorAll('.menu a').forEach(a => {
-    if (a.pathname.split('/').pop() === window.location.pathname.split('/').pop()) {
-      a.style.fontWeight = '700';
-      a.style.color = 'var(--csu-gold)';  // CSU gold for active page
-    }
-  });
 
   // --- STICKY PILLS ENHANCEMENT ---
   const pillsContainer = document.querySelector('.search-category-container');
@@ -559,6 +578,17 @@ async function initializeApp() {
 
   if (filterOverlay) {
     filterOverlay.addEventListener('click', closeFilterPanel);
+  }
+
+  // --- YEAR RANGE DISCLOSURE NOTE ---
+  const yearInfoBtn = document.getElementById('yearRangeInfoBtn');
+  const yearInfoNote = document.getElementById('yearRangeInfoNote');
+  if (yearInfoBtn && yearInfoNote) {
+    yearInfoBtn.addEventListener('click', () => {
+      const expanded = yearInfoBtn.getAttribute('aria-expanded') === 'true';
+      yearInfoBtn.setAttribute('aria-expanded', String(!expanded));
+      yearInfoNote.classList.toggle('hidden', expanded);
+    });
   }
 }
 

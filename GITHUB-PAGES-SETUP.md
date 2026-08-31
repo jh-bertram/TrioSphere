@@ -31,7 +31,7 @@ Your TrioSphere site is ready to deploy! Follow these simple steps to get it liv
 4. **Configure the source**
    - Under "Build and deployment"
    - **Source:** Select "Deploy from a branch"
-   - **Branch:** Select `claude/explore-repository-011CUaAxJ9XziRMAbFuxXucf`
+   - **Branch:** Select `main`
    - **Folder:** Select `/ (root)`
    - Click **Save**
 
@@ -135,7 +135,7 @@ Want to use your own domain like `data.colostate.edu`?
 ### Problem: 404 Page Not Found
 
 **Solution:**
-- Make sure you selected the correct branch: `claude/explore-repository-011CUaAxJ9XziRMAbFuxXucf`
+- Make sure you selected the correct branch: `main`
 - Make sure you selected `/ (root)` as the folder
 - Wait 2-3 minutes for deployment to complete
 - Clear your browser cache and try again
