@@ -10,12 +10,25 @@ function splitSemicolon(str) {
   return str.split(';').map(s => s.trim()).filter(s => s.length > 0);
 }
 
+// Escape a string for safe insertion into HTML (element content or quoted attributes)
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 // Load and process Excel file
 async function loadExcelData() {
   try {
     // Add cache-busting parameter to force fresh load
     const cacheBuster = `?v=${new Date().getTime()}`;
     const response = await fetch(`datasets.xlsx${cacheBuster}`);
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status} fetching datasets.xlsx`);
+    }
     const arrayBuffer = await response.arrayBuffer();
     const workbook = XLSX.read(arrayBuffer, { type: 'array' });
 
@@ -65,9 +78,8 @@ async function loadExcelData() {
 
   } catch (error) {
     console.error('Error loading Excel file:', error);
-    const errorMsg = 'Unable to load datasets.xlsx. Please ensure the file is in the same directory as index.html.';
-    alert(errorMsg);
-    document.getElementById('resultCounter').innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error loading Excel file';
+    document.getElementById('resultCounter').innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error loading data';
+    document.getElementById('datasetGrid').innerHTML = '<p style="padding: 2rem; text-align: center;">Unable to load the data catalog right now. Please refresh the page to try again, or come back later.</p>';
     return [];
   }
 }
@@ -80,10 +92,8 @@ async function initializeApp() {
   // Load data first
   await loadExcelData();
 
-  // If no data loaded, stop here
+  // If no data loaded, stop here (loadExcelData has already rendered the error message)
   if (!DATASETS || DATASETS.length === 0) {
-    document.getElementById('resultCounter').innerHTML = '<i class="fas fa-exclamation-triangle"></i> No data loaded';
-    document.getElementById('datasetGrid').innerHTML = '<p style="padding: 2rem; text-align: center;">Unable to load datasets. Please check the browser console for errors.</p>';
     return;
   }
 
@@ -123,7 +133,13 @@ async function initializeApp() {
   let activeDateFrom  = null;
   let activeDateTo    = null;
   let selectedPills   = new Set();
-  let currentView     = localStorage.getItem('triosphere-view') || 'card';  // Load saved view preference
+  let currentView     = 'card';
+  try {
+    // localStorage can throw in private-browsing / blocked-storage modes
+    const savedView = localStorage.getItem('triosphere-view');
+    // Only accept known views ('preview' may linger from before that view was disabled)
+    if (savedView === 'card' || savedView === 'list') currentView = savedView;
+  } catch (e) { /* fall back to card view */ }
 
   // --- DYNAMICALLY GENERATE TAG FILTERS ---
   const tagFiltersContainer = document.getElementById("tagFiltersContainer");
@@ -133,7 +149,7 @@ async function initializeApp() {
   });
   const sortedTags = [...allTags].sort((a, b) => a.localeCompare(b));
   tagFiltersContainer.innerHTML = sortedTags.map(tag => `
-    <div><label><input type="checkbox" class="filter-checkbox" data-filter-group="tags" value="${tag}"> ${tag}</label></div>
+    <div><label><input type="checkbox" class="filter-checkbox" data-filter-group="tags" value="${escapeHtml(tag)}"> ${escapeHtml(tag)}</label></div>
   `).join('');
 
   // --- DYNAMICALLY GENERATE REGION (region) FILTERS ---
@@ -146,7 +162,7 @@ async function initializeApp() {
   });
   const sortedregions = [...allregions].sort((a, b) => a.localeCompare(b));
   regionFiltersContainer.innerHTML = sortedregions.map(loc => `
-    <div><label><input type="checkbox" class="filter-checkbox" data-filter-group="region" value="${loc}"> ${loc}</label></div>
+    <div><label><input type="checkbox" class="filter-checkbox" data-filter-group="region" value="${escapeHtml(loc)}"> ${escapeHtml(loc)}</label></div>
   `).join('');
 
   const filters = document.querySelectorAll(".filter-checkbox");
@@ -181,9 +197,17 @@ async function initializeApp() {
     if (activeFilters.region.size) {
       if (!ds.region || !ds.region.some(loc => activeFilters.region.has(loc))) return false;
     }
-    const start = Number(ds.yearStart), end = Number(ds.yearEnd);
-    if (activeDateFrom !== null && end < activeDateFrom) return false;
-    if (activeDateTo   !== null && start > activeDateTo)   return false;
+    if (activeDateFrom !== null || activeDateTo !== null) {
+      // Entries with no year data stay visible when year filters are set
+      // (noted in the Year Range disclosure). A missing bound is treated as open-ended.
+      const hasYearData = ds.yearStart !== '' || ds.yearEnd !== '';
+      if (hasYearData) {
+        const start = ds.yearStart === '' ? -Infinity : Number(ds.yearStart);
+        const end   = ds.yearEnd   === '' ?  Infinity : Number(ds.yearEnd);
+        if (activeDateFrom !== null && end < activeDateFrom) return false;
+        if (activeDateTo   !== null && start > activeDateTo)   return false;
+      }
+    }
     return true;
   }
 
@@ -220,7 +244,7 @@ async function initializeApp() {
         ${recentlyAddedBadge}
         <div class="card-preview-thumbnail">
           <div class="preview-loading"><i class="fas fa-spinner fa-spin"></i></div>
-          <img src="${previewUrl}" alt="Preview of ${ds.name}"
+          <img src="${escapeHtml(previewUrl)}" alt="Preview of ${escapeHtml(ds.name)}"
                onerror="this.style.display='none'; this.parentElement.querySelector('.preview-error').style.display='block';"
                onload="this.parentElement.querySelector('.preview-loading').style.display='none';">
           <div class="preview-error" style="display: none;">
@@ -229,8 +253,8 @@ async function initializeApp() {
           </div>
         </div>
         <div class="card-content">
-          <h3>${ds.name}</h3>
-          <p>${ds.description}</p>
+          <h3>${escapeHtml(ds.name)}</h3>
+          <p>${escapeHtml(ds.description)}</p>
           <button type="button" class="btn more-info">View Details</button>
         </div>
       `;
@@ -238,10 +262,10 @@ async function initializeApp() {
       // Regular card or list view
       el.innerHTML = `
         ${recentlyAddedBadge}
-        <h3>${ds.name}</h3>
-        <p>${ds.description}</p>
+        <h3>${escapeHtml(ds.name)}</h3>
+        <p>${escapeHtml(ds.description)}</p>
         <div class="taglist">
-          ${ds.tags.map(t => `<span class="tag" data-tag="${t}">${t}</span>`).join("")}
+          ${ds.tags.map(t => `<span class="tag" data-tag="${escapeHtml(t)}">${escapeHtml(t)}</span>`).join("")}
         </div>
         <button type="button" class="btn more-info">More Info</button>
       `;
@@ -258,9 +282,9 @@ async function initializeApp() {
         const tagValue = tagEl.dataset.tag;
 
         // Find the corresponding checkbox in the sidebar
-        const checkbox = document.querySelector(
-          `.filter-checkbox[data-filter-group="tags"][value="${tagValue}"]`
-        );
+        // (matched in JS rather than an attribute selector so quotes/brackets in a tag can't break it)
+        const checkbox = [...document.querySelectorAll('.filter-checkbox[data-filter-group="tags"]')]
+          .find(cb => cb.value === tagValue);
 
         if (checkbox) {
           // Toggle the checkbox
@@ -285,20 +309,32 @@ async function initializeApp() {
     return el;
   }
 
+  let lastFocusedEl = null;
+
   function showModal(ds) {
     modalTitle.textContent = ds.name;
     modalBody.innerHTML    = ds.additionalInfo;
     modalDownload.onclick  = () => window.open(ds.url, "_blank");
+    lastFocusedEl = document.activeElement;
     modal.classList.remove("hidden");
+    modalClose.focus();
   }
 
   function hideModal() {
     modal.classList.add("hidden");
+    if (lastFocusedEl) lastFocusedEl.focus();
   }
 
   modalClose.addEventListener("click", hideModal);
   modal.addEventListener("click", e => {
     if (e.target === modal) hideModal();
+  });
+
+  // Close whichever modal is open on Escape
+  document.addEventListener("keydown", e => {
+    if (e.key !== "Escape") return;
+    if (!modal.classList.contains("hidden")) hideModal();
+    if (suggestionModal && !suggestionModal.classList.contains("hidden")) hideSuggestionModal();
   });
 
   function render() {
@@ -374,11 +410,14 @@ async function initializeApp() {
 
   // --- NEW: SUGGESTION MODAL LOGIC ---
   function showSuggestionModal() {
+    lastFocusedEl = document.activeElement;
     suggestionModal.classList.remove("hidden");
+    suggestionText.focus();
   }
 
   function hideSuggestionModal() {
     suggestionModal.classList.add("hidden");
+    if (lastFocusedEl) lastFocusedEl.focus();
   }
 
   if (openSuggestionBtn) {
@@ -402,7 +441,10 @@ async function initializeApp() {
       e.preventDefault();
       const feedback = suggestionText.value.trim();
       if (feedback) {
-        alert("Thank you for your feedback!");
+        // Open the user's email app with the feedback pre-filled
+        const subject = encodeURIComponent("TrioSphere feedback");
+        const body = encodeURIComponent(feedback);
+        window.location.href = `mailto:jh.bertram@colostate.edu?subject=${subject}&body=${body}`;
         suggestionText.value = "";
         hideSuggestionModal();
       } else {
@@ -461,7 +503,9 @@ async function initializeApp() {
   // --- VIEW TOGGLE FUNCTIONALITY ---
   function setView(viewType) {
     currentView = viewType;
-    localStorage.setItem('triosphere-view', viewType);
+    try {
+      localStorage.setItem('triosphere-view', viewType);
+    } catch (e) { /* storage unavailable — view just won't persist */ }
 
     // Remove all view classes
     grid.classList.remove('list-view', 'preview-view');
@@ -559,6 +603,17 @@ async function initializeApp() {
 
   if (filterOverlay) {
     filterOverlay.addEventListener('click', closeFilterPanel);
+  }
+
+  // --- YEAR RANGE DISCLOSURE NOTE ---
+  const yearInfoBtn = document.getElementById('yearRangeInfoBtn');
+  const yearInfoNote = document.getElementById('yearRangeInfoNote');
+  if (yearInfoBtn && yearInfoNote) {
+    yearInfoBtn.addEventListener('click', () => {
+      const expanded = yearInfoBtn.getAttribute('aria-expanded') === 'true';
+      yearInfoBtn.setAttribute('aria-expanded', String(!expanded));
+      yearInfoNote.classList.toggle('hidden', expanded);
+    });
   }
 }
 

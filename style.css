@@ -364,6 +364,29 @@ main{
     font-size:.9rem;
 }
 
+/* Year Range info disclosure */
+.info-btn{
+    background:none;
+    border:none;
+    padding:0 .15rem;
+    cursor:pointer;
+    color:var(--csu-green);
+    font-size:.9rem;
+    vertical-align:middle;
+}
+.info-btn:hover{ color:var(--csu-orange); }
+.info-btn:focus{ outline:2px solid var(--csu-gold); outline-offset:2px; border-radius:.2rem; }
+.filter-note{
+    font-size:.8rem;
+    line-height:1.4;
+    color:var(--csu-dark-grey);
+    background:#f5f5f5;
+    border-left:3px solid var(--csu-gold);
+    border-radius:.3rem;
+    padding:.5rem .6rem;
+    margin:.25rem 0;
+}
+
 
 /* DATASET CARDS */
 
