@@ -50,7 +50,9 @@ async function loadExcelData() {
       // Convert Markdown to HTML in additionalInfo
       let additionalInfo = row.additionalInfo || '';
       if (additionalInfo) {
-        additionalInfo = marked.parse(additionalInfo);
+        const parsedHtml = marked.parse(additionalInfo);
+        // Sanitize rendered markdown (defense-in-depth); degrade gracefully if CDN failed
+        additionalInfo = (typeof DOMPurify !== 'undefined') ? DOMPurify.sanitize(parsedHtml) : parsedHtml;
         // Remove newlines for consistency
         additionalInfo = additionalInfo.replace(/\n/g, '');
       }
@@ -111,7 +113,6 @@ async function initializeApp() {
   const filterOverlay = document.getElementById("filterOverlay");
   const viewToggleCard = document.getElementById("viewToggleCard");
   const viewToggleList = document.getElementById("viewToggleList");
-  const viewTogglePreview = document.getElementById("viewTogglePreview");
 
   // Info Modal elements
   const modal         = document.getElementById("infoModal");
@@ -211,14 +212,6 @@ async function initializeApp() {
     return true;
   }
 
-  // Helper function to generate PagePeeker thumbnail URL
-  function getPreviewUrl(url) {
-    // PagePeeker API - free service, no API key needed
-    // Size options: s (small), m (medium), l (large), x (extra large)
-    const encodedUrl = encodeURIComponent(url);
-    return `https://free.pagepeeker.com/v2/thumbs.php?size=l&url=${encodedUrl}`;
-  }
-
   function buildCard(ds) {
     const el = document.createElement("article");
     el.className = "card";
@@ -237,29 +230,7 @@ async function initializeApp() {
       }
     }
 
-    // Build different layouts based on current view
-    if (currentView === 'preview') {
-      const previewUrl = getPreviewUrl(ds.url);
-      el.innerHTML = `
-        ${recentlyAddedBadge}
-        <div class="card-preview-thumbnail">
-          <div class="preview-loading"><i class="fas fa-spinner fa-spin"></i></div>
-          <img src="${escapeHtml(previewUrl)}" alt="Preview of ${escapeHtml(ds.name)}"
-               onerror="this.style.display='none'; this.parentElement.querySelector('.preview-error').style.display='block';"
-               onload="this.parentElement.querySelector('.preview-loading').style.display='none';">
-          <div class="preview-error" style="display: none;">
-            <i class="fas fa-image" style="font-size: 2rem; opacity: 0.3; display: block; margin-bottom: 0.5rem;"></i>
-            Preview unavailable
-          </div>
-        </div>
-        <div class="card-content">
-          <h3>${escapeHtml(ds.name)}</h3>
-          <p>${escapeHtml(ds.description)}</p>
-          <button type="button" class="btn more-info">View Details</button>
-        </div>
-      `;
-    } else {
-      // Regular card or list view
+    // Card or list view
       el.innerHTML = `
         ${recentlyAddedBadge}
         <h3>${escapeHtml(ds.name)}</h3>
@@ -269,7 +240,6 @@ async function initializeApp() {
         </div>
         <button type="button" class="btn more-info">More Info</button>
       `;
-    }
 
     // Add click handler for "More Info" button
     el.querySelector(".more-info")
@@ -336,6 +306,22 @@ async function initializeApp() {
     if (!modal.classList.contains("hidden")) hideModal();
     if (suggestionModal && !suggestionModal.classList.contains("hidden")) hideSuggestionModal();
   });
+
+  // Keep Tab focus inside an open modal (basic focus trap)
+  function trapFocus(modalEl) {
+    modalEl.addEventListener("keydown", e => {
+      if (e.key !== "Tab") return;
+      const focusables = [...modalEl.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      )].filter(el => el.offsetParent !== null);
+      if (!focusables.length) return;
+      const first = focusables[0], last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+  }
+  if (modal) trapFocus(modal);
+  if (suggestionModal) trapFocus(suggestionModal);
 
   function render() {
     const subset = DATASETS.filter(ds => passSearch(ds) && passFilters(ds));
@@ -508,7 +494,7 @@ async function initializeApp() {
     } catch (e) { /* storage unavailable — view just won't persist */ }
 
     // Remove all view classes
-    grid.classList.remove('list-view', 'preview-view');
+    grid.classList.remove('list-view');
 
     // Remove active state from all buttons
     viewToggleCard.classList.remove('active');
@@ -523,7 +509,7 @@ async function initializeApp() {
       viewToggleList.classList.add('active');
       viewToggleList.setAttribute('aria-pressed', 'true');
     } else {
-      // Card view (default) - preview disabled
+      // Card view (default)
       viewToggleCard.classList.add('active');
       viewToggleCard.setAttribute('aria-pressed', 'true');
     }
@@ -546,19 +532,8 @@ async function initializeApp() {
     });
   }
 
-  // Preview view button disabled pending PageSeeker service coordination
-  // If re-enabling in future: uncomment preview button in HTML and add listener here
-
   // Initial draw
   render();
-
-  // --- HIGHLIGHT ACTIVE NAVIGATION LINK ---
-  document.querySelectorAll('.menu a').forEach(a => {
-    if (a.pathname.split('/').pop() === window.location.pathname.split('/').pop()) {
-      a.style.fontWeight = '700';
-      a.style.color = 'var(--csu-gold)';  // CSU gold for active page
-    }
-  });
 
   // --- STICKY PILLS ENHANCEMENT ---
   const pillsContainer = document.querySelector('.search-category-container');
