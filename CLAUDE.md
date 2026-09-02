@@ -24,7 +24,7 @@ Pure static site — no build step, no framework, no server code (a hosting requ
 ## Data conventions (from the Data Addition SOP v1.0)
 
 - Multi-value fields are semicolon-separated. Tags in Title Case.
-- `categories` ⊆ {People; Animals; Ecosystems}. `source` ∈ {database, dataset}. `region` standardized: Global / United States / Colorado / combos like "United States; Global". `type` usually blank.
+- `categories` ⊆ {People; Animals; Ecosystems}. `source` ∈ {database, dataset}. `region` standardized: Global / United States / Colorado / Europe (added 2026-09-02) / combos like "United States; Global". `type` usually blank.
 - `tags` = 2–9 visible, user-facing tags. `invisibleTags` = 50+ search-only terms (synonyms, orgs, species, file formats, tools…).
 - `description` ≈ 100 characters.
 - `additionalInfo` = markdown popup: intro paragraph (no header) + five `####` sections in order: Host Organization, Data Format, How to access data of interest, Database Time Range, Access Type, Citation Information.
