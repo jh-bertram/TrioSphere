@@ -38,6 +38,11 @@
   const LOBE = Object.fromEntries(LOBES.map((l) => [l.key, l]));
   const TRIO_COLOR = "#EFE7CB";   // all three categories: a pale core star
 
+  /* Region combos read narrowest to broadest ("United States; Global"), the
+     order datasets.xlsx uses. Grouping stays order-insensitive so an entry
+     typed the other way round still lands in the same cluster. */
+  const REGION_BREADTH = { Colorado: 0, "United States": 1, Europe: 1, Global: 2 };
+
   const CFG = {
     restLen: 108, springK: 0.020,
     repulseK: 1900, repulseMax: 260,
@@ -245,7 +250,9 @@
     function groupKey(n) {
       if (S.mode === "tags") return n.rareTag || "—";
       if (S.mode === "region") {
-        const r = (n.ds.region || []).slice().sort();
+        const r = (n.ds.region || []).slice().sort(
+          (a, b) => (REGION_BREADTH[a] || 1) - (REGION_BREADTH[b] || 1) ||
+                    a.localeCompare(b));
         return r.length ? r.join(" + ") : "Unspecified";
       }
       if (S.mode === "free") return "";
@@ -663,11 +670,27 @@
         });
       }
       /* Captions keep their size however far the camera pulls back, so their
-         room has to be reserved in screen pixels, not world units. */
-      const m = (S.mode === "free" || (S.mode === "categories" && isNarrow()))
-        ? 34 : clamp(Math.min(S.W, S.H) * 0.24, 44, 165);
-      const z = clamp(Math.min((S.W - m * 2) / Math.max(1, x1 - x0),
-                               (S.H - m * 2) / Math.max(1, y1 - y0)), 0.3, 1.4);
+         room is reserved in screen pixels — and measured, since "ECOSYSTEMS"
+         and "LONG TERM WEATHER TRENDS" need very different margins. */
+      let mx = 34, my = 34;
+      if (!(S.mode === "free" || (S.mode === "categories" && isNarrow()))) {
+        const labels = S.mode === "categories"
+          ? LOBES.map((l) => l.key)
+          : [...S.clusters.keys()];
+        ctx.save();
+        ctx.font = "600 " + (capFont() - (S.mode === "categories" ? 0 : 1)).toFixed(1) +
+          'px "Poppins", Georgia, serif';
+        const widest = labels.reduce((w, k) =>
+          Math.max(w, ctx.measureText(k.toUpperCase().split("").join(" ")).width), 0);
+        ctx.restore();
+        // A caption is wide and short: it overhangs its anchor by half its
+        // width sideways but only a line-height vertically. Reserving the
+        // horizontal figure on all four sides threw away most of the height.
+        mx = clamp(widest / 2 + 48, 40, S.W * 0.26);   // +48 covers the count after the label
+        my = 30;
+      }
+      const z = clamp(Math.min((S.W - mx * 2) / Math.max(1, x1 - x0),
+                               (S.H - my * 2) / Math.max(1, y1 - y0)), 0.3, 1.4);
       S.cam.wx = (x0 + x1) / 2; S.cam.wy = (y0 + y1) / 2; S.cam.z = z;
     }
 

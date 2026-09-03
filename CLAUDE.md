@@ -26,7 +26,7 @@ Pure static site — no build step, no framework, no server code (a hosting requ
 ## Data conventions (from the Data Addition SOP v1.0)
 
 - Multi-value fields are semicolon-separated. Tags in Title Case.
-- `categories` ⊆ {People; Animals; Ecosystems}. `source` ∈ {database, dataset}. `region` standardized: Global / United States / Colorado / Europe (added 2026-09-02) / combos like "United States; Global". `type` usually blank.
+- `categories` ⊆ {People; Animals; Ecosystems}. `source` ∈ {database, dataset}. `region` standardized: Global / United States / Colorado / Europe (added 2026-09-02), or a combo. **Combos are ordered narrowest to broadest** — "United States; Global", never the reverse (6 rows were normalized to this on 2026-09-03). The order does not affect filtering, which splits on the semicolon, but it does affect grouping and CSV output. `type` usually blank.
 - `tags` = 2–9 visible, user-facing tags. `invisibleTags` = 50+ search-only terms (synonyms, orgs, species, file formats, tools…).
 - `description` ≈ 100 characters.
 - `additionalInfo` = markdown popup: intro paragraph (no header) + five `####` sections in order: Host Organization, Data Format, How to access data of interest, Database Time Range, Access Type, Citation Information.
@@ -50,6 +50,7 @@ Pure static site — no build step, no framework, no server code (a hosting requ
 
 ## Deployment flow (production does NOT auto-update)
 
+0. **Bump the `?v=` cache stamp** on the `style.css` / `script.js` / `constellation.js` tags in `index.html` (one date string, all three the same) whenever any of those files changed. Without it, returning visitors keep a cached copy — the browser can serve a new `index.html` alongside a months-old `style.css`, which looks exactly like "the new feature does nothing when I click it". `datasets.xlsx` and the preview manifest already cache-bust themselves at fetch time; these three do not.
 1. Edit locally → commit → push to `main`.
 2. GitHub Pages updates the staging URL automatically.
 3. Email Allen Akers (Allen.Akers@colostate.edu, Research IT) to pull the update into CSU dev, verify there, then he promotes to production.
