@@ -56,6 +56,11 @@
       "captured": "2026-09-03",
       "url": "https://www.woah.org/en/what-we-do/animal-health-and-welfare/disease-data-collection/world-animal-health-information-system/"
     },
+    "15": {
+      "captured": "2026-09-03",
+      "url": "https://www.gbif.org/",
+      "manual": true
+    },
     "16": {
       "captured": "2026-09-03",
       "url": "https://gis-fws.opendata.arcgis.com/"
@@ -247,6 +252,11 @@
     "63": {
       "captured": "2026-09-03",
       "url": "https://www.proteinatlas.org/"
+    },
+    "64": {
+      "captured": "2026-09-03",
+      "url": "https://ctdbase.org/",
+      "manual": true
     },
     "65": {
       "captured": "2026-09-03",
