@@ -90,7 +90,15 @@ BLOCKED_TITLE = re.compile(
 # In-page bot checks that don't change the title (e.g. an "I'm not a robot" gate)
 CAPTCHA_FRAMES = (
     "iframe[src*='recaptcha'], iframe[src*='hcaptcha'], iframe[src*='turnstile'], "
-    "iframe[title*='challenge' i], iframe[title*='recaptcha' i]"
+    "iframe[title*='challenge' i], iframe[title*='recaptcha' i], altcha-widget"
+)
+# …and ones that are plain page text (CTD's ALTCHA gate, Cloudflare interstitials).
+# Checked before any clicking, so a gate's own "Accept" button is never mistaken for a
+# cookie banner and screenshotted as if it were the site.
+BLOCKED_TEXT = re.compile(
+    r"verify (that )?you are (a )?human|are you a human|i'm not a robot|not a robot|"
+    r"complete the captcha|checking your browser|enable javascript and cookies to continue|"
+    r"please check this box|altcha", re.I,
 )
 
 
@@ -144,8 +152,17 @@ def save_thumbnail(img, sid):
 
     img = img.convert("RGB")
     w, h = img.size
-    crop_h = min(h, int(w * THUMB[1] / THUMB[0]))
-    img = img.crop((0, 0, w, crop_h)).resize(THUMB, Image.LANCZOS)
+    want = THUMB[0] / THUMB[1]
+    if w / h > want:
+        # Wider than 16:10 (a hand-taken --import shot of a short region):
+        # keep the full height and centre-crop the width, rather than squashing it
+        crop_w = round(h * want)
+        left = (w - crop_w) // 2
+        img = img.crop((left, 0, left + crop_w, h))
+    else:
+        # Taller than 16:10 (the usual page screenshot) — full width, take the top
+        img = img.crop((0, 0, w, round(w / want)))
+    img = img.resize(THUMB, Image.LANCZOS)
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     img.save(OUT_DIR / f"{sid}.webp", "WEBP", quality=WEBP_QUALITY, method=6)
     return looks_blank(img)
@@ -158,7 +175,14 @@ async def blocked_reason(page):
         return f"page title {title[:60]!r}"
     try:
         if await page.locator(CAPTCHA_FRAMES).count() > 0:
-            return "captcha on the page"
+            return "captcha widget on the page"
+    except Exception:
+        pass
+    try:
+        text = (await page.inner_text("body"))[:4000]
+        m = BLOCKED_TEXT.search(text)
+        if m:
+            return f"bot-check text {m.group(0)!r}"
     except Exception:
         pass
     return None
@@ -213,20 +237,26 @@ async def capture_one(browser, src, target_url, sem, args):
                 await page.wait_for_load_state("networkidle", timeout=6000)
             except Exception:
                 pass
-            dismissed = await dismiss_consent(page)
-            try:
-                await page.evaluate("window.scrollTo(0, 0)")
-            except Exception:
-                pass
-            await page.wait_for_timeout(args.settle * 1000)
-            # Some banners only appear after a delay — try once more after settling
-            if not dismissed and await dismiss_consent(page):
-                dismissed = True
-                await page.wait_for_timeout(800)
-            if dismissed:
-                note += "dismissed a consent banner; "
-
+            # Look for a bot check BEFORE clicking anything: a gate's own "Accept" /
+            # "Continue" button looks just like a cookie banner's, and clicking it would
+            # leave us screenshotting the gate as though it were the site.
             blocked = await blocked_reason(page)
+            dismissed = False
+            if not blocked:
+                dismissed = await dismiss_consent(page)
+                try:
+                    await page.evaluate("window.scrollTo(0, 0)")
+                except Exception:
+                    pass
+                await page.wait_for_timeout(args.settle * 1000)
+                # Some banners only appear after a delay — try once more after settling
+                if not dismissed and await dismiss_consent(page):
+                    dismissed = True
+                    await page.wait_for_timeout(800)
+                if dismissed:
+                    note += "dismissed a consent banner; "
+                blocked = await blocked_reason(page)
+
             solved = False
             if blocked and args.headed:
                 # A person can solve the check in the visible window; wait for it to clear
