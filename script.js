@@ -147,6 +147,9 @@ async function initializeApp() {
   const viewToggleCard = document.getElementById("viewToggleCard");
   const viewToggleList = document.getElementById("viewToggleList");
   const viewTogglePreview = document.getElementById("viewTogglePreview");
+  const viewToggleSky   = document.getElementById("viewToggleConstellation");
+  const skyRegion       = document.getElementById("skyRegion");
+  const skyStage        = document.getElementById("skyStage");
 
   // Info Modal elements
   const modal         = document.getElementById("infoModal");
@@ -174,7 +177,7 @@ async function initializeApp() {
     // localStorage can throw in private-browsing / blocked-storage modes
     const savedView = localStorage.getItem('triosphere-view');
     // Only accept known views
-    if (savedView === 'card' || savedView === 'list' || savedView === 'preview') currentView = savedView;
+    if (['card', 'list', 'preview', 'constellation'].includes(savedView)) currentView = savedView;
   } catch (e) { /* fall back to card view */ }
 
   // --- DYNAMICALLY GENERATE TAG FILTERS ---
@@ -398,6 +401,29 @@ async function initializeApp() {
   if (modal) trapFocus(modal);
   if (suggestionModal) trapFocus(suggestionModal);
 
+  // --- CONSTELLATION VIEW ---
+  // A fourth reading of the same filtered subset. It borrows the catalog's
+  // search, filters and More Info modal rather than growing its own, so the
+  // star chart can never disagree with the cards about what matches.
+  let sky = null;
+  if (skyStage && window.TrioSphereConstellation) {
+    sky = window.TrioSphereConstellation.create({
+      canvas:     document.getElementById("skyCanvas"),
+      stage:      skyStage,
+      card:       document.getElementById("skyCard"),
+      legend:     document.getElementById("skyLegend"),
+      caption:    document.getElementById("skyCaption"),
+      list:       document.getElementById("skyList"),
+      previewSrc: previewImageSrc,
+      onOpen:     showModal
+    });
+    sky.setData(DATASETS);
+    const skyModeSel = document.getElementById("skyMode");
+    if (skyModeSel) skyModeSel.addEventListener("change", () => sky.setMode(skyModeSel.value));
+    const skyFitBtn = document.getElementById("skyFit");
+    if (skyFitBtn) skyFitBtn.addEventListener("click", () => sky.fit());
+  }
+
   function render() {
     const subset = DATASETS.filter(ds => passSearch(ds) && passFilters(ds));
 
@@ -405,6 +431,14 @@ async function initializeApp() {
     const count = subset.length;
     const plural = count === 1 ? 'dataset' : 'datasets';
     resultCounter.textContent = `${count} ${plural} found`;
+
+    // Store current filtered results for CSV export
+    window.currentFilteredResults = subset;
+
+    // The constellation keeps every star and dims the ones that don't match,
+    // so the shape of the whole catalog stays visible while filtering.
+    if (sky) sky.setMatches(new Set(subset.map(ds => ds.id)));
+    if (currentView === 'constellation') { grid.innerHTML = ""; return; }
 
     grid.innerHTML = "";
     if (currentView === 'preview') {
@@ -420,9 +454,6 @@ async function initializeApp() {
     } else {
       subset.forEach(ds => grid.appendChild(buildCard(ds)));
     }
-
-    // Store current filtered results for CSV export
-    window.currentFilteredResults = subset;
   }
 
   // Wire up event listeners
@@ -580,7 +611,8 @@ async function initializeApp() {
     grid.classList.remove('list-view', 'preview-view');
 
     // Remove active state from all buttons
-    const buttons = { card: viewToggleCard, list: viewToggleList, preview: viewTogglePreview };
+    const buttons = { card: viewToggleCard, list: viewToggleList,
+                      preview: viewTogglePreview, constellation: viewToggleSky };
     Object.values(buttons).forEach(btn => {
       if (!btn) return;
       btn.classList.remove('active');
@@ -590,6 +622,13 @@ async function initializeApp() {
     // Apply the selected view (card view is the default and needs no grid class)
     if (viewType === 'list')    grid.classList.add('list-view');
     if (viewType === 'preview') grid.classList.add('preview-view');
+
+    // The star chart replaces the card grid rather than sitting beside it.
+    // Unhide before activating: the canvas needs a real size to lay out.
+    const sky3 = (viewType === 'constellation');
+    grid.hidden = sky3;
+    if (skyRegion) skyRegion.hidden = !sky3;
+    if (sky) { if (sky3) sky.activate(); else sky.deactivate(); }
     const activeBtn = buttons[viewType] || viewToggleCard;
     if (activeBtn) {
       activeBtn.classList.add('active');
@@ -618,6 +657,13 @@ async function initializeApp() {
     viewTogglePreview.addEventListener('click', () => {
       setView('preview');
       render();  // Re-render for preview view
+    });
+  }
+
+  if (viewToggleSky) {
+    viewToggleSky.addEventListener('click', () => {
+      setView('constellation');
+      render();  // Re-render for constellation view
     });
   }
 

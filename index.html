@@ -189,6 +189,9 @@
         <button id="viewTogglePreview" class="view-toggle-btn" title="Preview view (website screenshots)" aria-label="Preview view" aria-pressed="false">
           <i class="fas fa-image" aria-hidden="true"></i>
         </button>
+        <button id="viewToggleConstellation" class="view-toggle-btn" title="Constellation view (how sources relate)" aria-label="Constellation view" aria-pressed="false">
+          <i class="fas fa-circle-nodes" aria-hidden="true"></i>
+        </button>
       </div>
       <button id="exportCsvBtn" class="export-btn" title="Export filtered results to CSV">
         <i class="fas fa-download"></i> Export to CSV
@@ -246,6 +249,38 @@
       </div>
     </aside>
     <section id="datasetGrid" aria-live="polite"></section>
+
+    <!-- Constellation view: the same filtered subset, drawn as a star chart.
+         Hidden unless the fourth view toggle is on. -->
+    <section id="skyRegion" aria-label="Constellation view" hidden>
+      <div id="skyStage" class="sky-stage">
+        <canvas id="skyCanvas" tabindex="0" role="img"
+                aria-describedby="skyLegend"
+                aria-label="Star chart of the data catalog. Every source is a star, grouped by One Health category and joined to the sources it shares tags with. A text list of the same sources follows below."></canvas>
+        <div id="skyLegend" class="sky-legend"></div>
+        <div class="sky-controls">
+          <label class="sky-ctl-label" for="skyMode">Group by</label>
+          <select id="skyMode" class="sky-select">
+            <option value="categories">One Health lobes</option>
+            <option value="tags">Rarest tag</option>
+            <option value="region">Region</option>
+            <option value="free">Nothing &mdash; link structure</option>
+          </select>
+          <button type="button" id="skyFit" class="sky-btn" title="Frame everything (keyboard: 0)">Reset view</button>
+        </div>
+        <div id="skyCard" class="sky-card" aria-hidden="true"></div>
+      </div>
+      <p class="sky-hint">
+        <i class="fas fa-circle-info" aria-hidden="true"></i>
+        Hover a star for a preview, click it for full details. Drag to pan, scroll to zoom.
+        With the chart focused, arrow keys step from star to star and Enter opens one.
+      </p>
+      <details class="sky-list">
+        <summary>Text list of the sources shown</summary>
+        <div id="skyList"></div>
+      </details>
+      <p id="skyCaption" class="visually-hidden" role="status" aria-live="polite"></p>
+    </section>
   </main>
   <div class="filter-overlay" id="filterOverlay"></div>
   <div id="infoModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
@@ -322,6 +357,7 @@
     </div>
   </footer>
 
+<script src="constellation.js" defer></script>
 <script src="script.js" defer></script>
   </body>
 </html>
