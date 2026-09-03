@@ -18,7 +18,9 @@
   <!-- DOMPurify to sanitize rendered Markdown -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.7/purify.min.js"></script>
 
-<link rel="stylesheet" href="style.css">
+<!-- ?v= is a cache stamp: bump it on every deploy (see CLAUDE.md) so returning
+     visitors get the new CSS/JS instead of a months-old copy from their cache -->
+<link rel="stylesheet" href="style.css?v=2026-09-03">
 <style>
   /* Override header styles to match Home/About pages */
   #csu-header {
@@ -261,7 +263,7 @@
         <div class="sky-controls">
           <label class="sky-ctl-label" for="skyMode">Group by</label>
           <select id="skyMode" class="sky-select">
-            <option value="categories">One Health lobes</option>
+            <option value="categories">One Health rings</option>
             <option value="tags">Rarest tag</option>
             <option value="region">Region</option>
             <option value="free">Nothing &mdash; link structure</option>
@@ -357,7 +359,7 @@
     </div>
   </footer>
 
-<script src="constellation.js" defer></script>
-<script src="script.js" defer></script>
+<script src="constellation.js?v=2026-09-03" defer></script>
+<script src="script.js?v=2026-09-03" defer></script>
   </body>
 </html>
