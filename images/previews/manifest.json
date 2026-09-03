@@ -1,0 +1,284 @@
+{
+  "previews": {
+    "1": {
+      "captured": "2026-09-03",
+      "url": "https://www.iucnredlist.org/resources/spatial-data-download"
+    },
+    "2": {
+      "captured": "2026-09-03",
+      "url": "https://data.cdc.gov/browse?category=NNDSS&sortBy=last_modified&pageSize=20&page=1"
+    },
+    "3": {
+      "captured": "2026-09-03",
+      "url": "https://data.cdc.gov/browse?sortBy=relevance&page=1&pageSize=20"
+    },
+    "4": {
+      "captured": "2026-09-03",
+      "url": "https://data.colorado.gov/"
+    },
+    "5": {
+      "captured": "2026-09-03",
+      "url": "https://geodata.colorado.gov/"
+    },
+    "6": {
+      "captured": "2026-09-03",
+      "url": "https://data-cdphe.opendata.arcgis.com/"
+    },
+    "7": {
+      "captured": "2026-09-03",
+      "url": "https://cohealthviz.dphe.state.co.us/t/HSEBPublic/views/CHIDashboard_2024Redesign/CHILandingPage?%3Aembed=y&%3AisGuestRedirectFromVizportal=y"
+    },
+    "8": {
+      "captured": "2026-09-03",
+      "url": "https://drive.google.com/drive/folders/1efQVBclGxwnCCYVLbzH96A0QRSWwmTYI"
+    },
+    "9": {
+      "captured": "2026-09-03",
+      "url": "https://empres-i.apps.fao.org/general"
+    },
+    "10": {
+      "captured": "2026-09-03",
+      "url": "https://www.weather.gov/wrh/climate?wfo=bou"
+    },
+    "11": {
+      "captured": "2026-09-03",
+      "url": "https://wdh.energy.gov/data/wind-energy"
+    },
+    "12": {
+      "captured": "2026-09-03",
+      "url": "https://data.pnnl.gov/"
+    },
+    "13": {
+      "captured": "2026-09-03",
+      "url": "https://datadryad.org/"
+    },
+    "14": {
+      "captured": "2026-09-03",
+      "url": "https://www.woah.org/en/what-we-do/animal-health-and-welfare/disease-data-collection/world-animal-health-information-system/"
+    },
+    "15": {
+      "captured": "2026-09-03",
+      "url": "https://www.gbif.org/",
+      "manual": true
+    },
+    "16": {
+      "captured": "2026-09-03",
+      "url": "https://gis-fws.opendata.arcgis.com/"
+    },
+    "17": {
+      "captured": "2026-09-03",
+      "url": "https://www.fws.gov/service/national-wildlife-refuge-system-gis-data-and-mapping-tools"
+    },
+    "18": {
+      "captured": "2026-09-03",
+      "url": "https://www.aphis.usda.gov/h5n1-hpai#detections-hpai"
+    },
+    "19": {
+      "captured": "2026-09-03",
+      "url": "https://www.nass.usda.gov/AgCensus/index.php"
+    },
+    "20": {
+      "captured": "2026-09-03",
+      "url": "https://nsidc.org/data/explore-data"
+    },
+    "21": {
+      "captured": "2026-09-03",
+      "url": "https://www.movebank.org/cms/webapp?gwt_fragment=page%3Dsearch_map"
+    },
+    "22": {
+      "captured": "2026-09-03",
+      "url": "https://www.neonscience.org/data"
+    },
+    "23": {
+      "captured": "2026-09-03",
+      "url": "https://data.fs.usda.gov/geodata/edw/datasets.php"
+    },
+    "24": {
+      "captured": "2026-09-03",
+      "url": "https://data.ucar.edu/"
+    },
+    "25": {
+      "captured": "2026-09-03",
+      "url": "https://gbp-blm-egis.hub.arcgis.com/"
+    },
+    "26": {
+      "captured": "2026-09-03",
+      "url": "https://data.gov/"
+    },
+    "27": {
+      "captured": "2026-09-03",
+      "url": "https://www.ncei.noaa.gov/products/world-ocean-database"
+    },
+    "28": {
+      "captured": "2026-09-03",
+      "url": "https://www.bv-brc.org/"
+    },
+    "29": {
+      "captured": "2026-09-03",
+      "url": "https://www.rcsb.org/"
+    },
+    "30": {
+      "captured": "2026-09-03",
+      "url": "https://data.niaid.nih.gov/"
+    },
+    "31": {
+      "captured": "2026-09-03",
+      "url": "https://www.immport.org/shared/home"
+    },
+    "32": {
+      "captured": "2026-09-03",
+      "url": "https://www.iedb.org/"
+    },
+    "33": {
+      "captured": "2026-09-03",
+      "url": "https://immunespace.org/query/filters"
+    },
+    "34": {
+      "captured": "2026-09-03",
+      "url": "https://vac.niaid.nih.gov/"
+    },
+    "35": {
+      "captured": "2026-09-03",
+      "url": "https://www.immgen.org/"
+    },
+    "36": {
+      "captured": "2026-09-03",
+      "url": "https://pharos.viralemergence.org/data/#map"
+    },
+    "37": {
+      "captured": "2026-09-03",
+      "url": "https://data.eol.ucar.edu/dataset/list?max=50&offset=0&order=asc&sort=title"
+    },
+    "38": {
+      "captured": "2026-09-03",
+      "url": "https://earthexplorer.usgs.gov/"
+    },
+    "39": {
+      "captured": "2026-09-03",
+      "url": "https://wonder.cdc.gov/"
+    },
+    "40": {
+      "captured": "2026-09-03",
+      "url": "https://whispers.usgs.gov/home"
+    },
+    "41": {
+      "captured": "2026-09-03",
+      "url": "https://www.cdc.gov/nchs/index.html"
+    },
+    "42": {
+      "captured": "2026-09-03",
+      "url": "https://www.epa.gov/data/enterprise-data-catalog"
+    },
+    "43": {
+      "captured": "2026-09-03",
+      "url": "https://www.epa.gov/outdoor-air-quality-data"
+    },
+    "44": {
+      "captured": "2026-09-03",
+      "url": "https://www.waterqualitydata.us/"
+    },
+    "45": {
+      "captured": "2026-09-03",
+      "url": "https://www.earthdata.nasa.gov/"
+    },
+    "46": {
+      "captured": "2026-09-03",
+      "url": "https://obis.org/"
+    },
+    "47": {
+      "captured": "2026-09-03",
+      "url": "https://www.ncbi.nlm.nih.gov/genbank/"
+    },
+    "48": {
+      "captured": "2026-09-03",
+      "url": "https://www.ncbi.nlm.nih.gov/pathogens/"
+    },
+    "49": {
+      "captured": "2026-09-03",
+      "url": "https://waterdata.usgs.gov/"
+    },
+    "50": {
+      "captured": "2026-09-03",
+      "url": "https://www.ncei.noaa.gov/"
+    },
+    "51": {
+      "captured": "2026-09-03",
+      "url": "https://www.epa.gov/toxics-release-inventory-tri-program"
+    },
+    "52": {
+      "captured": "2026-09-03",
+      "url": "https://ghdx.healthdata.org/"
+    },
+    "53": {
+      "captured": "2026-09-03",
+      "url": "https://datacatalog.worldbank.org/"
+    },
+    "54": {
+      "captured": "2026-09-03",
+      "url": "https://atlas.ecdc.europa.eu/public/index.aspx"
+    },
+    "55": {
+      "captured": "2026-09-03",
+      "url": "https://www.fao.org/faostat/en/"
+    },
+    "56": {
+      "captured": "2026-09-03",
+      "url": "https://quickstats.nass.usda.gov/"
+    },
+    "57": {
+      "captured": "2026-09-03",
+      "url": "https://www.landfire.gov/"
+    },
+    "58": {
+      "captured": "2026-09-03",
+      "url": "https://globalnaturewatch.org/"
+    },
+    "59": {
+      "captured": "2026-09-03",
+      "url": "https://opentopography.org/"
+    },
+    "60": {
+      "captured": "2026-09-03",
+      "url": "https://glad.umd.edu/"
+    },
+    "61": {
+      "captured": "2026-09-03",
+      "url": "https://www.ncbi.nlm.nih.gov/geo/"
+    },
+    "62": {
+      "captured": "2026-09-03",
+      "url": "https://www.ebi.ac.uk/biostudies/arrayexpress"
+    },
+    "63": {
+      "captured": "2026-09-03",
+      "url": "https://www.proteinatlas.org/"
+    },
+    "64": {
+      "captured": "2026-09-03",
+      "url": "https://ctdbase.org/",
+      "manual": true
+    },
+    "65": {
+      "captured": "2026-09-03",
+      "url": "https://www.worldclim.org/"
+    },
+    "66": {
+      "captured": "2026-09-03",
+      "url": "https://vectorsurv.org/"
+    },
+    "67": {
+      "captured": "2026-09-03",
+      "url": "https://beaconbio.org/"
+    },
+    "68": {
+      "captured": "2026-09-03",
+      "url": "https://www.globe.gov/globe-data"
+    },
+    "69": {
+      "captured": "2026-09-03",
+      "url": "https://padi-web.cirad.fr/en/"
+    }
+  },
+  "generated": "2026-09-03",
+  "note": "Written by tools/capture_previews.py — do not edit by hand"
+}

@@ -4,6 +4,39 @@
 
 let DATASETS = [];
 
+// Preview view: screenshot capture dates keyed by dataset id, from
+// images/previews/manifest.json (written by tools/capture_previews.py).
+// Optional — without it cards simply show no "captured" caption.
+let PREVIEWS = {};
+
+async function loadPreviewManifest() {
+  try {
+    const response = await fetch(`images/previews/manifest.json?v=${new Date().getTime()}`);
+    if (!response.ok) return;
+    const data = await response.json();
+    if (data && data.previews && typeof data.previews === 'object') PREVIEWS = data.previews;
+  } catch (e) {
+    console.warn('Preview manifest not loaded (preview captions will be blank):', e);
+  }
+}
+
+// Path to a dataset's screenshot; the capture date doubles as a cache-buster
+// so a recaptured image shows up without a hard refresh.
+function previewImageSrc(ds) {
+  const meta = PREVIEWS[ds.id] || {};
+  const version = meta.captured ? `?v=${encodeURIComponent(meta.captured)}` : '';
+  return `images/previews/${encodeURIComponent(ds.id)}.webp${version}`;
+}
+
+// "2026-09-03" -> "Sep 2026" (parsed by hand so time zones can't shift the month)
+function formatCaptured(iso) {
+  const m = /^(\d{4})-(\d{2})/.exec(String(iso || ''));
+  if (!m) return '';
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const month = months[Number(m[2]) - 1];
+  return month ? `${month} ${m[1]}` : '';
+}
+
 // Helper function to split semicolon-separated strings
 function splitSemicolon(str) {
   if (!str || str === '') return [];
@@ -91,8 +124,8 @@ async function loadExcelData() {
 // =======================
 
 async function initializeApp() {
-  // Load data first
-  await loadExcelData();
+  // Load data first (the preview manifest is small and optional, so fetch it alongside)
+  await Promise.all([loadExcelData(), loadPreviewManifest()]);
 
   // If no data loaded, stop here (loadExcelData has already rendered the error message)
   if (!DATASETS || DATASETS.length === 0) {
@@ -113,10 +146,12 @@ async function initializeApp() {
   const filterOverlay = document.getElementById("filterOverlay");
   const viewToggleCard = document.getElementById("viewToggleCard");
   const viewToggleList = document.getElementById("viewToggleList");
+  const viewTogglePreview = document.getElementById("viewTogglePreview");
 
   // Info Modal elements
   const modal         = document.getElementById("infoModal");
   const modalTitle    = document.getElementById("modalTitle");
+  const modalPreview  = document.getElementById("modalPreview");
   const modalBody     = document.getElementById("modalBody");
   const modalDownload = document.getElementById("modalDownload");
   const modalClose    = document.getElementById("modalClose");
@@ -138,8 +173,8 @@ async function initializeApp() {
   try {
     // localStorage can throw in private-browsing / blocked-storage modes
     const savedView = localStorage.getItem('triosphere-view');
-    // Only accept known views ('preview' may linger from before that view was disabled)
-    if (savedView === 'card' || savedView === 'list') currentView = savedView;
+    // Only accept known views
+    if (savedView === 'card' || savedView === 'list' || savedView === 'preview') currentView = savedView;
   } catch (e) { /* fall back to card view */ }
 
   // --- DYNAMICALLY GENERATE TAG FILTERS ---
@@ -230,7 +265,36 @@ async function initializeApp() {
       }
     }
 
-    // Card or list view
+    if (currentView === 'preview') {
+      // Preview view: a large screenshot of the source's website, with minimal text.
+      // For researchers who remember what a site looked like but not what it was called.
+      const captured = formatCaptured((PREVIEWS[ds.id] || {}).captured);
+      el.classList.add("card-preview");
+      el.innerHTML = `
+        ${recentlyAddedBadge}
+        <button type="button" class="preview-thumb more-info" aria-label="More info about ${escapeHtml(ds.name)}">
+          <img src="${escapeHtml(previewImageSrc(ds))}" alt="Screenshot of the ${escapeHtml(ds.name)} website"
+               width="800" height="500" loading="lazy" decoding="async">
+          ${captured ? `<span class="preview-captured" title="Screenshot captured ${escapeHtml(captured)}">${escapeHtml(captured)}</span>` : ''}
+        </button>
+        <div class="preview-body">
+          <h3>${escapeHtml(ds.name)}</h3>
+          <p>${escapeHtml(ds.description)}</p>
+          <button type="button" class="btn more-info">More Info</button>
+        </div>
+      `;
+      // No screenshot yet (or it failed to load): show a placeholder instead of a broken image
+      const img = el.querySelector("img");
+      img.addEventListener("error", () => {
+        const placeholder = document.createElement("span");
+        placeholder.className = "preview-missing";
+        placeholder.innerHTML = '<i class="fas fa-image" aria-hidden="true"></i>No preview yet';
+        img.replaceWith(placeholder);
+        const caption = el.querySelector(".preview-captured");
+        if (caption) caption.remove();
+      });
+    } else {
+      // Card or list view
       el.innerHTML = `
         ${recentlyAddedBadge}
         <h3>${escapeHtml(ds.name)}</h3>
@@ -240,10 +304,11 @@ async function initializeApp() {
         </div>
         <button type="button" class="btn more-info">More Info</button>
       `;
+    }
 
-    // Add click handler for "More Info" button
-    el.querySelector(".more-info")
-      .addEventListener("click", () => showModal(ds));
+    // Add click handler for "More Info" (in preview view the screenshot is one too)
+    el.querySelectorAll(".more-info")
+      .forEach(btn => btn.addEventListener("click", () => showModal(ds)));
 
     // Add click handlers for tag pills to filter by that tag
     el.querySelectorAll(".tag").forEach(tagEl => {
@@ -284,6 +349,16 @@ async function initializeApp() {
   function showModal(ds) {
     modalTitle.textContent = ds.name;
     modalBody.innerHTML    = ds.additionalInfo;
+    if (modalPreview) {
+      // Reuse the preview screenshot as a banner; stays hidden until (unless) it loads
+      modalPreview.hidden = true;
+      modalPreview.onload  = () => { modalPreview.hidden = false; };
+      modalPreview.onerror = () => { modalPreview.hidden = true; };
+      modalPreview.alt = `Screenshot of the ${ds.name} website`;
+      modalPreview.src = previewImageSrc(ds);
+      // Already cached (e.g. reopening the same entry): load may not fire again
+      if (modalPreview.complete && modalPreview.naturalWidth > 0) modalPreview.hidden = false;
+    }
     modalDownload.onclick  = () => window.open(ds.url, "_blank");
     lastFocusedEl = document.activeElement;
     modal.classList.remove("hidden");
@@ -332,8 +407,16 @@ async function initializeApp() {
     resultCounter.textContent = `${count} ${plural} found`;
 
     grid.innerHTML = "";
+    if (currentView === 'preview') {
+      const note = document.createElement("p");
+      note.className = "preview-note";
+      note.innerHTML = '<i class="fas fa-info-circle" aria-hidden="true"></i> '
+        + 'Screenshots are captured by hand and may not reflect a site’s current design. '
+        + 'Click one for details.';
+      grid.appendChild(note);
+    }
     if (!subset.length) {
-      grid.innerHTML = "<p>No datasets match your criteria.</p>";
+      grid.insertAdjacentHTML("beforeend", "<p>No datasets match your criteria.</p>");
     } else {
       subset.forEach(ds => grid.appendChild(buildCard(ds)));
     }
@@ -494,24 +577,23 @@ async function initializeApp() {
     } catch (e) { /* storage unavailable — view just won't persist */ }
 
     // Remove all view classes
-    grid.classList.remove('list-view');
+    grid.classList.remove('list-view', 'preview-view');
 
     // Remove active state from all buttons
-    viewToggleCard.classList.remove('active');
-    viewToggleList.classList.remove('active');
+    const buttons = { card: viewToggleCard, list: viewToggleList, preview: viewTogglePreview };
+    Object.values(buttons).forEach(btn => {
+      if (!btn) return;
+      btn.classList.remove('active');
+      btn.setAttribute('aria-pressed', 'false');
+    });
 
-    viewToggleCard.setAttribute('aria-pressed', 'false');
-    viewToggleList.setAttribute('aria-pressed', 'false');
-
-    // Apply the selected view
-    if (viewType === 'list') {
-      grid.classList.add('list-view');
-      viewToggleList.classList.add('active');
-      viewToggleList.setAttribute('aria-pressed', 'true');
-    } else {
-      // Card view (default)
-      viewToggleCard.classList.add('active');
-      viewToggleCard.setAttribute('aria-pressed', 'true');
+    // Apply the selected view (card view is the default and needs no grid class)
+    if (viewType === 'list')    grid.classList.add('list-view');
+    if (viewType === 'preview') grid.classList.add('preview-view');
+    const activeBtn = buttons[viewType] || viewToggleCard;
+    if (activeBtn) {
+      activeBtn.classList.add('active');
+      activeBtn.setAttribute('aria-pressed', 'true');
     }
   }
 
@@ -529,6 +611,13 @@ async function initializeApp() {
     viewToggleList.addEventListener('click', () => {
       setView('list');
       render();  // Re-render for list view
+    });
+  }
+
+  if (viewTogglePreview) {
+    viewTogglePreview.addEventListener('click', () => {
+      setView('preview');
+      render();  // Re-render for preview view
     });
   }
 

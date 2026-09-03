@@ -186,6 +186,9 @@
         <button id="viewToggleList" class="view-toggle-btn" title="List view" aria-label="List view" aria-pressed="false">
           <i class="fas fa-list" aria-hidden="true"></i>
         </button>
+        <button id="viewTogglePreview" class="view-toggle-btn" title="Preview view (website screenshots)" aria-label="Preview view" aria-pressed="false">
+          <i class="fas fa-image" aria-hidden="true"></i>
+        </button>
       </div>
       <button id="exportCsvBtn" class="export-btn" title="Export filtered results to CSV">
         <i class="fas fa-download"></i> Export to CSV
@@ -249,6 +252,7 @@
     <div class="modal-content">
       <button id="modalClose" class="modal-close" aria-label="Close">&times;</button>
       <h2 id="modalTitle"></h2>
+      <img id="modalPreview" class="modal-preview" alt="" hidden>
       <div id="modalBody"></div>
       <footer class="modal-footer">
         <button id="modalDownload" class="download">Download From Site</button>
