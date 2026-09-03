@@ -1370,3 +1370,250 @@ header .header-intro p {
 
 
 /* </style> */
+/* ═══════════════════════════════════════════════════════════════════════
+   CONSTELLATION VIEW  (fourth view toggle)
+   A dark panel inside a light page: stars need a night to read against.
+   The ground is CSU green taken down to near-black rather than true black,
+   so the panel still belongs to the site. Chrome follows the USAMM/drove
+   convention — small translucent forest-green chips, gold for anything the
+   reader can act on.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+#datasetGrid[hidden],
+#skyRegion[hidden] { display: none !important; }
+
+#skyRegion {
+    grid-column: 2;
+    align-self: start;
+    min-width: 0;               /* let the canvas shrink inside the grid track */
+}
+
+.sky-stage {
+    position: relative;
+    height: clamp(430px, 68vh, 760px);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: #06180E;
+    border: 1px solid #1B3324;
+    box-shadow: var(--shadow);
+    touch-action: pan-y;        /* vertical drags scroll the page; the canvas
+                                   takes horizontal drags and pinch/scroll zoom,
+                                   so a finger can never trap the scroll */
+}
+
+#skyCanvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+}
+#skyCanvas:focus-visible {
+    outline: 2px solid var(--csu-gold);
+    outline-offset: -4px;
+}
+
+/* ── the key: every encoding on screen is named here ── */
+.sky-legend {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    max-width: min(52ch, calc(100% - 20px));
+    background: rgba(20, 32, 18, .82);
+    border: 1px solid #263722;
+    border-radius: 8px;
+    padding: 6px 9px;
+    font-size: 10.5px;
+    line-height: 1.55;
+    color: #8BA382;
+    backdrop-filter: blur(3px);
+}
+.sky-legend b { color: #D8E6CF; font-weight: 600; }
+.sky-legend .sky-lg-note { color: var(--csu-gold); }
+.sky-legend .sky-lgx { display: none; }
+.sky-legend.x .sky-lgx { display: inline; }
+.sky-legend .sky-lgmore {
+    display: inline-block;
+    color: #D8B53F;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 6px 4px;
+    margin: -6px -2px;
+}
+.sky-legend .sky-lgmore::after { content: "▾ full key"; }
+.sky-legend.x .sky-lgmore::after { content: "▴ less"; }
+.sky-legend .sky-lgmore:focus-visible {
+    outline: 2px solid var(--csu-gold);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* ── grouping control ── */
+.sky-controls {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+.sky-ctl-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .10em;
+    text-transform: uppercase;
+    color: #8BA382;
+}
+.sky-select,
+.sky-btn {
+    background: rgba(20, 32, 18, .85);
+    border: 1px solid #2C3D2A;
+    color: #C7D9BE;
+    border-radius: 999px;
+    padding: 5px 11px;
+    font-family: inherit;
+    font-size: 11.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--transition), color var(--transition);
+}
+.sky-select:hover,
+.sky-btn:hover { background: #2E4A2B; color: #fff; }
+.sky-select:focus-visible,
+.sky-btn:focus-visible { outline: 2px solid var(--csu-gold); outline-offset: 2px; }
+
+/* ── hover probe: the screenshot doing double duty from Preview view ── */
+.sky-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 250px;
+    background: rgba(10, 24, 14, .96);
+    border: 1px solid #2C3D2A;
+    border-radius: 10px;
+    overflow: hidden;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .16s ease;
+    z-index: 4;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .55);
+}
+.sky-card.is-on { opacity: 1; }
+.sky-card-shot {
+    display: block;
+    width: 100%;
+    height: 108px;
+    object-fit: cover;
+    object-position: top center;
+    border-bottom: 1px solid #22331F;
+}
+.sky-card-body { padding: 8px 10px 9px; }
+.sky-card-body h3 {
+    margin: 0 0 3px;
+    font-size: 12.5px;
+    line-height: 1.3;
+    color: #F2F7EE;
+}
+.sky-card-body p {
+    margin: 0;
+    font-size: 11px;
+    line-height: 1.45;
+    color: #A9BFA0;
+}
+.sky-card-cats {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+    margin-top: 6px;
+    font-size: 10px;
+    color: #8BA382;
+}
+.sky-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 4px;
+}
+.sky-card-cats .sky-dot:first-child { margin-left: 0; }
+.sky-card-tags {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin-top: 6px;
+}
+.sky-card-tags span {
+    background: rgba(46, 74, 43, .8);
+    border: 1px solid #3B5637;
+    border-radius: 999px;
+    padding: 1px 7px;
+    font-size: 9.5px;
+    color: #C7D9BE;
+}
+.sky-card-hint {
+    margin: 7px 0 0 !important;
+    font-size: 9.5px !important;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: #D8B53F !important;
+}
+
+/* ── below the panel ── */
+.sky-hint {
+    margin: .6rem 0 0;
+    font-size: .8rem;
+    color: var(--csu-dark-grey);
+    line-height: 1.5;
+}
+.sky-hint i { color: var(--csu-green); margin-right: .25rem; }
+
+.sky-list { margin-top: .75rem; }
+.sky-list summary {
+    cursor: pointer;
+    font-size: .85rem;
+    font-weight: 600;
+    color: var(--csu-green);
+    padding: .35rem 0;
+}
+.sky-list summary:focus-visible { outline: 2px solid var(--csu-orange); outline-offset: 2px; }
+.sky-list h2 {
+    font-size: .9rem;
+    margin: .5rem 0 .35rem;
+    color: var(--csu-dark-grey);
+}
+.sky-list ul { margin: 0; padding-left: 1.1rem; }
+.sky-list li { margin-bottom: .3rem; }
+.sky-list button {
+    background: none;
+    border: none;
+    padding: 0;
+    text-align: left;
+    font: inherit;
+    font-size: .82rem;
+    color: var(--clr-text);
+    cursor: pointer;
+    line-height: 1.45;
+}
+.sky-list button:hover { color: var(--csu-orange); text-decoration: underline; }
+.sky-list button:focus-visible { outline: 2px solid var(--csu-orange); outline-offset: 2px; }
+
+@media (max-width: 860px) {
+    #skyRegion { grid-column: 1; }
+    .sky-stage { height: clamp(360px, 60vh, 520px); }
+    .sky-controls { top: 8px; right: 8px; }
+    .sky-ctl-label { display: none; }
+    .sky-legend { max-width: calc(100% - 16px); font-size: 9.5px; }
+    .sky-card { width: 200px; }
+    .sky-card-shot { height: 88px; }
+}
+
+.sky-card-new {
+    margin: 6px 0 0 !important;
+    font-size: 9.5px !important;
+    font-weight: 600;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--csu-orange) !important;
+}
