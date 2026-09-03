@@ -1,0 +1,3 @@
+{
+  "_": "Optional: dataset id -> page to screenshot instead of the catalog url, e.g. a map explorer that is more recognizable than a generic agency homepage. Recapture with: python3 tools/capture_previews.py --ids <id>"
+}
