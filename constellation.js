@@ -38,6 +38,19 @@
   const LOBE = Object.fromEntries(LOBES.map((l) => [l.key, l]));
   const TRIO_COLOR = "#EFE7CB";   // all three categories: a pale core star
 
+  /* The three rings of the One Health Institute mark, as geometry. Centres
+     sit on an equilateral triangle of side d — People upper-left, Animals
+     upper-right, Ecosystems below — and each ring has radius RING_R * d.
+     0.84 is chosen so the middle, where all three overlap, has room for the
+     17 sources that belong to all three; less overlap and they will not fit,
+     more and the outer crescents thin to slivers. */
+  const RING_R = 0.84;
+  const RING_C = {
+    People:     [-0.5, -0.28868],
+    Animals:    [ 0.5, -0.28868],
+    Ecosystems: [ 0.0,  0.57735],
+  };
+
   /* Region combos read narrowest to broadest ("United States; Global"), the
      order datasets.xlsx uses. Grouping stays order-insensitive so an entry
      typed the other way round still lands in the same cluster. */
@@ -46,6 +59,8 @@
   const CFG = {
     restLen: 108, springK: 0.020,
     repulseK: 1900, repulseMax: 260,
+    ringRepulseK: 3100, ringRepulseMax: 430,  // trefoil mode: fill each region without pinning to its edge
+    ringRefD: 360,            // the ring size those two numbers were tuned at
     clusterK: 0.026, centerK: 0.005,
     damping: 0.86, alphaDecay: 0.030, alphaMin: 0.004,
     radius: { min: 5, max: 10.5 },   // by number of visible tags
@@ -207,7 +222,7 @@
       if (!legendEl) return;
       const shown = S.matches ? S.nodes.filter(matched).length : S.nodes.length;
       const grouping = {
-        categories: "the three One Health lobes — a source sits at the average of its categories, so all-three sources fall in the middle. Lobe counts overlap: a source in two lobes is counted by both",
+        categories: "the three One Health rings — every source stands inside each ring it belongs to and outside the ones it doesn't, so the middle, where all three cross, holds the sources that span all of One Health. Ring counts overlap: a source in two rings is counted by both",
         tags: "its rarest tag, the most telling one it carries",
         region: "geographic coverage",
         free: "nothing — pure link structure, no grouping",
@@ -280,12 +295,20 @@
       if (S.mode === "free") { if (reseed) seed(); return; }
 
       if (S.mode === "categories") {
+        /* Size the trefoil to the panel: it spans d + 2R across and
+           0.866d + 2R down, and fitView does the final framing. */
+        const d = Math.min(S.W / (1 + 2 * RING_R), S.H / (0.866 + 2 * RING_R)) * 1.35;
+        S.rings = { d: d, R: RING_R * d, c: {} };
+        LOBES.forEach((l) => {
+          S.rings.c[l.key] = [RING_C[l.key][0] * d, RING_C[l.key][1] * d];
+        });
+
         const counts = new Map();
         S.nodes.forEach((n) => counts.set(n.region, (counts.get(n.region) || 0) + 1));
         counts.forEach((count, key) => {
           const cats = key === "Uncategorized" ? [] : key.split(" + ");
-          const [ax, ay] = anchorOf(cats);
-          S.clusters.set(key, { x: ax * S.W, y: ay * S.H, n: count, cats });
+          const [cx, cy] = regionCentre(cats);
+          S.clusters.set(key, { x: cx, y: cy, n: count, cats });
         });
       } else {
         const counts = new Map();
@@ -306,6 +329,49 @@
         });
       }
       if (reseed) seed();
+    }
+
+    /* Roughly the middle of one of the seven areas of the trefoil: start from
+       the mean of the rings it is inside, then push away from the rings it is
+       outside, so a People-only star sits out in the yellow crescent rather
+       than in the shared middle. The solver below does the exact work. */
+    function regionCentre(cats) {
+      const known = cats.filter((c) => RING_C[c]);
+      if (!S.rings || !known.length) return [0, S.rings ? S.rings.d * 1.5 : 0];
+      let x = 0, y = 0;
+      known.forEach((c) => { x += S.rings.c[c][0]; y += S.rings.c[c][1]; });
+      x /= known.length; y /= known.length;
+      if (known.length < 3) {               // push out, away from the middle
+        const len = Math.hypot(x, y) || 1;
+        const out = known.length === 1 ? 0.42 : 0.30;
+        x += (x / len) * S.rings.R * out;
+        y += (y / len) * S.rings.R * out;
+      }
+      return [x, y];
+    }
+
+    /* Hold a star inside every ring it belongs to and outside every ring it
+       does not — which is what makes its position *mean* its categories.
+       A few passes settle the competing constraints. */
+    function confine(n) {
+      if (!S.rings || !n.cats.length) return;
+      const R = S.rings.R, pad = n.r + 4;
+      for (let pass = 0; pass < 4; pass++) {
+        for (let i = 0; i < LOBES.length; i++) {
+          const key = LOBES[i].key, c = S.rings.c[key];
+          let dx = n.x - c[0], dy = n.y - c[1];
+          let dist = Math.hypot(dx, dy);
+          if (dist < 1e-4) {                // dead centre: pick a direction
+            dx = Math.cos(n.twinkle); dy = Math.sin(n.twinkle); dist = 1;
+          }
+          const inside = n.cats.indexOf(key) !== -1;
+          const limit = inside ? R - pad : R + pad;
+          if (inside ? dist > limit : dist < limit) {
+            n.x = c[0] + (dx / dist) * limit;
+            n.y = c[1] + (dy / dist) * limit;
+          }
+        }
+      }
     }
 
     function seed() {
@@ -344,14 +410,21 @@
     function tick() {
       if (S.alpha < CFG.alphaMin) return;
       const a = S.alpha, ns = S.nodes;
+      const rings = S.mode === "categories" && S.rings;
+      /* The trefoil is sized to the panel, so its repulsion has to scale with
+         it — held fixed, the same push that fills a desktop ring flattens
+         every star against the edge of a phone-sized one. */
+      const sc = rings ? S.rings.d / CFG.ringRefD : 1;
+      const rK = rings ? CFG.ringRepulseK * sc * sc : CFG.repulseK;
+      const rMax2 = (rings ? CFG.ringRepulseMax * sc : CFG.repulseMax) ** 2;
 
       for (let i = 0; i < ns.length; i++) {
         for (let j = i + 1; j < ns.length; j++) {
           const A = ns[i], B = ns[j];
           let dx = B.x - A.x, dy = B.y - A.y, d2 = dx * dx + dy * dy;
-          if (d2 > CFG.repulseMax * CFG.repulseMax) continue;
+          if (d2 > rMax2) continue;
           if (d2 < 1) { dx = Math.random() - 0.5; dy = Math.random() - 0.5; d2 = 1; }
-          const f = (CFG.repulseK / d2) * a, d = Math.sqrt(d2);
+          const f = (rK / d2) * a, d = Math.sqrt(d2);
           const fx = (dx / d) * f, fy = (dy / d) * f;
           A.vx -= fx; A.vy -= fy; B.vx += fx; B.vy += fy;
         }
@@ -360,7 +433,7 @@
       S.edges.forEach((e) => {              // springs, stiffer for closer kin
         const dx = e.b.x - e.a.x, dy = e.b.y - e.a.y;
         const d = Math.hypot(dx, dy) || 1;
-        const grouped = (S.mode === "tags" || S.mode === "region") ? 0.34 : 1;
+        const grouped = (S.mode === "free") ? 1 : 0.34;   // grouping leads, kinship nudges
         const f = (d - CFG.restLen) * CFG.springK * (0.5 + e.s) * grouped * a;
         const fx = (dx / d) * f, fy = (dy / d) * f;
         e.a.vx += fx; e.a.vy += fy; e.b.vx -= fx; e.b.vy -= fy;
@@ -370,7 +443,7 @@
         const c = S.clusters.get(groupKey(n));
         if (c && S.mode !== "free") {
           // small groups on a big ring need a firmer hand than the three lobes
-          const ck = CFG.clusterK * (S.mode === "categories" ? 1 : 2.4);
+          const ck = CFG.clusterK * (S.mode === "categories" ? 0.5 : 2.4);
           n.vx += (c.x - n.x) * ck * a;
           n.vy += (c.y - n.y) * ck * a;
         } else {
@@ -379,6 +452,7 @@
         }
         n.vx *= CFG.damping; n.vy *= CFG.damping;
         if (n !== S.drag) { n.x += n.vx; n.y += n.vy; }
+        if (S.mode === "categories") confine(n);
       });
 
       S.alpha = Math.max(0, S.alpha - CFG.alphaDecay * S.alpha - 0.0005);
@@ -462,6 +536,27 @@
       ctx.translate(S.W / 2, S.H / 2);
       ctx.scale(S.cam.z, S.cam.z);
       ctx.translate(-S.cam.wx, -S.cam.wy);
+
+      /* the three rings, drawn under the stars: the One Health mark itself,
+         with each source standing in the part of it that it belongs to */
+      if (S.mode === "categories" && S.rings) {
+        LOBES.forEach((lobe) => {
+          const c = S.rings.c[lobe.key];
+          const grad = ctx.createRadialGradient(c[0], c[1], S.rings.R * 0.25,
+                                                c[0], c[1], S.rings.R);
+          grad.addColorStop(0, rgba(lobe.color, 0.0));
+          grad.addColorStop(1, rgba(lobe.color, 0.055));
+          ctx.fillStyle = grad;
+          ctx.beginPath(); ctx.arc(c[0], c[1], S.rings.R, 0, 7); ctx.fill();
+        });
+        LOBES.forEach((lobe) => {
+          const c = S.rings.c[lobe.key];
+          ctx.globalAlpha = 1;
+          ctx.strokeStyle = rgba(lobe.color, 0.52);
+          ctx.lineWidth = Math.max(1.8, S.rings.d * 0.020);
+          ctx.beginPath(); ctx.arc(c[0], c[1], S.rings.R, 0, 7); ctx.stroke();
+        });
+      }
 
       /* edges — weight and warmth carry similarity, the way the USAMM
          network sheet reads its "connection strength" ramp */
@@ -626,6 +721,12 @@
     const capFont = () => clamp(Math.min(S.W, S.H) / 46, 9, 12);
 
     function captionAt(lobe) {
+      if (S.rings) {   // just outside its own ring, on the outward bearing
+        const c = S.rings.c[lobe.key];
+        const len = Math.hypot(c[0], c[1]) || 1;
+        const out = S.rings.R + S.rings.d * 0.19;
+        return [c[0] + (c[0] / len) * out, c[1] + (c[1] / len) * out];
+      }
       return [lobe.anchor[0] * S.W * 1.58, lobe.anchor[1] * S.H * 2.00];
     }
 
@@ -656,8 +757,12 @@
         x0 = Math.min(x0, n.x); y0 = Math.min(y0, n.y);
         x1 = Math.max(x1, n.x); y1 = Math.max(y1, n.y);
       });
-      if (S.mode === "categories" && !isNarrow()) {
-        LOBES.forEach((lobe) => {
+      if (S.mode === "categories" && S.rings) {
+        LOBES.forEach((lobe) => {   // the rings themselves must fit, always
+          const c = S.rings.c[lobe.key];
+          x0 = Math.min(x0, c[0] - S.rings.R); y0 = Math.min(y0, c[1] - S.rings.R);
+          x1 = Math.max(x1, c[0] + S.rings.R); y1 = Math.max(y1, c[1] + S.rings.R);
+          if (isNarrow()) return;   // narrow panels pin captions to the edges
           const [cx, cy] = captionAt(lobe);
           x0 = Math.min(x0, cx); y0 = Math.min(y0, cy);
           x1 = Math.max(x1, cx); y1 = Math.max(y1, cy);
@@ -784,6 +889,7 @@
       if (S.drag) {
         const [wx, wy] = s2w(px, py);
         S.drag.x = wx; S.drag.y = wy; S.drag.vx = S.drag.vy = 0;
+        if (S.mode === "categories") confine(S.drag);   // a star can't leave its rings
         S.drag.moved = true;
         reheat(0.25);
         return;
