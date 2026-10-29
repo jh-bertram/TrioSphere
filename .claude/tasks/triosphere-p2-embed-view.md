@@ -22,3 +22,11 @@ Pure static, no build, no new CDN deps; `constellation.js` reused unchanged if p
 
 ## Success criteria
 Carried by the plan of record; the brief's `## Behaviour` items 1–7, `## Testing` and `## Deliverables` are the requirement list REQVAL grades against.
+
+## Close (2026-10-29)
+- **Status:** CLOSED. Durability commit `d6af555` (Audit: PASS) after ceremony `7e3d399`, on `embed-view`; not pushed (Jonathan pushes and opens the PR).
+- **Gate:** GATE-HUMAN-BROWSER PASS on the human's words "SC15 passes in the test frame and the band layout is fine; close the sprint." (event log 2026-10-29 seq 55).
+- **PR note (B7):** no page in the repo sets a `frame-ancestors` directive or any `Content-Security-Policy` meta (`grep -c 'frame-ancestors\|Content-Security-Policy' embed.html index.html home.html about.html` → 0 each, control `<html` → 1 each, AUD#1/AUD#2 SC6), so framing from `*.colostate.edu` works.
+- **Snippet for Jason (D5):** `<iframe src="https://triosphere.research.colostate.edu/embed.html" width="100%" height="600" style="border:0" title="TrioSphere data constellation"></iframe>`
+- **Unsure items for Jonathan (D5):** `visibilitychange` inside a cross-origin iframe was not probed live (only the scroll-away pause was); the chrome sits in dark bands above and below the canvas rather than overlaid, ruled acceptable at the gate.
+- **Deferred:** DEFERRED-TS-001..003 in `docs/deferred-work.md` (local, gitignored).
