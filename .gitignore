@@ -1,3 +1,7 @@
 # Python tooling (tools/capture_previews.py)
 __pycache__/
 *.pyc
+
+# Gander agent-team records (events and return packets stay local)
+docs/
+.claude/agents/tasks/outputs/
