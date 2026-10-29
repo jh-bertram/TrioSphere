@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TrioSphere | Data constellation</title>
+  <!-- View-only Constellation for iframing (see CLAUDE.md § Architecture).
+       Params: ?mode=rings|tag|region|none, ?chrome=0. -->
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- SheetJS for Excel reading (same URL as index.html) -->
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+
+  <link rel="stylesheet" href="style.css?v=2026-10-29">
+  <style>
+    html, body { margin: 0; padding: 0; overflow: hidden; }
+    body { font-family: "Poppins", Georgia, serif; }
+    /* The chrome sits in bands above and below the stage, never over it:
+       the chart sizes itself to the stage, so no caption can land under a
+       control or the key at any frame size. */
+    .embed-frame {
+      display: flex; flex-direction: column;
+      width: 100vw; height: 100vh;
+      background: rgba(20, 32, 18, 1);
+    }
+    .embed-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 6px; padding: 6px 8px; flex: 0 0 auto;
+    }
+    .sky-stage.embed-stage {
+      flex: 1 1 auto; min-height: 0; height: auto;
+      border: 0; border-radius: 0; box-shadow: none;
+    }
+    .embed-bar .sky-controls { position: static; }
+    .embed-foot { flex: 0 0 auto; padding: 0 8px 6px; }
+    .embed-foot .sky-legend { position: static; max-width: none; }
+    #skyCanvas { touch-action: pan-y; }
+    .embed-lockup {
+      padding: 5px 10px; border-radius: 8px;
+      background: rgba(20, 32, 18, .82); border: 1px solid var(--csu-green-dark);
+      color: var(--csu-gold); font-size: 12px; font-weight: 600;
+      text-decoration: none; letter-spacing: .02em;
+    }
+    .embed-lockup:hover { color: #fff; }
+    .embed-lockup:focus-visible { outline: 2px solid var(--csu-gold); outline-offset: 2px; }
+    body.no-chrome .embed-bar,
+    body.no-chrome .embed-foot { display: none; }
+    .visually-hidden {
+      position: absolute !important;
+      width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; white-space: nowrap; border: 0;
+      clip: rect(0 0 0 0); clip-path: inset(50%);
+    }
+  </style>
+</head>
+<body>
+  <p class="visually-hidden">This chart is decorative. An accessible text list of every source is on the
+    <a href="index.html" target="_blank" rel="noopener">TrioSphere Data page</a>.</p>
+  <div class="embed-frame">
+  <div class="embed-bar">
+    <a class="embed-lockup" href="index.html" target="_blank" rel="noopener">TrioSphere · One Health data constellation</a>
+    <div class="sky-controls">
+      <label class="sky-ctl-label" for="skyMode">Group by</label>
+      <select id="skyMode" class="sky-select">
+        <option value="categories">One Health rings</option>
+        <option value="tags">Rarest tag</option>
+        <option value="region">Region</option>
+        <option value="free">Nothing &mdash; link structure</option>
+      </select>
+      <button type="button" id="skyFit" class="sky-btn" title="Frame everything (keyboard: 0)">Reset view</button>
+    </div>
+  </div>
+  <div id="skyStage" class="sky-stage embed-stage">
+    <canvas id="skyCanvas" tabindex="0" role="img"
+            aria-describedby="skyLegend"
+            aria-label="Star chart of the TrioSphere data catalog. Every source is a star, grouped by One Health category and joined to the sources it shares tags with."></canvas>
+    <div id="skyCard" class="sky-card" aria-hidden="true"></div>
+  </div>
+  <div class="embed-foot"><div id="skyLegend" class="sky-legend"></div></div>
+  </div>
+  <details class="sky-list" hidden>
+    <summary>Text list of the sources shown</summary>
+    <div id="skyList"></div>
+  </details>
+  <p id="skyCaption" class="visually-hidden" role="status" aria-live="polite"></p>
+
+<script src="constellation.js?v=2026-10-29"></script>
+<script>
+(function () {
+  "use strict";
+
+  // ?mode= closed set: the map lookup is the barrier, the default the backstop.
+  const MODE_MAP = { rings: "categories", tag: "tags", region: "region", none: "free" };
+  const params = new URLSearchParams(location.search);
+  const modeParam = params.get("mode");
+  const mode = Object.prototype.hasOwnProperty.call(MODE_MAP, modeParam) ? MODE_MAP[modeParam] : "categories";
+  // ?chrome= : only the literal "0" hides the chrome; any other value is ignored.
+  if (params.get("chrome") === "0") document.body.classList.add("no-chrome");
+
+  function splitSemicolon(str) {
+    if (!str || str === '') return [];
+    return String(str).split(';').map(s => s.trim()).filter(s => s.length > 0);
+  }
+
+  // Canonical parser: script.js — keep in sync (additionalInfo is left as raw
+  // markdown here: the embed has no modal, so it never renders it).
+  async function loadExcelData() {
+    const response = await fetch(`datasets.xlsx?v=${new Date().getTime()}`);
+    if (!response.ok) throw new Error(`HTTP ${response.status} fetching datasets.xlsx`);
+    const arrayBuffer = await response.arrayBuffer();
+    const workbook = XLSX.read(arrayBuffer, { type: 'array' });
+    const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+    const rawData = XLSX.utils.sheet_to_json(worksheet, { defval: '' });
+    return rawData.map(row => ({
+      id: String(row.id || ''),
+      name: String(row.name || ''),
+      description: String(row.description || ''),
+      url: String(row.url || ''),
+      categories: splitSemicolon(row.categories),
+      source: String(row.source || ''),
+      region: splitSemicolon(row.region),
+      type: String(row.type || ''),
+      yearStart: String(row.yearStart || ''),
+      yearEnd: String(row.yearEnd || ''),
+      tags: splitSemicolon(row.tags),
+      invisibleTags: splitSemicolon(row.invisibleTags),
+      additionalInfo: String(row.additionalInfo || ''),
+      dateAdded: row.dateAdded ? String(row.dateAdded) : undefined
+    }));
+  }
+
+  function openEntry(ds) {
+    const href = new URL("index.html?id=" + encodeURIComponent(ds.id), location.href).href;
+    window.open(href, "_blank", "noopener");
+  }
+
+  async function init() {
+    const stage = document.getElementById("skyStage");
+    let data;
+    try {
+      data = await loadExcelData();
+    } catch (err) {
+      console.error("Error loading Excel file:", err);
+      stage.insertAdjacentHTML("beforeend",
+        '<p class="sky-legend" role="alert">Unable to load the data catalog right now. ' +
+        '<a href="index.html" target="_blank" rel="noopener">Open TrioSphere</a></p>');
+      return;
+    }
+    const sky = window.TrioSphereConstellation.create({
+      canvas:     document.getElementById("skyCanvas"),
+      stage:      stage,
+      card:       document.getElementById("skyCard"),
+      legend:     document.getElementById("skyLegend"),
+      caption:    document.getElementById("skyCaption"),
+      list:       document.getElementById("skyList"),
+      previewSrc: ds => `images/previews/${encodeURIComponent(ds.id)}.webp`,
+      onOpen:     openEntry,
+      // The chrome sits outside the stage here, so narrow captions pin to the
+      // stage's own edges instead of clearing overlaid controls and key.
+      pinnedCaptions: { top: 22, bottom: 12 }
+    });
+    sky.setData(data);
+    const sel = document.getElementById("skyMode");
+    sel.value = mode;
+    if (mode !== sky.mode) sky.setMode(mode);
+    sel.addEventListener("change", () => sky.setMode(sel.value));
+    document.getElementById("skyFit").addEventListener("click", () => sky.fit());
+    sky.activate();
+    sky.fit();
+
+    // The stage also changes size when the key expands or the bar wraps,
+    // not only on window resize, so watch the stage itself.
+    let fitT = 0;
+    const refit = () => {
+      clearTimeout(fitT);
+      fitT = setTimeout(() => { sky.resize(); sky.fit(); }, 200);
+    };
+    window.addEventListener("resize", refit);
+    if ("ResizeObserver" in window) new ResizeObserver(refit).observe(stage);
+
+    // Pause the animation when the page is hidden or the stage leaves the
+    // viewport; resume() restarts the loop only, so the layout is kept.
+    let inView = true;
+    const sync = () => (inView && !document.hidden) ? sky.resume() : sky.pause();
+    document.addEventListener("visibilitychange", sync);
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(entries => {
+        inView = entries[entries.length - 1].isIntersecting;
+        sync();
+      }, { root: null }).observe(stage);
+    }
+  }
+
+  init();
+})();
+</script>
+</body>
+</html>

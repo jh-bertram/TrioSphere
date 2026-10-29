@@ -108,6 +108,9 @@
     const captionEl = opts.caption || null;
     const listEl = opts.list || null;          // visually-hidden a11y list
     const legendEl = opts.legend || null;
+    /* Optional { top, bottom } in px: where narrow-panel captions pin when no
+       chrome overlays the canvas (embed.html). Absent: the index.html values. */
+    const pinOpt = opts.pinnedCaptions || null;
 
     const S = {
       nodes: [], byId: new Map(), edges: [],
@@ -733,6 +736,10 @@
     /* Narrow panels: pin each lobe name to the edge it points at, in screen
        space, so it names a direction without stealing room from the stars. */
     function captionPinned(lobe) {
+      if (pinOpt) {
+        if (lobe.anchor[1] > 0) return [S.W / 2, S.H - pinOpt.bottom];
+        return [lobe.anchor[0] < 0 ? 12 : S.W - 12, pinOpt.top];
+      }
       const pad = 12;
       const top = 62;              // below the Group by / Reset view row
       const bottom = S.H - 78;     // above the key
@@ -794,6 +801,10 @@
         mx = clamp(widest / 2 + 48, 40, S.W * 0.26);   // +48 covers the count after the label
         my = 30;
       }
+      // With pinnedCaptions, keep the rings clear of the pinned caption lines.
+      if (pinOpt && S.mode === "categories" && isNarrow()) {
+        my = Math.max(my, pinOpt.top + 12, pinOpt.bottom + 24);
+      }
       const z = clamp(Math.min((S.W - mx * 2) / Math.max(1, x1 - x0),
                                (S.H - my * 2) / Math.max(1, y1 - y0)), 0.3, 1.4);
       S.cam.wx = (x0 + x1) / 2; S.cam.wy = (y0 + y1) / 2; S.cam.z = z;
@@ -801,6 +812,7 @@
 
     function loop(now) {
       if (!S.running) return;
+      if (S.paused) return;     // pause(): the loop stops until resume()
       tick();
       draw(now);
       if (S.needFit && S.alpha < 0.2) { S.needFit = false; fitView(); }
@@ -923,6 +935,15 @@
       void px; void py;
     });
 
+    /* When the browser takes a touch gesture (e.g. a vertical finger drag
+       under touch-action: pan-y, so the host page scrolls), it sends
+       pointercancel instead of pointerup. Clear the pan / drag state the
+       same way pointerup does, so the next mouse move does not pan. */
+    canvas.addEventListener("pointercancel", () => {
+      S.drag = null; S.panning = null;
+      canvas.style.cursor = S.hover ? "pointer" : "grab";
+    });
+
     canvas.addEventListener("pointerleave", () => { setHover(null, 0, 0); });
 
     canvas.addEventListener("wheel", (e) => {
@@ -1005,8 +1026,26 @@
       setHover(null, 0, 0);
     }
 
+    /* pause()/resume() only stop and restart the animation loop: no
+       resize, no reheat, no layout change (unlike activate(), which
+       re-scatters). Used by embed.html when the frame is off-screen or the
+       page is hidden; index.html never calls them. */
+    function pause() {
+      if (S.paused) return;
+      S.paused = true;
+      if (S.raf) global.cancelAnimationFrame(S.raf);
+      S.raf = 0;
+    }
+
+    function resume() {
+      if (!S.paused) return;
+      S.paused = false;
+      if (S.running) S.raf = global.requestAnimationFrame(loop);
+    }
+
     return {
       setData, setMatches, setMode, activate, deactivate, resize,
+      pause, resume,
       fit: () => { fitView(); },
       get mode() { return S.mode; },
     };
