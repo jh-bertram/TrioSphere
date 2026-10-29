@@ -879,6 +879,8 @@
       }
       S.hover = n;
       canvas.style.cursor = n ? "pointer" : "grab";
+      // opts.pinFocusCard: on leaving a star, keep the focused star's card up.
+      if (!n && opts.pinFocusCard && S.focus) { showCard(S.focus, ...w2s(S.focus.x, S.focus.y)); return; }
       showCard(n, px, py);
     }
 

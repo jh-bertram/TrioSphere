@@ -13,7 +13,7 @@
   <!-- SheetJS for Excel reading (same URL as index.html) -->
   <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
 
-  <link rel="stylesheet" href="style.css?v=2026-10-29">
+  <link rel="stylesheet" href="style.css?v=2026-10-29b">
   <style>
     html, body { margin: 0; padding: 0; overflow: hidden; }
     body { font-family: "Poppins", Georgia, serif; }
@@ -53,6 +53,9 @@
       overflow: hidden; white-space: nowrap; border: 0;
       clip: rect(0 0 0 0); clip-path: inset(50%);
     }
+    /* Two-click embed: the chart's hint is swapped for the embed's own. */
+    #skyCard .sky-card-hint { font-size: 0 !important; }
+    #skyCard .sky-card-hint::after { content: "Click again to open in TrioSphere \2197"; font-size: 9.5px; }
   </style>
 </head>
 <body>
@@ -86,7 +89,7 @@
   </details>
   <p id="skyCaption" class="visually-hidden" role="status" aria-live="polite"></p>
 
-<script src="constellation.js?v=2026-10-29"></script>
+<script src="constellation.js?v=2026-10-29b"></script>
 <script>
 (function () {
   "use strict";
@@ -131,7 +134,11 @@
     }));
   }
 
+  // Two-click: the first click (or Enter) on a star only pins its card and
+  // arms it; a second on the same armed star opens the Data page.
+  let armedId = null;
   function openEntry(ds) {
+    if (armedId !== ds.id) { armedId = ds.id; return; }
     const href = new URL("index.html?id=" + encodeURIComponent(ds.id), location.href).href;
     window.open(href, "_blank", "noopener");
   }
@@ -159,9 +166,16 @@
       onOpen:     openEntry,
       // The chrome sits outside the stage here, so narrow captions pin to the
       // stage's own edges instead of clearing overlaid controls and key.
-      pinnedCaptions: { top: 22, bottom: 12 }
+      pinnedCaptions: { top: 22, bottom: 12 },
+      pinFocusCard: true   // the card stays up for the second click
     });
     sky.setData(data);
+    // Disarm when the chart drops focus (sky click, Escape): setFocus(null)
+    // empties the caption. A hover-leave only hides the card and keeps focus,
+    // since the star jumps from under the pointer when it is focused.
+    const cap = document.getElementById("skyCaption");
+    new MutationObserver(() => { if (!cap.textContent) armedId = null; })
+      .observe(cap, { childList: true, characterData: true, subtree: true });
     const sel = document.getElementById("skyMode");
     sel.value = mode;
     if (mode !== sky.mode) sky.setMode(mode);
