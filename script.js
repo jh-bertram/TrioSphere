@@ -424,6 +424,14 @@ async function initializeApp() {
     if (skyFitBtn) skyFitBtn.addEventListener("click", () => sky.fit());
   }
 
+  // Deep link: index.html?id=N opens that entry's More Info modal (the
+  // embed's star click lands here). Junk or unknown ids are ignored.
+  const deepId = new URLSearchParams(location.search).get("id");
+  if (deepId && /^[0-9]+$/.test(deepId)) {
+    const deepEntry = DATASETS.find(ds => ds.id === deepId);
+    if (deepEntry) showModal(deepEntry);
+  }
+
   function render() {
     const subset = DATASETS.filter(ds => passSearch(ds) && passFilters(ds));
 
